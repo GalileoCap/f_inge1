@@ -236,13 +236,13 @@ test37FibonacciEnteroReturnsAddingPreviousTwoFibonacciEnteros
 	self assert: three fibonacci equals: three. 
 	self assert: five fibonacci equals: four fibonacci + three fibonacci.! !
 
-!NumeroTest methodsFor: 'tests' stamp: 'FGCL 4/18/2023 19:10:13'!
+!NumeroTest methodsFor: 'tests' stamp: 'FGCL 4/19/2023 10:24:43'!
 test38FibonacciNotDefinedForNegativeNumbers
 
 	self 
 		should: [negativeOne fibonacci]
 		raise: Error
-		withExceptionDo: [ :anError | self assert: anError messageText equals: Negativo fibonacciErrorDescription ].! !
+		withExceptionDo: [ :anError | self assert: anError messageText equals: EnteroNegativo fibonacciErrorDescription ].! !
 
 !NumeroTest methodsFor: 'tests' stamp: 'NR 9/23/2018 23:49:55'!
 test39NegationOfEnteroIsCorrect
@@ -477,20 +477,20 @@ isZero
 Entero class
 	instanceVariableNames: ''!
 
-!Entero class methodsFor: 'instance creation' stamp: 'FGCL 4/18/2023 19:09:00'!
+!Entero class methodsFor: 'instance creation' stamp: 'FGCL 4/19/2023 10:24:48'!
 with: aValue 
 	
 	"Esta verificacion esta puesta por si se equivocan y quieren crear un Entero pasando otra cosa que un Integer - Hernan"
 	aValue isInteger ifFalse: [  self error: 'aValue debe ser anInteger' ].
 	
 	"aValue negative ifTrue: [ ^Negativo new initalizeWith: aValue ]."
-	[ aValue sqrt ] on: Error do: [ ^Negativo new initalizeWith: aValue ].
+	[ aValue sqrt ] on: Error do: [ ^EnteroNegativo new initalizeWith: aValue ].
 	"aValue = 0 ifTrue: [ ^Cero initialize ]."
 	[ 1 / aValue ] on: Error do: [ ^Cero initialize ].
 	"aValue = 1 ifTrue: [ ^Uno initialize ]."
 	[ 1 / (aValue - 1) ] on: Error do: [ ^Uno initialize ].
 	
-	^PositivosNoUno new initalizeWith: aValue! !
+	^EnteroPositivo new initalizeWith: aValue! !
 
 
 !classDefinition: #Cero category: 'Numero-Exercise'!
@@ -515,36 +515,36 @@ initialize
 	^self new initalizeWith: 0.! !
 
 
-!classDefinition: #Negativo category: 'Numero-Exercise'!
-Entero subclass: #Negativo
+!classDefinition: #EnteroNegativo category: 'Numero-Exercise'!
+Entero subclass: #EnteroNegativo
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
-!Negativo methodsFor: 'as yet unclassified' stamp: 'FGCL 4/18/2023 19:01:30'!
+!EnteroNegativo methodsFor: 'as yet unclassified' stamp: 'FGCL 4/19/2023 10:24:43'!
 fibonacci
-	self error: Negativo fibonacciErrorDescription.! !
+	self error: EnteroNegativo fibonacciErrorDescription.! !
 
 "-- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- "!
 
-!classDefinition: 'Negativo class' category: 'Numero-Exercise'!
-Negativo class
+!classDefinition: 'EnteroNegativo class' category: 'Numero-Exercise'!
+EnteroNegativo class
 	instanceVariableNames: ''!
 
-!Negativo class methodsFor: 'as yet unclassified' stamp: 'FGCL 4/18/2023 19:01:46'!
+!EnteroNegativo class methodsFor: 'as yet unclassified' stamp: 'FGCL 4/18/2023 19:01:46'!
 fibonacciErrorDescription
 	^ ' Fibonacci no está definido aquí para Enteros Negativos!!!!!!'! !
 
 
-!classDefinition: #PositivosNoUno category: 'Numero-Exercise'!
-Entero subclass: #PositivosNoUno
+!classDefinition: #EnteroPositivo category: 'Numero-Exercise'!
+Entero subclass: #EnteroPositivo
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'Numero-Exercise'!
 
-!PositivosNoUno methodsFor: 'as yet unclassified' stamp: 'FGCL 4/18/2023 19:02:07'!
+!EnteroPositivo methodsFor: 'as yet unclassified' stamp: 'FGCL 4/18/2023 19:02:07'!
 fibonacci
 	| one two |
 	
@@ -555,7 +555,7 @@ fibonacci
 
 
 !classDefinition: #Uno category: 'Numero-Exercise'!
-Entero subclass: #Uno
+EnteroPositivo subclass: #Uno
 	instanceVariableNames: ''
 	classVariableNames: ''
 	poolDictionaries: ''
