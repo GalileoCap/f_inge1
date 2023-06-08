@@ -1,0 +1,1755 @@
+
+
+----QUIT----(30 May 2023 00:05:32) CuisUniversity-5832.image priorSource: 4928100!
+
+----STARTUP---- (30 May 2023 00:05:33) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5832.image!
+
+
+----QUIT----(30 May 2023 00:05:33) CuisUniversity-5832.image priorSource: 9366537!
+
+----STARTUP---- (6 June 2023 20:19:24) as /mnt/data/facu/inge1/ejercicios/cuis/CuisUniversity-5832.image!
+
+
+----SNAPSHOT----(6 June 2023 20:19:34) CuisUniversity-5832.image priorSource: 9366758!
+
+----SNAPSHOT----(6 June 2023 20:20:16) CuisUniversity-5832.image priorSource: 9366950!
+
+Object subclass: #TusLibros
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #TusLibros category: 'TusLibros' stamp: 'FGCL 6/6/2023 20:30:27'!
+Object subclass: #TusLibros
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+TestCase subclass: #TusLibrosTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #TusLibrosTest category: 'TusLibros' stamp: 'FGCL 6/6/2023 20:30:33'!
+TestCase subclass: #TusLibrosTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #TusLibrosTest stamp: 'FGCL 6/6/2023 20:32:28'!
+TestCase subclass: #TusLibrosTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #TusLibros stamp: 'FGCL 6/6/2023 20:32:29'!
+Object subclass: #TusLibros
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+Object subclass: #Cart
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'FGCL 6/6/2023 20:32:37'!
+Object subclass: #Cart
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartTest category: 'TusLibros' stamp: 'FGCL 6/6/2023 20:32:42'!
+TestCase subclass: #CartTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/6/2023 20:33:40'!
+test01WhenCreatedCartIsEmpty
+	| cart |
+	
+	cart := Cart new.
+	
+	self assert: 0 equals: cart list.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/6/2023 20:34:54' prior: 50624427!
+test01WhenCreatedCartIsEmpty
+	| cart |
+	
+	cart := Cart new.
+	
+	self assert: Dictionary new equals: cart list.! !
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmpty stamp: 'FGCL 6/6/2023 20:34:55'!
+ERROR!
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmpty stamp: 'FGCL 6/6/2023 20:34:55'!
+ERROR!
+!Cart methodsFor: 'list' stamp: 'FGCL 6/6/2023 20:35:07'!
+list
+	^Dictionary new.! !
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmpty stamp: 'FGCL 6/6/2023 20:35:09'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/6/2023 20:37:08'!
+test01WhenCreatedCartIsEmptyAndHasItsCorrespondingId
+	| cart id |
+	
+	id := 1.
+	cart := Cart withId: id.
+	
+	self assert: Dictionary new equals: cart list.
+	self assert: id equals: cart id.! !
+
+!methodRemoval: CartTest #test01WhenCreatedCartIsEmpty stamp: 'FGCL 6/6/2023 20:37:14'!
+test01WhenCreatedCartIsEmpty
+	| cart |
+	
+	cart := Cart new.
+	
+	self assert: Dictionary new equals: cart list.!
+!Cart class methodsFor: 'instance creation' stamp: 'FGCL 6/6/2023 20:37:29'!
+withId: anId
+	^self new initializeWithId: anId.! !
+!Cart methodsFor: 'initialization' stamp: 'FGCL 6/6/2023 20:37:44'!
+initializeWithId: anId! !
+!Cart methodsFor: 'getters' stamp: 'FGCL 6/6/2023 20:37:57'!
+id
+	^0.! !
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmptyAndHasItsCorrespondingId stamp: 'FGCL 6/6/2023 20:37:58'!
+FAILURE!
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmptyAndHasItsCorrespondingId stamp: 'FGCL 6/6/2023 20:37:58'!
+FAILURE!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/6/2023 20:38:03' prior: 50624451!
+test01WhenCreatedCartIsEmptyAndHasItsCorrespondingId
+	| cart id |
+	
+	id := 0.
+	cart := Cart withId: id.
+	
+	self assert: Dictionary new equals: cart list.
+	self assert: id equals: cart id.! !
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmptyAndHasItsCorrespondingId stamp: 'FGCL 6/6/2023 20:38:04'!
+PASSED!
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmptyAndHasItsCorrespondingId stamp: 'FGCL 6/6/2023 20:38:04'!
+PASSED!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'FGCL 6/6/2023 20:38:25'!
+Object subclass: #Cart
+	instanceVariableNames: 'id'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'initialization' stamp: 'FGCL 6/6/2023 20:38:23' prior: 50624470!
+initializeWithId: anId
+	id := anId.! !
+!Cart methodsFor: 'getters' stamp: 'FGCL 6/6/2023 20:38:29' prior: 50624473!
+id
+	^id.! !
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmptyAndHasItsCorrespondingId stamp: 'FGCL 6/6/2023 20:38:30'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/6/2023 20:40:13'!
+test02ABookCanBeAddedToACart
+	| cart isbn amount |
+	
+	cart := Cart withId: 0.
+	isbn := 0.
+	amount := 1.
+	
+	self assert: (Dictionary newFromPairs: {isbn, amount}) equals: cart list.! !
+
+!testRun: #CartTest #test02ABookCanBeAddedToACart stamp: 'FGCL 6/6/2023 20:40:15'!
+ERROR!
+
+!testRun: #CartTest #test02ABookCanBeAddedToACart stamp: 'FGCL 6/6/2023 20:40:15'!
+ERROR!
+
+!testRun: #CartTest #test02ABookCanBeAddedToACart stamp: 'FGCL 6/6/2023 20:40:20'!
+ERROR!
+
+!testRun: #CartTest #test02ABookCanBeAddedToACart stamp: 'FGCL 6/6/2023 20:40:20'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/6/2023 20:40:46' prior: 50624517!
+test02ABookCanBeAddedToACart
+	| cart isbn amount |
+	
+	cart := Cart withId: 0.
+	isbn := 0.
+	amount := 1.
+	
+	self assert: (Dictionary newFromPairs: {isbn. amount}) equals: cart list.! !
+
+!testRun: #CartTest #test02ABookCanBeAddedToACart stamp: 'FGCL 6/6/2023 20:40:47'!
+FAILURE!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'FGCL 6/6/2023 20:40:59'!
+Object subclass: #Cart
+	instanceVariableNames: 'id list'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'initialization' stamp: 'FGCL 6/6/2023 20:40:58' prior: 50624507!
+initializeWithId: anId
+	id := anId.
+	list := Dictionary new.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/6/2023 20:42:34'!
+test02ABookIsbnCanBeAddedToACart
+	| cart isbn |
+	
+	cart := Cart withId: 0.
+	isbn := 0.
+	
+	Cart addBookIsbn: isbn.
+	self assert: (Dictionary newFromPairs: {isbn. 1}) equals: cart list.! !
+
+!methodRemoval: CartTest #test02ABookCanBeAddedToACart stamp: 'FGCL 6/6/2023 20:42:48'!
+test02ABookCanBeAddedToACart
+	| cart isbn amount |
+	
+	cart := Cart withId: 0.
+	isbn := 0.
+	amount := 1.
+	
+	self assert: (Dictionary newFromPairs: {isbn. amount}) equals: cart list.!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/6/2023 20:43:18'!
+test02ABookCanBeAddedToACart
+	| cart isbn |
+	
+	cart := Cart withId: 0.
+	isbn := 0.
+	
+	Cart addBookIsbn: isbn.
+	self assert: (Dictionary newFromPairs: {isbn. 1}) equals: cart list.! !
+
+!methodRemoval: CartTest #test02ABookIsbnCanBeAddedToACart stamp: 'FGCL 6/6/2023 20:43:18'!
+test02ABookIsbnCanBeAddedToACart
+	| cart isbn |
+	
+	cart := Cart withId: 0.
+	isbn := 0.
+	
+	Cart addBookIsbn: isbn.
+	self assert: (Dictionary newFromPairs: {isbn. 1}) equals: cart list.!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/6/2023 20:43:21' prior: 50624576!
+test02ABookCanBeAddedToACart
+	| cart isbn |
+	
+	cart := Cart withId: 0.
+	isbn := 0.
+	
+	Cart addBook: isbn.
+	self assert: (Dictionary newFromPairs: {isbn. 1}) equals: cart list.! !
+!Cart methodsFor: 'managing' stamp: 'FGCL 6/6/2023 20:43:35'!
+addBookWithIsbn: aBooksIsbn
+	! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/6/2023 20:43:40' prior: 50624593!
+test02ABookCanBeAddedToACart
+	| cart isbn |
+	
+	cart := Cart withId: 0.
+	isbn := 0.
+	
+	Cart addBookWithIsbn: isbn.
+	self assert: (Dictionary newFromPairs: {isbn. 1}) equals: cart list.! !
+!Cart methodsFor: 'managing' stamp: 'FGCL 6/6/2023 20:45:12' prior: 50624601!
+addBookWithIsbn: aBooksIsbn
+	list at: aBooksIsbn put: 1.! !
+
+!testRun: #CartTest #test02ABookCanBeAddedToACart stamp: 'FGCL 6/6/2023 20:45:16'!
+ERROR!
+
+!testRun: #CartTest #test02ABookCanBeAddedToACart stamp: 'FGCL 6/6/2023 20:45:16'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/6/2023 20:45:29' prior: 50624605!
+test02ABookCanBeAddedToACart
+	| cart isbn |
+	
+	cart := Cart withId: 0.
+	isbn := 0.
+	
+	cart addBookWithIsbn: isbn.
+	self assert: (Dictionary newFromPairs: {isbn. 1}) equals: cart list.! !
+
+!testRun: #CartTest #test02ABookCanBeAddedToACart stamp: 'FGCL 6/6/2023 20:45:30'!
+FAILURE!
+!Cart methodsFor: 'list' stamp: 'FGCL 6/6/2023 20:45:38' prior: 50624445!
+list
+	^list.! !
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmptyAndHasItsCorrespondingId stamp: 'FGCL 6/6/2023 20:45:39'!
+PASSED!
+
+!testRun: #CartTest #test02ABookCanBeAddedToACart stamp: 'FGCL 6/6/2023 20:45:39'!
+PASSED!
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'FGCL 6/6/2023 20:45:46'!
+Object subclass: #Cart
+	instanceVariableNames: 'id books'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'as yet unclassified' stamp: 'FGCL 6/6/2023 20:45:46' prior: 50624614!
+addBookWithIsbn: aBooksIsbn
+	books at: aBooksIsbn put: 1.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'FGCL 6/6/2023 20:45:46' prior: 50624637!
+list
+	^books.! !
+!Cart methodsFor: 'as yet unclassified' stamp: 'FGCL 6/6/2023 20:45:46' prior: 50624555!
+initializeWithId: anId
+	id := anId.
+	books := Dictionary new.! !
+!Cart methodsFor: 'getters' stamp: 'FGCL 6/6/2023 20:46:11'!
+books
+	^books.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/6/2023 20:46:11' prior: 50624484!
+test01WhenCreatedCartIsEmptyAndHasItsCorrespondingId
+	| cart id |
+	
+	id := 0.
+	cart := Cart withId: id.
+	
+	self assert: Dictionary new equals: cart books.
+	self assert: id equals: cart id.! !
+!CartTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/6/2023 20:46:11' prior: 50624625!
+test02ABookCanBeAddedToACart
+	| cart isbn |
+	
+	cart := Cart withId: 0.
+	isbn := 0.
+	
+	cart addBookWithIsbn: isbn.
+	self assert: (Dictionary newFromPairs: {isbn. 1}) equals: cart books.! !
+
+!methodRemoval: Cart #list stamp: 'FGCL 6/6/2023 20:46:11'!
+list
+	^books.!
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmptyAndHasItsCorrespondingId stamp: 'FGCL 6/6/2023 20:46:14'!
+PASSED!
+
+!testRun: #CartTest #test02ABookCanBeAddedToACart stamp: 'FGCL 6/6/2023 20:46:14'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/6/2023 20:46:23' prior: 50624671!
+test01WhenCreatedCartIsEmptyAndHasItsCorrespondingId
+	| cart id |
+	
+	id := 0.
+	cart := Cart withId: id.
+	
+	self assert: id equals: cart id.
+	self assert: Dictionary new equals: cart books.! !
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmptyAndHasItsCorrespondingId stamp: 'FGCL 6/6/2023 20:46:24'!
+PASSED!
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmptyAndHasItsCorrespondingId stamp: 'FGCL 6/6/2023 20:46:24'!
+PASSED!
+
+!testRun: #CartTest #test02ABookCanBeAddedToACart stamp: 'FGCL 6/6/2023 20:46:24'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/6/2023 20:47:40'!
+test03ABookCanBeAddedToACartManyTimes
+	| cart isbn |
+	
+	cart := Cart withId: 0.
+	isbn := 0.
+	
+	cart addBookWithIsbn: isbn.
+	cart addBookWithIsbn: isbn.
+	self assert: (Dictionary newFromPairs: {isbn. 2}) equals: cart books.! !
+
+!testRun: #CartTest #test03ABookCanBeAddedToACartManyTimes stamp: 'FGCL 6/6/2023 20:47:41'!
+FAILURE!
+!Cart methodsFor: 'managing' stamp: 'FGCL 6/6/2023 20:48:16' prior: 50624654!
+addBookWithIsbn: aBooksIsbn
+	books at: aBooksIsbn ifPresent: [ :previousAmount | previousAmount + 1 ] ifAbsent: [ 1 ].! !
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmptyAndHasItsCorrespondingId stamp: 'FGCL 6/6/2023 20:48:19'!
+PASSED!
+
+!testRun: #CartTest #test02ABookCanBeAddedToACart stamp: 'FGCL 6/6/2023 20:48:19'!
+FAILURE!
+
+!testRun: #CartTest #test03ABookCanBeAddedToACartManyTimes stamp: 'FGCL 6/6/2023 20:48:19'!
+FAILURE!
+
+!testRun: #CartTest #test02ABookCanBeAddedToACart stamp: 'FGCL 6/6/2023 20:48:23'!
+FAILURE!
+
+!testRun: #CartTest #test02ABookCanBeAddedToACart stamp: 'FGCL 6/6/2023 20:48:28'!
+FAILURE!
+!Cart methodsFor: 'managing' stamp: 'FGCL 6/6/2023 20:50:02' prior: 50624730!
+addBookWithIsbn: aBooksIsbn
+	books at: aBooksIsbn put: ((books at: 	aBooksIsbn ifAbsent: [ 0 ]) + 1).! !
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmptyAndHasItsCorrespondingId stamp: 'FGCL 6/6/2023 20:50:02'!
+PASSED!
+
+!testRun: #CartTest #test02ABookCanBeAddedToACart stamp: 'FGCL 6/6/2023 20:50:02'!
+PASSED!
+
+!testRun: #CartTest #test03ABookCanBeAddedToACartManyTimes stamp: 'FGCL 6/6/2023 20:50:02'!
+PASSED!
+!Cart methodsFor: 'managing' stamp: 'FGCL 6/6/2023 20:54:24' prior: 50624752!
+addBookWithIsbn: aBooksIsbn
+	books add: aBooksIsbn.! !
+!Cart methodsFor: 'initialization' stamp: 'FGCL 6/6/2023 20:54:29' prior: 50624663!
+initializeWithId: anId
+	id := anId.
+	books := Bag new.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/6/2023 20:54:34' prior: 50624698!
+test01WhenCreatedCartIsEmptyAndHasItsCorrespondingId
+	| cart id |
+	
+	id := 0.
+	cart := Cart withId: id.
+	
+	self assert: id equals: cart id.
+	self assert: Bag new equals: cart books.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/6/2023 20:54:43' prior: 50624680!
+test02ABookCanBeAddedToACart
+	| cart isbn |
+	
+	cart := Cart withId: 0.
+	isbn := 0.
+	
+	cart addBookWithIsbn: isbn.
+	self assert: (Bag with: isbn) equals: cart books.! !
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmptyAndHasItsCorrespondingId stamp: 'FGCL 6/6/2023 20:54:46'!
+PASSED!
+
+!testRun: #CartTest #test02ABookCanBeAddedToACart stamp: 'FGCL 6/6/2023 20:54:47'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/6/2023 20:55:15' prior: 50624717!
+test03ABookCanBeAddedToACartManyTimes
+	| cart isbn |
+	
+	cart := Cart withId: 0.
+	isbn := 0.
+	
+	cart addBookWithIsbn: isbn.
+	cart addBookWithIsbn: isbn.
+	self assert: (Bag with: isbn with: isbn) equals: cart books.! !
+
+!testRun: #CartTest #test03ABookCanBeAddedToACartManyTimes stamp: 'FGCL 6/6/2023 20:55:16'!
+PASSED!
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmptyAndHasItsCorrespondingId stamp: 'FGCL 6/6/2023 20:55:16'!
+PASSED!
+
+!testRun: #CartTest #test02ABookCanBeAddedToACart stamp: 'FGCL 6/6/2023 20:55:16'!
+PASSED!
+
+!testRun: #CartTest #test03ABookCanBeAddedToACartManyTimes stamp: 'FGCL 6/6/2023 20:55:16'!
+PASSED!
+
+----SNAPSHOT----(6 June 2023 20:55:20) CuisUniversity-5832.image priorSource: 9367038!
+!Cart methodsFor: 'managing' stamp: 'FGCL 6/6/2023 20:56:37'!
+addBookWithIsbn: aBooksIsbn withOccurrences: occurrences
+	books add: aBooksIsbn withOccurrences: occurrences.! !
+!Cart methodsFor: 'managing' stamp: 'FGCL 6/6/2023 20:56:46' prior: 50624768!
+addBookWithIsbn: aBooksIsbn
+	self addBookWithIsbn: aBooksIsbn withOccurrences: 1.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/6/2023 20:57:20' prior: 50624802!
+test03ABookCanBeAddedToACartManyTimes
+	| cart isbn |
+	
+	cart := Cart withId: 0.
+	isbn := 0.
+	
+	cart addBookWithIsbn: isbn withOccurrences: 2.
+	cart addBookWithIsbn: isbn.
+	self assert: (Bag with: isbn with: isbn with: isbn) equals: cart books.! !
+
+!testRun: #CartTest #test03ABookCanBeAddedToACartManyTimes stamp: 'FGCL 6/6/2023 20:57:21'!
+PASSED!
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmptyAndHasItsCorrespondingId stamp: 'FGCL 6/6/2023 20:57:21'!
+PASSED!
+
+!testRun: #CartTest #test02ABookCanBeAddedToACart stamp: 'FGCL 6/6/2023 20:57:21'!
+PASSED!
+
+!testRun: #CartTest #test03ABookCanBeAddedToACartManyTimes stamp: 'FGCL 6/6/2023 20:57:21'!
+PASSED!
+
+----SNAPSHOT----(6 June 2023 20:57:25) CuisUniversity-5832.image priorSource: 9381554!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/6/2023 20:58:30'!
+test04DifferentBooksCanBeAddedToACart
+	| cart book1Isbn book2Isbn |
+	
+	cart := Cart withId: 0.
+	book1Isbn := 0.
+	book2Isbn := 1.
+	
+	cart addBookWithIsbn: book1Isbn.
+	cart addBookWithIsbn: book2Isbn.
+	self assert: (Bag with: book1Isbn with: book2Isbn) equals: cart books.! !
+
+!testRun: #CartTest #test04DifferentBooksCanBeAddedToACart stamp: 'FGCL 6/6/2023 20:58:31'!
+PASSED!
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmptyAndHasItsCorrespondingId stamp: 'FGCL 6/6/2023 20:58:31'!
+PASSED!
+
+!testRun: #CartTest #test02ABookCanBeAddedToACart stamp: 'FGCL 6/6/2023 20:58:31'!
+PASSED!
+
+!testRun: #CartTest #test03ABookCanBeAddedToACartManyTimes stamp: 'FGCL 6/6/2023 20:58:31'!
+PASSED!
+
+!testRun: #CartTest #test04DifferentBooksCanBeAddedToACart stamp: 'FGCL 6/6/2023 20:58:31'!
+PASSED!
+
+----SNAPSHOT----(6 June 2023 20:58:34) CuisUniversity-5832.image priorSource: 9382768!
+!Cart methodsFor: 'managing' stamp: 'FGCL 6/6/2023 20:59:25' prior: 50624827!
+addBookWithIsbn: aBooksIsbn withOccurrences: occurrences
+	books add: aBooksIsbn withOccurrences: occurrences.! !
+!Cart methodsFor: 'managing' stamp: 'FGCL 6/6/2023 21:00:11' prior: 50624895!
+addBookWithIsbn: aBooksIsbn withOccurrences: occurrences
+	books add: aBooksIsbn withOccurrences: occurrences. " NOTA: Deberíamos de haber hecho add: 0 en la primera vez, porque todavía no estabamos testeando el genérico de múltiples isbn diferentes (test04), nos adelantamos. "! !
+
+!testRun: #CartTest #test04DifferentBooksCanBeAddedToACart stamp: 'FGCL 6/6/2023 21:00:25'!
+PASSED!
+
+b := Bag new.!
+
+b add: 0 withOccurrences: 0.!
+
+b add: 0 withOccurrences: -1.!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/6/2023 21:04:04'!
+test05CantAddNegativeAmountOfBooksToACart
+	| cart |
+	
+	cart := Cart withId: 0.
+	
+	self should: [ cart addBookWithIsbn: 0 withOccurrences: -1 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: (Cart bookNegativeOccurrencesErrorMsg) equals: anError messageText.
+		].! !
+!Cart class methodsFor: 'error messages' stamp: 'FGCL 6/6/2023 21:04:45'!
+bookNegativeOccurrencesErrorMessage
+	^'Cant add a negative amount of books'.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/6/2023 21:04:53' prior: 50624918!
+test05CantAddNegativeAmountOfBooksToACart
+	| cart |
+	
+	cart := Cart withId: 0.
+	
+	self should: [ cart addBookWithIsbn: 0 withOccurrences: -1 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: (Cart bookNegativeOccurrencesErrorMessage) equals: anError messageText.
+		].! !
+
+!testRun: #CartTest #test05CantAddNegativeAmountOfBooksToACart stamp: 'FGCL 6/6/2023 21:04:55'!
+FAILURE!
+!Cart methodsFor: 'managing' stamp: 'FGCL 6/6/2023 21:05:33' prior: 50624901!
+addBookWithIsbn: aBooksIsbn withOccurrences: occurrences
+	occurrences negative ifTrue: [ self error: Cart bookNegativeOccurrencesErrorMessage ].
+		
+	books add: aBooksIsbn withOccurrences: occurrences. " NOTA: Deberíamos de haber hecho add: 0 en la primera vez, porque todavía no estabamos testeando el genérico de múltiples isbn diferentes (test04), nos adelantamos. "! !
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmptyAndHasItsCorrespondingId stamp: 'FGCL 6/6/2023 21:05:39'!
+PASSED!
+
+!testRun: #CartTest #test02ABookCanBeAddedToACart stamp: 'FGCL 6/6/2023 21:05:39'!
+PASSED!
+
+!testRun: #CartTest #test03ABookCanBeAddedToACartManyTimes stamp: 'FGCL 6/6/2023 21:05:39'!
+PASSED!
+
+!testRun: #CartTest #test04DifferentBooksCanBeAddedToACart stamp: 'FGCL 6/6/2023 21:05:39'!
+PASSED!
+
+!testRun: #CartTest #test05CantAddNegativeAmountOfBooksToACart stamp: 'FGCL 6/6/2023 21:05:39'!
+PASSED!
+
+----SNAPSHOT----(6 June 2023 21:09:37) CuisUniversity-5832.image priorSource: 9383728!
+
+----SNAPSHOT----(6 June 2023 21:12:49) CuisUniversity-5832.image priorSource: 9386554!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/6/2023 21:13:04'!
+test06CantAddNegativeAmountOfBooksToACart
+	| cart |
+	
+	cart := Cart withId: 0.
+	
+	self should: [ cart addBookWithIsbn: 0 withOccurrences: -1 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: (Cart bookNegativeOccurrencesErrorMessage) equals: anError messageText.
+		].! !
+
+!methodRemoval: CartTest #test05CantAddNegativeAmountOfBooksToACart stamp: 'FGCL 6/6/2023 21:13:04'!
+test05CantAddNegativeAmountOfBooksToACart
+	| cart |
+	
+	cart := Cart withId: 0.
+	
+	self should: [ cart addBookWithIsbn: 0 withOccurrences: -1 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: (Cart bookNegativeOccurrencesErrorMessage) equals: anError messageText.
+		].!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/6/2023 21:13:06'!
+test05DifferentBooksCanBeAddedToACart
+	| cart book1Isbn book2Isbn |
+	
+	cart := Cart withId: 0.
+	book1Isbn := 0.
+	book2Isbn := 1.
+	
+	cart addBookWithIsbn: book1Isbn.
+	cart addBookWithIsbn: book2Isbn.
+	self assert: (Bag with: book1Isbn with: book2Isbn) equals: cart books.! !
+
+!methodRemoval: CartTest #test04DifferentBooksCanBeAddedToACart stamp: 'FGCL 6/6/2023 21:13:06'!
+test04DifferentBooksCanBeAddedToACart
+	| cart book1Isbn book2Isbn |
+	
+	cart := Cart withId: 0.
+	book1Isbn := 0.
+	book2Isbn := 1.
+	
+	cart addBookWithIsbn: book1Isbn.
+	cart addBookWithIsbn: book2Isbn.
+	self assert: (Bag with: book1Isbn with: book2Isbn) equals: cart books.!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/6/2023 21:13:16'!
+test04ABookCanBeAddedToACartManyTimes
+	| cart isbn |
+	
+	cart := Cart withId: 0.
+	isbn := 0.
+	
+	cart addBookWithIsbn: isbn.
+	cart addBookWithIsbn: isbn.
+	self assert: (Bag with: isbn with: isbn) equals: cart books.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/6/2023 21:13:23' prior: 50624839!
+test03ABookCanBeAddedToACartManyTimes
+	| cart isbn |
+	
+	cart := Cart withId: 0.
+	isbn := 0.
+	
+	cart addBookWithIsbn: isbn withOccurrences: 2.
+	self assert: (Bag with: isbn with: isbn) equals: cart books.! !
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmptyAndHasItsCorrespondingId stamp: 'FGCL 6/6/2023 21:13:24'!
+PASSED!
+
+!testRun: #CartTest #test02ABookCanBeAddedToACart stamp: 'FGCL 6/6/2023 21:13:24'!
+PASSED!
+
+!testRun: #CartTest #test03ABookCanBeAddedToACartManyTimes stamp: 'FGCL 6/6/2023 21:13:24'!
+PASSED!
+
+!testRun: #CartTest #test04ABookCanBeAddedToACartManyTimes stamp: 'FGCL 6/6/2023 21:13:24'!
+PASSED!
+
+!testRun: #CartTest #test05DifferentBooksCanBeAddedToACart stamp: 'FGCL 6/6/2023 21:13:24'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddNegativeAmountOfBooksToACart stamp: 'FGCL 6/6/2023 21:13:24'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/6/2023 21:13:36'!
+test03ABookCanBeAddedToACartManyTimesAtOnce
+	| cart isbn |
+	
+	cart := Cart withId: 0.
+	isbn := 0.
+	
+	cart addBookWithIsbn: isbn withOccurrences: 2.
+	self assert: (Bag with: isbn with: isbn) equals: cart books.! !
+
+!methodRemoval: CartTest #test03ABookCanBeAddedToACartManyTimes stamp: 'FGCL 6/6/2023 21:13:36'!
+test03ABookCanBeAddedToACartManyTimes
+	| cart isbn |
+	
+	cart := Cart withId: 0.
+	isbn := 0.
+	
+	cart addBookWithIsbn: isbn withOccurrences: 2.
+	self assert: (Bag with: isbn with: isbn) equals: cart books.!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/6/2023 21:13:46'!
+test04ABookCanBeAddedToACartManyTimesSeparately
+	| cart isbn |
+	
+	cart := Cart withId: 0.
+	isbn := 0.
+	
+	cart addBookWithIsbn: isbn.
+	cart addBookWithIsbn: isbn.
+	self assert: (Bag with: isbn with: isbn) equals: cart books.! !
+
+!methodRemoval: CartTest #test04ABookCanBeAddedToACartManyTimes stamp: 'FGCL 6/6/2023 21:13:46'!
+test04ABookCanBeAddedToACartManyTimes
+	| cart isbn |
+	
+	cart := Cart withId: 0.
+	isbn := 0.
+	
+	cart addBookWithIsbn: isbn.
+	cart addBookWithIsbn: isbn.
+	self assert: (Bag with: isbn with: isbn) equals: cart books.!
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmptyAndHasItsCorrespondingId stamp: 'FGCL 6/6/2023 21:13:50'!
+PASSED!
+
+!testRun: #CartTest #test02ABookCanBeAddedToACart stamp: 'FGCL 6/6/2023 21:13:50'!
+PASSED!
+
+!testRun: #CartTest #test03ABookCanBeAddedToACartManyTimesAtOnce stamp: 'FGCL 6/6/2023 21:13:50'!
+PASSED!
+
+!testRun: #CartTest #test04ABookCanBeAddedToACartManyTimesSeparately stamp: 'FGCL 6/6/2023 21:13:50'!
+PASSED!
+
+!testRun: #CartTest #test05DifferentBooksCanBeAddedToACart stamp: 'FGCL 6/6/2023 21:13:50'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddNegativeAmountOfBooksToACart stamp: 'FGCL 6/6/2023 21:13:50'!
+PASSED!
+
+----SNAPSHOT----(6 June 2023 21:13:52) CuisUniversity-5832.image priorSource: 9386642!
+
+----STARTUP---- (7 June 2023 23:45:48) as /mnt/data/facu/inge1/ejercicios/cuis/CuisUniversity-5832.image!
+
+
+!methodRemoval: Cart #id stamp: 'FGCL 6/7/2023 23:46:19'!
+id
+	^id.!
+!Cart methodsFor: 'initialization' stamp: 'FGCL 6/7/2023 23:46:26' overrides: 16920235!
+initialize
+	books := Bag new.! !
+
+!methodRemoval: Cart #initializeWithId: stamp: 'FGCL 6/7/2023 23:46:29'!
+initializeWithId: anId
+	id := anId.
+	books := Bag new.!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:46:41'!
+test01WhenCreatedCartIsEmpty
+	| cart id |
+	
+	id := 0.
+	cart := Cart withId: id.
+	
+	self assert: id equals: cart id.
+	self assert: Bag new equals: cart books.! !
+
+!methodRemoval: CartTest #test01WhenCreatedCartIsEmptyAndHasItsCorrespondingId stamp: 'FGCL 6/7/2023 23:46:41'!
+test01WhenCreatedCartIsEmptyAndHasItsCorrespondingId
+	| cart id |
+	
+	id := 0.
+	cart := Cart withId: id.
+	
+	self assert: id equals: cart id.
+	self assert: Bag new equals: cart books.!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:46:53' prior: 50625145!
+test01WhenCreatedCartIsEmpty
+	| cart |
+	
+	cart := Cart new.
+	
+	self assert: Bag new equals: cart books.! !
+
+----SNAPSHOT----(7 June 2023 23:46:57) CuisUniversity-5832.image priorSource: 9391283!
+
+!methodRemoval: Cart class #withId: stamp: 'FGCL 6/7/2023 23:47:01'!
+withId: anId
+	^self new initializeWithId: anId.!
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmpty stamp: 'FGCL 6/7/2023 23:47:03'!
+PASSED!
+
+!testRun: #CartTest #test02ABookCanBeAddedToACart stamp: 'FGCL 6/7/2023 23:47:03'!
+ERROR!
+
+!testRun: #CartTest #test03ABookCanBeAddedToACartManyTimesAtOnce stamp: 'FGCL 6/7/2023 23:47:03'!
+ERROR!
+
+!testRun: #CartTest #test04ABookCanBeAddedToACartManyTimesSeparately stamp: 'FGCL 6/7/2023 23:47:03'!
+ERROR!
+
+!testRun: #CartTest #test05DifferentBooksCanBeAddedToACart stamp: 'FGCL 6/7/2023 23:47:03'!
+ERROR!
+
+!testRun: #CartTest #test06CantAddNegativeAmountOfBooksToACart stamp: 'FGCL 6/7/2023 23:47:03'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:47:09' prior: 50624787!
+test02ABookCanBeAddedToACart
+	| cart isbn |
+	
+	cart := Cart new.
+	isbn := 0.
+	
+	cart addBookWithIsbn: isbn.
+	self assert: (Bag with: isbn) equals: cart books.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:47:13' prior: 50625070!
+test03ABookCanBeAddedToACartManyTimesAtOnce
+	| cart isbn |
+	
+	cart := Cart new.
+	isbn := 0.
+	
+	cart addBookWithIsbn: isbn withOccurrences: 2.
+	self assert: (Bag with: isbn with: isbn) equals: cart books.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:47:16' prior: 50625089!
+test04ABookCanBeAddedToACartManyTimesSeparately
+	| cart isbn |
+	
+	cart := Cart new.
+	isbn := 0.
+	
+	cart addBookWithIsbn: isbn.
+	cart addBookWithIsbn: isbn.
+	self assert: (Bag with: isbn with: isbn) equals: cart books.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:47:20' prior: 50625009!
+test05DifferentBooksCanBeAddedToACart
+	| cart book1Isbn book2Isbn |
+	
+	cart := Cart new.
+	book1Isbn := 0.
+	book2Isbn := 1.
+	
+	cart addBookWithIsbn: book1Isbn.
+	cart addBookWithIsbn: book2Isbn.
+	self assert: (Bag with: book1Isbn with: book2Isbn) equals: cart books.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:47:22' prior: 50624986!
+test06CantAddNegativeAmountOfBooksToACart
+	| cart |
+	
+	cart := Cart new.
+	
+	self should: [ cart addBookWithIsbn: 0 withOccurrences: -1 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: (Cart bookNegativeOccurrencesErrorMessage) equals: anError messageText.
+		].! !
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmpty stamp: 'FGCL 6/7/2023 23:47:24'!
+PASSED!
+
+!testRun: #CartTest #test02ABookCanBeAddedToACart stamp: 'FGCL 6/7/2023 23:47:24'!
+PASSED!
+
+!testRun: #CartTest #test03ABookCanBeAddedToACartManyTimesAtOnce stamp: 'FGCL 6/7/2023 23:47:24'!
+PASSED!
+
+!testRun: #CartTest #test04ABookCanBeAddedToACartManyTimesSeparately stamp: 'FGCL 6/7/2023 23:47:24'!
+PASSED!
+
+!testRun: #CartTest #test05DifferentBooksCanBeAddedToACart stamp: 'FGCL 6/7/2023 23:47:24'!
+PASSED!
+
+!testRun: #CartTest #test06CantAddNegativeAmountOfBooksToACart stamp: 'FGCL 6/7/2023 23:47:24'!
+PASSED!
+
+----SNAPSHOT----(7 June 2023 23:47:28) CuisUniversity-5832.image priorSource: 9392554!
+
+Object subclass: #TusLibros
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #TusLibros category: 'TusLibros' stamp: 'FGCL 6/7/2023 23:48:13'!
+Object subclass: #TusLibros
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+TestCase subclass: #TusLibrosTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #TusLibrosTest category: 'TusLibros' stamp: 'FGCL 6/7/2023 23:48:51'!
+TestCase subclass: #TusLibrosTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #TusLibrosTest stamp: 'FGCL 6/7/2023 23:49:16'!
+TestCase subclass: #TusLibrosTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classRemoval: #TusLibros stamp: 'FGCL 6/7/2023 23:49:19'!
+Object subclass: #TusLibros
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+Object subclass: #StockManager
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #StockManager category: 'TusLibros' stamp: 'FGCL 6/7/2023 23:49:48'!
+Object subclass: #StockManager
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:50:13'!
+test03ABookCanBeAddedToACart
+	| cart isbn |
+	
+	cart := Cart new.
+	isbn := 0.
+	
+	cart addBookWithIsbn: isbn.
+	self assert: (Bag with: isbn) equals: cart books.! !
+
+!methodRemoval: CartTest #test02ABookCanBeAddedToACart stamp: 'FGCL 6/7/2023 23:50:13'!
+test02ABookCanBeAddedToACart
+	| cart isbn |
+	
+	cart := Cart new.
+	isbn := 0.
+	
+	cart addBookWithIsbn: isbn.
+	self assert: (Bag with: isbn) equals: cart books.!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:50:17'!
+test04ABookCanBeAddedToACartManyTimesAtOnce
+	| cart isbn |
+	
+	cart := Cart new.
+	isbn := 0.
+	
+	cart addBookWithIsbn: isbn withOccurrences: 2.
+	self assert: (Bag with: isbn with: isbn) equals: cart books.! !
+
+!methodRemoval: CartTest #test03ABookCanBeAddedToACartManyTimesAtOnce stamp: 'FGCL 6/7/2023 23:50:17'!
+test03ABookCanBeAddedToACartManyTimesAtOnce
+	| cart isbn |
+	
+	cart := Cart new.
+	isbn := 0.
+	
+	cart addBookWithIsbn: isbn withOccurrences: 2.
+	self assert: (Bag with: isbn with: isbn) equals: cart books.!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:50:22'!
+test03ABookInStockCanBeAddedToACart
+	| cart isbn |
+	
+	cart := Cart new.
+	isbn := 0.
+	
+	cart addBookWithIsbn: isbn.
+	self assert: (Bag with: isbn) equals: cart books.! !
+
+!methodRemoval: CartTest #test03ABookCanBeAddedToACart stamp: 'FGCL 6/7/2023 23:50:22'!
+test03ABookCanBeAddedToACart
+	| cart isbn |
+	
+	cart := Cart new.
+	isbn := 0.
+	
+	cart addBookWithIsbn: isbn.
+	self assert: (Bag with: isbn) equals: cart books.!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:50:27'!
+test04ABookInStockCanBeAddedToACartManyTimesAtOnce
+	| cart isbn |
+	
+	cart := Cart new.
+	isbn := 0.
+	
+	cart addBookWithIsbn: isbn withOccurrences: 2.
+	self assert: (Bag with: isbn with: isbn) equals: cart books.! !
+
+!methodRemoval: CartTest #test04ABookCanBeAddedToACartManyTimesAtOnce stamp: 'FGCL 6/7/2023 23:50:27'!
+test04ABookCanBeAddedToACartManyTimesAtOnce
+	| cart isbn |
+	
+	cart := Cart new.
+	isbn := 0.
+	
+	cart addBookWithIsbn: isbn withOccurrences: 2.
+	self assert: (Bag with: isbn with: isbn) equals: cart books.!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:50:30'!
+test05ABookInStockCanBeAddedToACartManyTimesAtOnce
+	| cart isbn |
+	
+	cart := Cart new.
+	isbn := 0.
+	
+	cart addBookWithIsbn: isbn withOccurrences: 2.
+	self assert: (Bag with: isbn with: isbn) equals: cart books.! !
+
+!methodRemoval: CartTest #test04ABookInStockCanBeAddedToACartManyTimesAtOnce stamp: 'FGCL 6/7/2023 23:50:30'!
+test04ABookInStockCanBeAddedToACartManyTimesAtOnce
+	| cart isbn |
+	
+	cart := Cart new.
+	isbn := 0.
+	
+	cart addBookWithIsbn: isbn withOccurrences: 2.
+	self assert: (Bag with: isbn with: isbn) equals: cart books.!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:50:38'!
+test06DifferentBooksInStockCanBeAddedToACart
+	| cart book1Isbn book2Isbn |
+	
+	cart := Cart new.
+	book1Isbn := 0.
+	book2Isbn := 1.
+	
+	cart addBookWithIsbn: book1Isbn.
+	cart addBookWithIsbn: book2Isbn.
+	self assert: (Bag with: book1Isbn with: book2Isbn) equals: cart books.! !
+
+!methodRemoval: CartTest #test05DifferentBooksCanBeAddedToACart stamp: 'FGCL 6/7/2023 23:50:38'!
+test05DifferentBooksCanBeAddedToACart
+	| cart book1Isbn book2Isbn |
+	
+	cart := Cart new.
+	book1Isbn := 0.
+	book2Isbn := 1.
+	
+	cart addBookWithIsbn: book1Isbn.
+	cart addBookWithIsbn: book2Isbn.
+	self assert: (Bag with: book1Isbn with: book2Isbn) equals: cart books.!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:50:42'!
+test07CantAddNegativeAmountOfBooksToACart
+	| cart |
+	
+	cart := Cart new.
+	
+	self should: [ cart addBookWithIsbn: 0 withOccurrences: -1 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: (Cart bookNegativeOccurrencesErrorMessage) equals: anError messageText.
+		].! !
+
+!methodRemoval: CartTest #test06CantAddNegativeAmountOfBooksToACart stamp: 'FGCL 6/7/2023 23:50:42'!
+test06CantAddNegativeAmountOfBooksToACart
+	| cart |
+	
+	cart := Cart new.
+	
+	self should: [ cart addBookWithIsbn: 0 withOccurrences: -1 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: (Cart bookNegativeOccurrencesErrorMessage) equals: anError messageText.
+		].!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:50:49'!
+test07CantAddNegativeAmountOfBooksInStockToACart
+	| cart |
+	
+	cart := Cart new.
+	
+	self should: [ cart addBookWithIsbn: 0 withOccurrences: -1 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: (Cart bookNegativeOccurrencesErrorMessage) equals: anError messageText.
+		].! !
+
+!methodRemoval: CartTest #test07CantAddNegativeAmountOfBooksToACart stamp: 'FGCL 6/7/2023 23:50:49'!
+test07CantAddNegativeAmountOfBooksToACart
+	| cart |
+	
+	cart := Cart new.
+	
+	self should: [ cart addBookWithIsbn: 0 withOccurrences: -1 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: (Cart bookNegativeOccurrencesErrorMessage) equals: anError messageText.
+		].!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:51:51'!
+test03CantAddABookNotInStock
+	| cart isbn |
+	
+	cart := Cart new.
+	isbn := 0.
+	
+	self should: [ cart addBookWithIsbn: isbn ]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: (Cart new)].! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:52:04'!
+test02CantAddABookNotInStock
+	| cart isbn |
+	
+	cart := Cart new.
+	isbn := 0.
+	
+	self should: [ cart addBookWithIsbn: isbn ]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: (Cart new)].! !
+
+!methodRemoval: CartTest #test03CantAddABookNotInStock stamp: 'FGCL 6/7/2023 23:52:04'!
+test03CantAddABookNotInStock
+	| cart isbn |
+	
+	cart := Cart new.
+	isbn := 0.
+	
+	self should: [ cart addBookWithIsbn: isbn ]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: (Cart new)].!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:52:13' prior: 50625474!
+test02CantAddABookNotInStock
+	| cart isbn |
+	
+	cart := Cart new.
+	isbn := 0.
+	
+	self should: [ cart addBookWithIsbn: isbn ]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: (Cart bookNotInStockErrorMessage)].! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:52:22' prior: 50625492!
+test02CantAddABookNotInStock
+	| cart isbn |
+	
+	cart := Cart new.
+	isbn := 0.
+	
+	self should: [ cart addBookWithIsbn: isbn ]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: (Cart bookNotInStockErrorMessage) equals: anError messageText].! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:52:24' prior: 50625502!
+test02CantAddABookNotInStock
+	| cart isbn |
+	
+	cart := Cart new.
+	isbn := 0.
+	
+	self should: [ cart addBookWithIsbn: isbn ]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: (Cart bookNotInStockErrorMessage) equals: anError messageText ].! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:53:03' prior: 50625162!
+test01WhenCreatedCartIsEmpty
+	| cart stockManager |
+	
+	stockManager := StockManager new.
+	cart := Cart withStockManager: stockManager.
+	
+	self assert: Bag new equals: cart books.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:53:32' prior: 50625513!
+test02CantAddABookNotInStock
+	| cart stockManager |
+	
+	stockManager := StockManager new.
+	cart := Cart new.
+	
+	self should: [ cart addBookWithIsbn: 0 ]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: (Cart bookNotInStockErrorMessage) equals: anError messageText ].! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:53:42' prior: 50625533!
+test02CantAddABookNotInStock
+	| cart stockManager |
+	
+	stockManager := StockManager new.
+	cart := Cart withStockManager: stockManager.
+	
+	self should: [ cart addBookWithIsbn: 0 ]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: (Cart bookNotInStockErrorMessage) equals: anError messageText ].! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:55:39' prior: 50625343!
+test03ABookInStockCanBeAddedToACart
+	| cart stockManager isbn |
+	
+	isbn := 0.
+	stockManager := StockManager with: { isbn }.
+	cart := Cart new.
+	
+	cart addBookWithIsbn: isbn.
+	self assert: (Bag with: isbn) equals: cart books.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:55:45' prior: 50625558!
+test03ABookInStockCanBeAddedToACart
+	| cart stockManager isbn |
+	
+	isbn := 0.
+	stockManager := StockManager with: { isbn }.
+	cart := Cart withStockManager: stockManager.
+	
+	cart addBookWithIsbn: isbn.
+	self assert: (Bag with: isbn) equals: cart books.! !
+!Cart class methodsFor: 'instance creation' stamp: 'FGCL 6/7/2023 23:56:12'!
+withStockManager: aStockManager
+	^self new initializeWithStockManager: aStockManager.! !
+!Cart methodsFor: 'initialization' stamp: 'FGCL 6/7/2023 23:56:22'!
+initializeWithStockManager: aStockManager
+	books := Bag new.! !
+
+!methodRemoval: Cart #initialize stamp: 'FGCL 6/7/2023 23:56:23'!
+initialize
+	books := Bag new.!
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmpty stamp: 'FGCL 6/7/2023 23:56:26'!
+PASSED!
+
+!testRun: #CartTest #test02CantAddABookNotInStock stamp: 'FGCL 6/7/2023 23:56:29'!
+FAILURE!
+
+!testRun: #CartTest #test02CantAddABookNotInStock stamp: 'FGCL 6/7/2023 23:56:29'!
+FAILURE!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:56:37'!
+test02ABookInStockCanBeAddedToACart
+	| cart stockManager isbn |
+	
+	isbn := 0.
+	stockManager := StockManager with: { isbn }.
+	cart := Cart withStockManager: stockManager.
+	
+	cart addBookWithIsbn: isbn.
+	self assert: (Bag with: isbn) equals: cart books.! !
+
+!methodRemoval: CartTest #test03ABookInStockCanBeAddedToACart stamp: 'FGCL 6/7/2023 23:56:37'!
+test03ABookInStockCanBeAddedToACart
+	| cart stockManager isbn |
+	
+	isbn := 0.
+	stockManager := StockManager with: { isbn }.
+	cart := Cart withStockManager: stockManager.
+	
+	cart addBookWithIsbn: isbn.
+	self assert: (Bag with: isbn) equals: cart books.!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:56:40'!
+test03CantAddABookNotInStock
+	| cart stockManager |
+	
+	stockManager := StockManager new.
+	cart := Cart withStockManager: stockManager.
+	
+	self should: [ cart addBookWithIsbn: 0 ]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: (Cart bookNotInStockErrorMessage) equals: anError messageText ].! !
+
+!methodRemoval: CartTest #test02CantAddABookNotInStock stamp: 'FGCL 6/7/2023 23:56:40'!
+test02CantAddABookNotInStock
+	| cart stockManager |
+	
+	stockManager := StockManager new.
+	cart := Cart withStockManager: stockManager.
+	
+	self should: [ cart addBookWithIsbn: 0 ]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: (Cart bookNotInStockErrorMessage) equals: anError messageText ].!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:56:48' prior: 50625621!
+test03CantAddABookNotInStock
+	| cart stockManager |
+	
+	stockManager := StockManager with: {}.
+	cart := Cart withStockManager: stockManager.
+	
+	self should: [ cart addBookWithIsbn: 0 ]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: (Cart bookNotInStockErrorMessage) equals: anError messageText ].! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/7/2023 23:56:53' prior: 50625524!
+test01WhenCreatedCartIsEmpty
+	| cart stockManager |
+	
+	stockManager := StockManager with: {}.
+	cart := Cart withStockManager: stockManager.
+	
+	self assert: Bag new equals: cart books.! !
+
+!classDefinition: #Cart category: 'TusLibros' stamp: 'FGCL 6/7/2023 23:57:03'!
+Object subclass: #Cart
+	instanceVariableNames: 'id books stockManager'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!Cart methodsFor: 'initialization' stamp: 'FGCL 6/7/2023 23:57:01' prior: 50625584!
+initializeWithStockManager: aStockManager
+	stockManager := aStockManager.
+	books := Bag new.! !
+!Cart methodsFor: 'managing' stamp: 'FGCL 6/7/2023 23:57:34' prior: 50624950!
+addBookWithIsbn: aBooksIsbn withOccurrences: occurrences
+	occurrences negative ifTrue: [ self error: Cart bookNegativeOccurrencesErrorMessage ].
+	stockManager checkHasInStock: aBooksIsbn.
+		
+	books add: aBooksIsbn withOccurrences: occurrences. " NOTA: Deberíamos de haber hecho add: 0 en la primera vez, porque todavía no estabamos testeando el genérico de múltiples isbn diferentes (test04), nos adelantamos. "! !
+!Cart methodsFor: 'managing' stamp: 'FGCL 6/7/2023 23:57:56' prior: 50625681!
+addBookWithIsbn: aBooksIsbn withOccurrences: occurrences
+	self checkCanAddBookWithIsbn: aBooksIsbn withOccurrences: occurrences.
+		
+	books add: aBooksIsbn withOccurrences: occurrences. " NOTA: Deberíamos de haber hecho add: 0 en la primera vez, porque todavía no estabamos testeando el genérico de múltiples isbn diferentes (test04), nos adelantamos. "! !
+!Cart methodsFor: 'managing' stamp: 'FGCL 6/7/2023 23:58:04'!
+checkCanAddBookWithIsbn: aBooksIsbn withOccurrences: occurrences.
+	occurrences negative ifTrue: [ self error: Cart bookNegativeOccurrencesErrorMessage ].
+	stockManager checkHasInStock: aBooksIsbn.! !
+!StockManager methodsFor: 'testing' stamp: 'FGCL 6/7/2023 23:58:50'!
+checkHasInStock: aProduct
+	^false.! !
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmpty stamp: 'FGCL 6/7/2023 23:58:52'!
+ERROR!
+
+!testRun: #CartTest #test02ABookInStockCanBeAddedToACart stamp: 'FGCL 6/7/2023 23:58:52'!
+ERROR!
+
+!testRun: #CartTest #test03CantAddABookNotInStock stamp: 'FGCL 6/7/2023 23:58:52'!
+ERROR!
+
+!testRun: #CartTest #test04ABookCanBeAddedToACartManyTimesSeparately stamp: 'FGCL 6/7/2023 23:58:52'!
+ERROR!
+
+!testRun: #CartTest #test05ABookInStockCanBeAddedToACartManyTimesAtOnce stamp: 'FGCL 6/7/2023 23:58:52'!
+ERROR!
+
+!testRun: #CartTest #test06DifferentBooksInStockCanBeAddedToACart stamp: 'FGCL 6/7/2023 23:58:52'!
+ERROR!
+
+!testRun: #CartTest #test07CantAddNegativeAmountOfBooksInStockToACart stamp: 'FGCL 6/7/2023 23:58:52'!
+PASSED!
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmpty stamp: 'FGCL 6/7/2023 23:58:54'!
+ERROR!
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmpty stamp: 'FGCL 6/7/2023 23:58:54'!
+ERROR!
+!StockManager class methodsFor: 'instance creation' stamp: 'FGCL 6/7/2023 23:59:17'!
+with: aListing
+	^self new initializeWith: aListing.! !
+!StockManager methodsFor: 'initialization' stamp: 'FGCL 6/7/2023 23:59:28'!
+initializeWith: aListing! !
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmpty stamp: 'FGCL 6/7/2023 23:59:29'!
+PASSED!
+
+!testRun: #CartTest #test02ABookInStockCanBeAddedToACart stamp: 'FGCL 6/7/2023 23:59:29'!
+PASSED!
+
+!testRun: #CartTest #test03CantAddABookNotInStock stamp: 'FGCL 6/7/2023 23:59:29'!
+FAILURE!
+
+!testRun: #CartTest #test04ABookCanBeAddedToACartManyTimesSeparately stamp: 'FGCL 6/7/2023 23:59:29'!
+ERROR!
+
+!testRun: #CartTest #test05ABookInStockCanBeAddedToACartManyTimesAtOnce stamp: 'FGCL 6/7/2023 23:59:29'!
+ERROR!
+
+!testRun: #CartTest #test06DifferentBooksInStockCanBeAddedToACart stamp: 'FGCL 6/7/2023 23:59:29'!
+ERROR!
+
+!testRun: #CartTest #test07CantAddNegativeAmountOfBooksInStockToACart stamp: 'FGCL 6/7/2023 23:59:29'!
+PASSED!
+
+!classDefinition: #StockManager category: 'TusLibros' stamp: 'FGCL 6/8/2023 00:00:10'!
+Object subclass: #StockManager
+	instanceVariableNames: 'listing'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!StockManager methodsFor: 'initialization' stamp: 'FGCL 6/8/2023 00:00:09' prior: 50625758!
+initializeWith: aListing
+	listing := aListing.! !
+!StockManager methodsFor: 'testing' stamp: 'FGCL 6/8/2023 00:00:18' prior: 50625720!
+checkHasInStock: aProduct
+	^listing includes: aProduct.! !
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmpty stamp: 'FGCL 6/8/2023 00:00:19'!
+PASSED!
+
+!testRun: #CartTest #test02ABookInStockCanBeAddedToACart stamp: 'FGCL 6/8/2023 00:00:19'!
+PASSED!
+
+!testRun: #CartTest #test03CantAddABookNotInStock stamp: 'FGCL 6/8/2023 00:00:19'!
+FAILURE!
+
+!testRun: #CartTest #test04ABookCanBeAddedToACartManyTimesSeparately stamp: 'FGCL 6/8/2023 00:00:19'!
+ERROR!
+
+!testRun: #CartTest #test05ABookInStockCanBeAddedToACartManyTimesAtOnce stamp: 'FGCL 6/8/2023 00:00:19'!
+ERROR!
+
+!testRun: #CartTest #test06DifferentBooksInStockCanBeAddedToACart stamp: 'FGCL 6/8/2023 00:00:19'!
+ERROR!
+
+!testRun: #CartTest #test07CantAddNegativeAmountOfBooksInStockToACart stamp: 'FGCL 6/8/2023 00:00:19'!
+PASSED!
+!StockManager methodsFor: 'testing' stamp: 'FGCL 6/8/2023 00:01:21' prior: 50625797!
+checkHasInStock: aProduct
+	(listing includes: aProduct) ifFalse: [ self error: StockManager productNotInStockErrorMessage ].! !
+!StockManager class methodsFor: 'errors' stamp: 'FGCL 6/8/2023 00:01:37'!
+productNotInStockErrorMessage
+	^'That product is not in stock'.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/8/2023 00:01:51' prior: 50625646!
+test03CantAddABookNotInStock
+	| cart stockManager |
+	
+	stockManager := StockManager with: {}.
+	cart := Cart withStockManager: stockManager.
+	
+	self should: [ cart addBookWithIsbn: 0 ]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: (StockManager productNotInStockErrorMessage) equals: anError messageText ].! !
+
+!testRun: #CartTest #test03CantAddABookNotInStock stamp: 'FGCL 6/8/2023 00:01:52'!
+PASSED!
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmpty stamp: 'FGCL 6/8/2023 00:01:52'!
+PASSED!
+
+!testRun: #CartTest #test02ABookInStockCanBeAddedToACart stamp: 'FGCL 6/8/2023 00:01:52'!
+PASSED!
+
+!testRun: #CartTest #test03CantAddABookNotInStock stamp: 'FGCL 6/8/2023 00:01:52'!
+PASSED!
+
+!testRun: #CartTest #test04ABookCanBeAddedToACartManyTimesSeparately stamp: 'FGCL 6/8/2023 00:01:52'!
+ERROR!
+
+!testRun: #CartTest #test05ABookInStockCanBeAddedToACartManyTimesAtOnce stamp: 'FGCL 6/8/2023 00:01:52'!
+ERROR!
+
+!testRun: #CartTest #test06DifferentBooksInStockCanBeAddedToACart stamp: 'FGCL 6/8/2023 00:01:52'!
+ERROR!
+
+!testRun: #CartTest #test07CantAddNegativeAmountOfBooksInStockToACart stamp: 'FGCL 6/8/2023 00:01:52'!
+PASSED!
+
+!testRun: #CartTest #test04ABookCanBeAddedToACartManyTimesSeparately stamp: 'FGCL 6/8/2023 00:01:56'!
+ERROR!
+
+!testRun: #CartTest #test04ABookCanBeAddedToACartManyTimesSeparately stamp: 'FGCL 6/8/2023 00:01:56'!
+ERROR!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/8/2023 00:02:44' prior: 50625211!
+test04ABookCanBeAddedToACartManyTimesSeparately
+	| cart isbn stockManager |
+	
+	isbn := 0.
+	stockManager := StockManager with: { isbn }.
+	cart := Cart withStockManager: stockManager.
+	
+	cart addBookWithIsbn: isbn.
+	cart addBookWithIsbn: isbn.
+	self assert: (Bag with: isbn with: isbn) equals: cart books.! !
+
+!testRun: #CartTest #test04ABookCanBeAddedToACartManyTimesSeparately stamp: 'FGCL 6/8/2023 00:02:49'!
+PASSED!
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/8/2023 00:03:01' prior: 50625378!
+test05ABookInStockCanBeAddedToACartManyTimesAtOnce
+	| cart isbn stockManager |
+	
+	isbn := 0.
+	stockManager := StockManager with: { isbn }.
+	cart := Cart withStockManager: stockManager.
+	
+	cart addBookWithIsbn: isbn withOccurrences: 2.
+	self assert: (Bag with: isbn with: isbn) equals: cart books.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/8/2023 00:03:17' prior: 50625397!
+test06DifferentBooksInStockCanBeAddedToACart
+	| cart book1Isbn book2Isbn stockManager |
+	
+	book1Isbn := 0.
+	book2Isbn := 1.
+	stockManager := StockManager with: { book1Isbn. book2Isbn }.
+	cart := Cart withStockManager: stockManager.
+	
+	cart addBookWithIsbn: book1Isbn.
+	cart addBookWithIsbn: book2Isbn.
+	self assert: (Bag with: book1Isbn with: book2Isbn) equals: cart books.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/8/2023 00:03:49' prior: 50625442!
+test07CantAddNegativeAmountOfBooksInStockToACart
+	| cart stockManager |
+	
+	stockManager := StockManager with: { 0 }.
+	cart := Cart withStockManager: stockManager.
+	
+	self should: [ cart addBookWithIsbn: 0 withOccurrences: -1 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: (Cart bookNegativeOccurrencesErrorMessage) equals: anError messageText.
+		].! !
+!CartTest methodsFor: 'setup' stamp: 'FGCL 6/8/2023 00:04:19' overrides: 16961394!
+setUp
+! !
+
+!classDefinition: #CartTest category: 'TusLibros' stamp: 'FGCL 6/8/2023 00:05:10'!
+TestCase subclass: #CartTest
+	instanceVariableNames: 'emptyStockManager'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartTest category: 'TusLibros' stamp: 'FGCL 6/8/2023 00:05:11'!
+TestCase subclass: #CartTest
+	instanceVariableNames: 'emptyStockManager stockedStockManager'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartTest methodsFor: 'setup' stamp: 'FGCL 6/8/2023 00:05:08' prior: 50625940 overrides: 16961394!
+setUp
+	| book1Isbn book2Isbn |
+	book1Isbn := 0.
+	book2Isbn := 1.
+	emptyStockManager := StockManager with: {}.
+	stockedStockManager := StockManager with: { book1Isbn. book2Isbn }.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/8/2023 00:05:17' prior: 50625659!
+test01WhenCreatedCartIsEmpty
+	| cart |
+	
+	cart := Cart withStockManager: emptyStockManager.
+	
+	self assert: Bag new equals: cart books.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/8/2023 00:05:24' prior: 50625600!
+test02ABookInStockCanBeAddedToACart
+	| cart isbn |
+	
+	cart := Cart withStockManager: stockedStockManager.
+	
+	cart addBookWithIsbn: isbn.
+	self assert: (Bag with: isbn) equals: cart books.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/8/2023 00:05:34' prior: 50625975!
+test02ABookInStockCanBeAddedToACart
+	| cart isbn |
+	
+	cart := Cart withStockManager: stockedStockManager.
+	
+	cart addBookWithIsbn: isbn.
+	self assert: (Bag with: isbn) equals: cart books.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/8/2023 00:05:45' prior: 50625837!
+test03CantAddABookNotInStock
+	| cart |
+	
+	cart := Cart withStockManager: emptyStockManager.
+	
+	self should: [ cart addBookWithIsbn: 0 ]
+		raise: Error
+		withExceptionDo: [ :anError | self assert: (StockManager productNotInStockErrorMessage) equals: anError messageText ].! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/8/2023 00:05:53' prior: 50625882!
+test04ABookCanBeAddedToACartManyTimesSeparately
+	| cart isbn |
+	
+	cart := Cart withStockManager: stockedStockManager.
+	
+	cart addBookWithIsbn: isbn.
+	cart addBookWithIsbn: isbn.
+	self assert: (Bag with: isbn with: isbn) equals: cart books.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/8/2023 00:06:03' prior: 50625898!
+test05ABookInStockCanBeAddedToACartManyTimesAtOnce
+	| cart isbn |
+	
+	cart := Cart withStockManager: stockedStockManager.
+	
+	cart addBookWithIsbn: isbn withOccurrences: 2.
+	self assert: (Bag with: isbn with: isbn) equals: cart books.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/8/2023 00:06:10' prior: 50625910!
+test06DifferentBooksInStockCanBeAddedToACart
+	| cart book1Isbn book2Isbn stockManager |
+	
+	book1Isbn := 0.
+	book2Isbn := 1.
+	stockManager := StockManager with: { book1Isbn. book2Isbn }.
+	cart := Cart withStockManager: stockedStockManager.
+	
+	cart addBookWithIsbn: book1Isbn.
+	cart addBookWithIsbn: book2Isbn.
+	self assert: (Bag with: book1Isbn with: book2Isbn) equals: cart books.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/8/2023 00:06:14' prior: 50626026!
+test06DifferentBooksInStockCanBeAddedToACart
+	| cart book1Isbn book2Isbn |
+	
+	book1Isbn := 0.
+	book2Isbn := 1.
+	cart := Cart withStockManager: stockedStockManager.
+	
+	cart addBookWithIsbn: book1Isbn.
+	cart addBookWithIsbn: book2Isbn.
+	self assert: (Bag with: book1Isbn with: book2Isbn) equals: cart books.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/8/2023 00:06:20' prior: 50626041!
+test06DifferentBooksInStockCanBeAddedToACart
+	| cart book1Isbn book2Isbn |
+	
+	book1Isbn := 0.
+	book2Isbn := 1.
+	cart := Cart withStockManager: stockedStockManager.
+	
+	cart addBookWithIsbn: book1Isbn.
+	cart addBookWithIsbn: book2Isbn.
+	self assert: (Bag with: book1Isbn with: book2Isbn) equals: cart books.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/8/2023 00:06:25' prior: 50625925!
+test07CantAddNegativeAmountOfBooksInStockToACart
+	| cart |
+	
+	cart := Cart withStockManager: stockedStockManager.
+	
+	self should: [ cart addBookWithIsbn: 0 withOccurrences: -1 ]
+		raise: Error
+		withExceptionDo: [ :anError |
+			self assert: (Cart bookNegativeOccurrencesErrorMessage) equals: anError messageText.
+		].! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/8/2023 00:07:08' prior: 50626054!
+test06DifferentBooksInStockCanBeAddedToACart
+	| cart book1Isbn0 book2Isbn0 |
+	
+	book1Isbn0 := 0.
+	book2Isbn0 := 1.
+	cart := Cart withStockManager: stockedStockManager.
+	
+	cart addBookWithIsbn: book1Isbn0.
+	cart addBookWithIsbn: book2Isbn0.
+	self assert: (Bag with: book1Isbn0 with: book2Isbn0) equals: cart books.! !
+!CartTest methodsFor: 'setup' stamp: 'FGCL 6/8/2023 00:07:32' prior: 50625959 overrides: 16961394!
+setUp
+	
+	"book1Isbn := 0.
+	book2Isbn := 1.
+	emptyStockManager := StockManager with: {}.
+	stockedStockManager := StockManager with: { book1Isbn. book2Isbn }."! !
+
+!classDefinition: #CartTest category: 'TusLibros' stamp: 'FGCL 6/8/2023 00:07:37'!
+TestCase subclass: #CartTest
+	instanceVariableNames: 'emptyStockManager stockedStockManager book1Isbn'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartTest category: 'TusLibros' stamp: 'FGCL 6/8/2023 00:07:38'!
+TestCase subclass: #CartTest
+	instanceVariableNames: 'emptyStockManager stockedStockManager book1Isbn book2Isbn'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartTest methodsFor: 'setup' stamp: 'FGCL 6/8/2023 00:07:36' prior: 50626093 overrides: 16961394!
+setUp
+	
+	book1Isbn := 0.
+	book2Isbn := 1.
+	emptyStockManager := StockManager with: {}.
+	stockedStockManager := StockManager with: { book1Isbn. book2Isbn }.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/8/2023 00:07:48' prior: 50626080!
+test06DifferentBooksInStockCanBeAddedToACart
+	| cart |
+	
+	cart := Cart withStockManager: stockedStockManager.
+	
+	cart addBookWithIsbn: book1Isbn.
+	cart addBookWithIsbn: book2Isbn.
+	self assert: (Bag with: book1Isbn with: book2Isbn) equals: cart books.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/8/2023 00:08:01' prior: 50625984!
+test02ABookInStockCanBeAddedToACart
+	| cart |
+	
+	cart := Cart withStockManager: stockedStockManager.
+	
+	cart addBookWithIsbn: book1Isbn.
+	self assert: (Bag with: book1Isbn) equals: cart books.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/8/2023 00:08:09' prior: 50626005!
+test04ABookCanBeAddedToACartManyTimesSeparately
+	| cart |
+	
+	cart := Cart withStockManager: stockedStockManager.
+	
+	cart addBookWithIsbn: book1Isbn.
+	cart addBookWithIsbn: book1Isbn.
+	self assert: (Bag with: book1Isbn with: book1Isbn) equals: cart books.! !
+!CartTest methodsFor: 'tests' stamp: 'FGCL 6/8/2023 00:08:16' prior: 50626016!
+test05ABookInStockCanBeAddedToACartManyTimesAtOnce
+	| cart |
+	
+	cart := Cart withStockManager: stockedStockManager.
+	
+	cart addBookWithIsbn: book1Isbn withOccurrences: 2.
+	self assert: (Bag with: book1Isbn with: book1Isbn) equals: cart books.! !
+
+!testRun: #CartTest #test07CantAddNegativeAmountOfBooksInStockToACart stamp: 'FGCL 6/8/2023 00:08:20'!
+PASSED!
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmpty stamp: 'FGCL 6/8/2023 00:08:22'!
+PASSED!
+
+!testRun: #CartTest #test02ABookInStockCanBeAddedToACart stamp: 'FGCL 6/8/2023 00:08:22'!
+PASSED!
+
+!testRun: #CartTest #test03CantAddABookNotInStock stamp: 'FGCL 6/8/2023 00:08:22'!
+PASSED!
+
+!testRun: #CartTest #test04ABookCanBeAddedToACartManyTimesSeparately stamp: 'FGCL 6/8/2023 00:08:22'!
+PASSED!
+
+!testRun: #CartTest #test05ABookInStockCanBeAddedToACartManyTimesAtOnce stamp: 'FGCL 6/8/2023 00:08:22'!
+PASSED!
+
+!testRun: #CartTest #test06DifferentBooksInStockCanBeAddedToACart stamp: 'FGCL 6/8/2023 00:08:22'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddNegativeAmountOfBooksInStockToACart stamp: 'FGCL 6/8/2023 00:08:22'!
+PASSED!
+
+----SNAPSHOT----(8 June 2023 00:08:25) CuisUniversity-5832.image priorSource: 9395575!
+
+----SNAPSHOT----(8 June 2023 00:08:47) CuisUniversity-5832.image priorSource: 9425373!
+
+TestCase subclass: #StockManagerTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #StockManagerTest category: 'TusLibros' stamp: 'FGCL 6/8/2023 00:09:08'!
+TestCase subclass: #StockManagerTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartTest methodsFor: 'setup' stamp: 'FGCL 6/8/2023 00:10:12' prior: 50626118 overrides: 16961394!
+setUp
+	
+	book1Isbn := '1,0321146530,2'.
+	book2Isbn := '1,1933988274,1'.
+	emptyStockManager := StockManager with: {}.
+	stockedStockManager := StockManager with: { book1Isbn. book2Isbn }.! !
+
+!testRun: #CartTest #test01WhenCreatedCartIsEmpty stamp: 'FGCL 6/8/2023 00:10:13'!
+PASSED!
+
+!testRun: #CartTest #test02ABookInStockCanBeAddedToACart stamp: 'FGCL 6/8/2023 00:10:13'!
+PASSED!
+
+!testRun: #CartTest #test03CantAddABookNotInStock stamp: 'FGCL 6/8/2023 00:10:13'!
+PASSED!
+
+!testRun: #CartTest #test04ABookCanBeAddedToACartManyTimesSeparately stamp: 'FGCL 6/8/2023 00:10:13'!
+PASSED!
+
+!testRun: #CartTest #test05ABookInStockCanBeAddedToACartManyTimesAtOnce stamp: 'FGCL 6/8/2023 00:10:13'!
+PASSED!
+
+!testRun: #CartTest #test06DifferentBooksInStockCanBeAddedToACart stamp: 'FGCL 6/8/2023 00:10:13'!
+PASSED!
+
+!testRun: #CartTest #test07CantAddNegativeAmountOfBooksInStockToACart stamp: 'FGCL 6/8/2023 00:10:13'!
+PASSED!
+
+!classRemoval: #StockManagerTest stamp: 'FGCL 6/8/2023 00:10:24'!
+TestCase subclass: #StockManagerTest
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+----SNAPSHOT----(8 June 2023 00:10:26) CuisUniversity-5832.image priorSource: 9425461!
+
+----SNAPSHOT----(8 June 2023 00:10:38) CuisUniversity-5832.image priorSource: 9427133!
