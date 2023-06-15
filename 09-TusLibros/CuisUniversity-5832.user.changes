@@ -1,0 +1,3173 @@
+
+
+----QUIT----(30 May 2023 00:05:32) CuisUniversity-5832.image priorSource: 4928100!
+
+----STARTUP---- (30 May 2023 00:05:33) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5832.image!
+
+
+----QUIT----(30 May 2023 00:05:33) CuisUniversity-5832.image priorSource: 9366537!
+
+----STARTUP---- (15 June 2023 09:49:15) as /mnt/data/facu/inge1/ejercicios/cuis/CuisUniversity-5832.image!
+
+
+----SNAPSHOT----(15 June 2023 09:49:29) CuisUniversity-5832.image priorSource: 9366758!
+
+----End fileIn of /mnt/data/facu/inge1/ejercicios/consignas/09-TusLibros/TusLibros.iteracion.2.5.st----!
+
+----SNAPSHOT----(15 June 2023 09:50:03) CuisUniversity-5832.image priorSource: 9366951!
+
+----SNAPSHOT----(15 June 2023 09:56:32) CuisUniversity-5832.image priorSource: 9398173!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:07:47'!
+test13CanNotCheckoutAnExpiredCart
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	" TODO: interface passTime: (Duration minutes: 30)."
+	self
+		should: [interface 
+			checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = interface cartCanNotBeEmptyErrorMessage ]
+		
+		! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:10:53' prior: 50625350!
+test13CanNotCheckoutAnExpiredCart
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	" TODO: interface passTime: (Duration minutes: 30)."
+	self
+		should: [interface 
+			checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = interface cartIsExpiredErrorMessage ]
+		
+		! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:11:00' prior: 50625373!
+test13CanNotCheckoutAnExpiredCart
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	" TODO: interface passTime: (Duration minutes: 30)."
+	
+	self
+		should: [interface 
+			checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = interface cartIsExpiredErrorMessage ]
+		
+		! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:12:18' prior: 50625395!
+test13CanNotCheckoutAnExpiredCart
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	
+	" TODO: interface passTime: (Duration minutes: 30)."
+	
+	self
+		should: [interface 
+			checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = interface cartIsExpiredErrorMessage ]
+		
+		! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:12:25' prior: 50625418!
+test13CanNotCheckoutAnExpiredCart
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	
+	interface passTime: (Duration minutes: 30).
+	
+	self
+		should: [interface 
+			checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = interface cartIsExpiredErrorMessage ]
+		
+		! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:12:27' prior: 50625443!
+test13CanNotCheckoutAnExpiredCart
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	interface passTime: (Duration minutes: 30).
+	
+	self
+		should: [interface 
+			checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = interface cartIsExpiredErrorMessage ]
+		
+		! !
+!RestInterface methodsFor: 'errors' stamp: 'FGCL 6/15/2023 10:13:16'!
+cartIsExpiredErrorMessage
+	^'Cart is expired'.! !
+!RestInterface methodsFor: 'time simulation' stamp: 'FGCL 6/15/2023 10:13:39'!
+passTime: aDuration! !
+
+!classDefinition: #RestInterface category: 'TusLibros' stamp: 'FGCL 6/15/2023 10:16:30'!
+Object subclass: #RestInterface
+	instanceVariableNames: 'authenticationSystem carts catalog lastId merchantProcessor salesBook cartsLastUsage'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:16:29' prior: 50625190!
+initializeAuthenticatingWith: anAuthenticationSystem acceptingItemsOf: aCatalog merchantProcessor: anMP
+
+	authenticationSystem := anAuthenticationSystem.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	cartsLastUsage := Dictionary new.
+	lastId := 0.
+	merchantProcessor := anMP! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:16:51' prior: 50625167!
+createCartFor: aUser authenticatedWith: aPassword
+
+	| cartId |
+	
+	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
+	
+	cartId := self generateCartId.
+	carts at: cartId put: (Cart acceptingItemsOf: catalog).
+	cartsLastUsage at: cartId put: (DateAndTime now)
+	
+	^cartId ! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:16:59' prior: 50625522!
+createCartFor: aUser authenticatedWith: aPassword
+
+	| cartId |
+	
+	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
+	
+	cartId := self generateCartId.
+	carts at: cartId put: (Cart acceptingItemsOf: catalog).
+	cartsLastUsage at: cartId put: (self today).
+	
+	^cartId ! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:17:04' prior: 50625536!
+createCartFor: aUser authenticatedWith: aPassword
+
+	| cartId |
+	
+	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
+	
+	cartId := self generateCartId.
+	carts at: cartId put: (Cart acceptingItemsOf: catalog).
+	cartsLastUsage at: cartId put: (DateAndTime now).
+	
+	^cartId ! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:17:22' prior: 50625549!
+createCartFor: aUser authenticatedWith: aPassword
+
+	| cartId |
+	
+	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
+	
+	cartId := self generateCartId.
+	carts at: cartId put: (Cart acceptingItemsOf: catalog).
+	self updateCartsLastUsage: cartId.
+	
+	^cartId ! !
+!RestInterface methodsFor: 'time' stamp: 'FGCL 6/15/2023 10:17:49'!
+updateCartsLastUsage: aCartId
+	cartsLastUsage at: aCartId put: (DateAndTime now).! !
+
+d := Dictionary new.!
+
+d at: 0 put: 15.!
+
+d at: 1 put: 16.!
+
+d associationAt: 0.!
+
+!methodRemoval: RestInterface #updateCartsLastUsage: stamp: 'FGCL 6/15/2023 10:24:31'!
+updateCartsLastUsage: aCartId
+	cartsLastUsage at: aCartId put: (DateAndTime now).!
+
+Object subclass: #RestInterface
+	instanceVariableNames: 'authenticationSystem carts catalog lastId merchantProcessor salesBook'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #RestInterface category: 'TusLibros' stamp: 'FGCL 6/15/2023 10:24:44'!
+Object subclass: #RestInterface
+	instanceVariableNames: 'authenticationSystem carts catalog lastId merchantProcessor salesBook'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:24:48' prior: 50625510!
+initializeAuthenticatingWith: anAuthenticationSystem acceptingItemsOf: aCatalog merchantProcessor: anMP
+
+	authenticationSystem := anAuthenticationSystem.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	lastId := 0.
+	merchantProcessor := anMP! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:24:55' prior: 50625563!
+createCartFor: aUser authenticatedWith: aPassword
+
+	| cartId |
+	
+	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
+	
+	cartId := self generateCartId.
+	carts at: cartId put: (Cart acceptingItemsOf: catalog).
+	
+	^cartId ! !
+
+----SNAPSHOT----(15 June 2023 10:27:13) CuisUniversity-5832.image priorSource: 9398262!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:28:25'!
+test15CanNotCheckoutAnExpiredCart
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	interface passTime: (Duration minutes: 30).
+	
+	self
+		should: [interface 
+			checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = interface cartIsExpiredErrorMessage ]
+		
+		! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:30:00'!
+test13CartDoesntExpireIfUsedInTime
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface passTime: (Duration minutes: 15).
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	interface passTime: (Duration minutes: 15).
+	
+	self
+		should: [interface 
+			checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = interface cartIsExpiredErrorMessage ]
+		
+		! !
+
+!methodRemoval: RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 10:30:01'!
+test13CanNotCheckoutAnExpiredCart
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	interface passTime: (Duration minutes: 30).
+	
+	self
+		should: [interface 
+			checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = interface cartIsExpiredErrorMessage ]
+		
+		!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:30:16'!
+test14CanNotCheckoutAnExpiredCart
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	interface passTime: (Duration minutes: 30).
+	
+	self
+		should: [interface 
+			checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = interface cartIsExpiredErrorMessage ]
+		
+		! !
+
+!methodRemoval: RestInterfaceTest #test15CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 10:30:16'!
+test15CanNotCheckoutAnExpiredCart
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	interface passTime: (Duration minutes: 30).
+	
+	self
+		should: [interface 
+			checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = interface cartIsExpiredErrorMessage ]
+		
+		!
+
+!methodRemoval: RestInterfaceTest #test14CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 10:30:34'!
+test14CanNotCheckoutAnExpiredCart
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	interface passTime: (Duration minutes: 30).
+	
+	self
+		should: [interface 
+			checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = interface cartIsExpiredErrorMessage ]
+		
+		!
+
+!testRun: #RestInterfaceTest #test13CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 10:30:49'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test13CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 10:30:49'!
+FAILURE!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:31:02' prior: 50625653!
+test13CartDoesntExpireIfUsedInTime
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface passTime: (Duration minutes: 15).
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	interface passTime: (Duration minutes: 15).
+	
+	self
+		should: [ interface 
+			checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = interface cartIsExpiredErrorMessage ]
+		
+		! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:31:24' prior: 50625781!
+test13CartDoesntExpireIfUsedInTime
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface passTime: (Duration minutes: 15).
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	interface passTime: (Duration minutes: 15).
+	
+	self shouldntFail: [ interface 
+		checkOutCartIdentifiedAs: cartId 
+		withCreditCardNumbered: '1111222233334444' 
+		ownedBy: 'Juan Perez' 
+		expiringOn: testObjectsFactory notExpiredMonthOfYear ].
+		
+		! !
+
+!testRun: #RestInterfaceTest #test13CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 10:31:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'FGCL 6/15/2023 10:31:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'FGCL 6/15/2023 10:31:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'FGCL 6/15/2023 10:31:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'FGCL 6/15/2023 10:31:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'FGCL 6/15/2023 10:31:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'FGCL 6/15/2023 10:31:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'FGCL 6/15/2023 10:31:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'FGCL 6/15/2023 10:31:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'FGCL 6/15/2023 10:31:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'FGCL 6/15/2023 10:31:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'FGCL 6/15/2023 10:31:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'FGCL 6/15/2023 10:31:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 10:31:25'!
+PASSED!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:31:53' prior: 50625807!
+test13CartDoesntExpireIfUsedInTime
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface passTime: (Duration minutes: 15).
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	interface passTime: (Duration minutes: 15).
+	
+	self shouldntFail: [ interface 
+		checkOutCartIdentifiedAs: cartId 
+		withCreditCardNumbered: '1111222233334444' 
+		ownedBy: 'Juan Perez' 
+		expiringOn: testObjectsFactory notExpiredMonthOfYear ].
+		! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:32:15'!
+test14CartDoesntExpireIfUsedInTime
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface passTime: (Duration minutes: 15).
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	interface passTime: (Duration minutes: 15).
+	
+	self shouldntFail: [ interface 
+		checkOutCartIdentifiedAs: cartId 
+		withCreditCardNumbered: '1111222233334444' 
+		ownedBy: 'Juan Perez' 
+		expiringOn: testObjectsFactory notExpiredMonthOfYear ].
+		! !
+
+!methodRemoval: RestInterfaceTest #test13CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 10:32:15'!
+test13CartDoesntExpireIfUsedInTime
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface passTime: (Duration minutes: 15).
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	interface passTime: (Duration minutes: 15).
+	
+	self shouldntFail: [ interface 
+		checkOutCartIdentifiedAs: cartId 
+		withCreditCardNumbered: '1111222233334444' 
+		ownedBy: 'Juan Perez' 
+		expiringOn: testObjectsFactory notExpiredMonthOfYear ].
+		!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:32:29'!
+test13CanNotCheckoutAnExpiredCart
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	self
+		should: [interface 
+			checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = interface cartCanNotBeEmptyErrorMessage ]
+		
+		! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:32:45' prior: 50625939!
+test13CanNotCheckoutAnExpiredCart
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	interface passTime: (Duration minutes: 30).
+	
+	self
+		should: [interface 
+			checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = interface cartCanNotBeEmptyErrorMessage ]
+		
+		! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:33:30' prior: 50625960!
+test13CanNotCheckoutAnExpiredCart
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	interface passTime: (Duration minutes: 30).
+	
+	self
+		should: [interface 
+			checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: interface ]
+		
+		! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:33:47' prior: 50625985!
+test13CanNotCheckoutAnExpiredCart
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	interface passTime: (Duration minutes: 30).
+	
+	self
+		should: [interface 
+			checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: interface cartIsExpiredErrorMessage equals: anError messageText ].
+		
+		! !
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 10:33:51'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 10:33:51'!
+FAILURE!
+
+!classDefinition: #CartWrapper category: 'TusLibros' stamp: 'FGCL 6/15/2023 10:34:13'!
+Cart subclass: #CartWrapper
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:34:06' prior: 50625615!
+createCartFor: aUser authenticatedWith: aPassword
+
+	| cartId |
+	
+	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
+	
+	cartId := self generateCartId.
+	carts at: cartId put: (CartWrapper acceptingItemsOf: catalog).
+	
+	^cartId ! !
+!CartWrapper methodsFor: 'adding' stamp: 'FGCL 6/15/2023 10:35:19' overrides: 50624960!
+add: anItem
+	self updateLastUseDate.
+	^super add: anItem.! !
+!CartWrapper methodsFor: 'adding' stamp: 'FGCL 6/15/2023 10:35:47' overrides: 50624964!
+add: aQuantity of: anItem
+	^super add: aQuantity of: anItem.! !
+!CartWrapper methodsFor: 'adding' stamp: 'FGCL 6/15/2023 10:35:51' prior: 50626063 overrides: 50624964!
+add: aQuantity of: anItem
+	self updateLastUseDate.
+	^super add: aQuantity of: anItem.! !
+
+!classDefinition: #CartWrapper category: 'TusLibros' stamp: 'FGCL 6/15/2023 10:37:13'!
+Cart subclass: #CartWrapper
+	instanceVariableNames: 'lastUseDate'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartWrapper methodsFor: 'initialization' stamp: 'FGCL 6/15/2023 10:37:11' overrides: 50624938!
+initializeAcceptingItemsOf: aCatalog
+	lastUseDate := DateAndTime now.
+	^super initializeAcceptingItemsOf: aCatalog.! !
+!CartWrapper methodsFor: 'initialization' stamp: 'FGCL 6/15/2023 10:37:16' prior: 50626082 overrides: 50624938!
+initializeAcceptingItemsOf: aCatalog
+	lastUseDate := DateAndTime nowUpToSeconds.
+	^super initializeAcceptingItemsOf: aCatalog.! !
+!CartWrapper methodsFor: 'initialization' stamp: 'FGCL 6/15/2023 10:37:33' prior: 50626090 overrides: 50624938!
+initializeAcceptingItemsOf: aCatalog
+	lastUseDate := DateAndTime now.
+	^super initializeAcceptingItemsOf: aCatalog.! !
+!CartWrapper methodsFor: 'time' stamp: 'FGCL 6/15/2023 10:38:10'!
+updateLastUseDate
+	lastUseDate := DateAndTime now.! !
+!CartWrapper methodsFor: 'initialization' stamp: 'FGCL 6/15/2023 10:38:16' prior: 50626098 overrides: 50624938!
+initializeAcceptingItemsOf: aCatalog
+	self updateLastUseDate.
+	^super initializeAcceptingItemsOf: aCatalog.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:41:17' prior: 50626046!
+createCartFor: aUser authenticatedWith: aPassword
+
+	| cartId |
+	
+	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
+	
+	cartId := self generateCartId.
+	carts at: cartId put: (Cart acceptingItemsOf: catalog).
+	
+	^cartId ! !
+
+!classRemoval: #CartWrapper stamp: 'FGCL 6/15/2023 10:41:20'!
+Cart subclass: #CartWrapper
+	instanceVariableNames: 'lastUseDate'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+Object subclass: #CartWrapper
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartWrapper category: 'TusLibros' stamp: 'FGCL 6/15/2023 10:41:28'!
+Object subclass: #CartWrapper
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:41:57' prior: 50626117!
+createCartFor: aUser authenticatedWith: aPassword
+
+	| cartId |
+	
+	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
+	
+	cartId := self generateCartId.
+	carts at: cartId put: (CartWrapper acceptingItemsOf: catalog).
+	
+	^cartId ! !
+!CartWrapper class methodsFor: 'instance creation' stamp: 'FGCL 6/15/2023 10:42:28'!
+acceptingItemsOf: catalog
+	^self new initializeAcceptingItemsOf: catalog! !
+!CartWrapper class methodsFor: 'instance creation' stamp: 'FGCL 6/15/2023 10:42:42'!
+acceptingItemsOf: catalog createdOn: aDate
+	^self new initializeAcceptingItemsOf: catalog createdOn: aDate.! !
+
+!methodRemoval: CartWrapper class #acceptingItemsOf: stamp: 'FGCL 6/15/2023 10:42:45'!
+acceptingItemsOf: catalog
+	^self new initializeAcceptingItemsOf: catalog!
+
+!classDefinition: #CartWrapper category: 'TusLibros' stamp: 'FGCL 6/15/2023 10:43:10'!
+Object subclass: #CartWrapper
+	instanceVariableNames: 'cart'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+
+!classDefinition: #CartWrapper category: 'TusLibros' stamp: 'FGCL 6/15/2023 10:43:12'!
+Object subclass: #CartWrapper
+	instanceVariableNames: 'cart lastUseDate'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartWrapper methodsFor: 'initialization' stamp: 'FGCL 6/15/2023 10:43:09'!
+initializeAcceptingItemsOf: catalog createdOn: aDate
+	cart := Cart acceptingItemsOf: catalog.
+	lastUseDate := aDate.! !
+!CartWrapper methodsFor: 'getters' stamp: 'FGCL 6/15/2023 10:43:37'!
+cart
+	^cart.! !
+!CartWrapper methodsFor: 'getters' stamp: 'FGCL 6/15/2023 10:44:13'!
+lastUseDate
+	^lastUseDate.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:44:27' prior: 50626146!
+createCartFor: aUser authenticatedWith: aPassword
+
+	| cartId |
+	
+	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
+	
+	cartId := self generateCartId.
+	carts at: cartId put: (CartWrapper acceptingItemsOf: catalog createdOn: self today).
+	
+	^cartId ! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:44:42' prior: 50625137!
+add: aBook quantity: anAmount toCartIdentifiedAs: aCartId
+
+	| cart |
+	
+	cart := carts at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	cart add: anAmount of: aBook ! !
+!CartWrapper methodsFor: 'adding' stamp: 'FGCL 6/15/2023 10:45:34'!
+add: anAmount of: aBook on: aDate
+	lastUseDate := aDate.
+	cart add: anAmount of: aBook.! !
+!CartWrapper methodsFor: 'adding' stamp: 'FGCL 6/15/2023 10:45:58'!
+add: anAmount of: aBook
+	cart add: anAmount of: aBook.! !
+
+!methodRemoval: CartWrapper #add:of:on: stamp: 'FGCL 6/15/2023 10:45:59'!
+add: anAmount of: aBook on: aDate
+	lastUseDate := aDate.
+	cart add: anAmount of: aBook.!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:46:20' prior: 50625152!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	| cart |
+	
+	cart := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
+	
+	Cashier 
+		toCheckout: cart cart
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: self today 
+		registeringOn: salesBook! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:46:40' prior: 50625224!
+listCartIdentifiedAs: aCartId
+
+	| cart |
+	
+	cart := carts at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	
+	^cart cart content! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:47:51' prior: 50626256!
+listCartIdentifiedAs: aCartId
+
+	| cart |
+	
+	cart := carts at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	
+	^cart content! !
+!CartWrapper methodsFor: 'content' stamp: 'FGCL 6/15/2023 10:48:07'!
+content
+	^cart content.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:48:32' prior: 50626240!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	| cart |
+	
+	cart := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
+	cart checkNotExpiredOn: self today.
+	
+	Cashier 
+		toCheckout: cart cart
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: self today 
+		registeringOn: salesBook! !
+!CartWrapper methodsFor: 'checks' stamp: 'FGCL 6/15/2023 10:49:02'!
+checkNotExpiredOn: aDate
+	! !
+!CartWrapper methodsFor: 'checks' stamp: 'FGCL 6/15/2023 10:50:10' prior: 50626291!
+checkNotExpiredOn: aDate
+	self isExpired ifTrue: [ self error: RestInterface cartIsExpiredErrorMessage ].! !
+!CartWrapper methodsFor: 'checks' stamp: 'FGCL 6/15/2023 10:50:51'!
+isExpiredOn: aDate
+	((aDate - lastUseDate) < self maximumDuration) negated.! !
+!CartWrapper methodsFor: 'checks' stamp: 'FGCL 6/15/2023 10:51:02' prior: 50626301!
+isExpiredOn: aDate
+	(aDate - lastUseDate) >= self maximumDuration! !
+!CartWrapper methodsFor: 'checks' stamp: 'FGCL 6/15/2023 10:51:03' prior: 50626307!
+isExpiredOn: aDate
+	(aDate - lastUseDate) >= self maximumDuration.! !
+!CartWrapper methodsFor: 'checks' stamp: 'FGCL 6/15/2023 10:51:05' prior: 50626312!
+isExpiredOn: aDate
+	^(aDate - lastUseDate) >= self maximumDuration.! !
+!CartWrapper methodsFor: 'checks' stamp: 'FGCL 6/15/2023 10:51:15' prior: 50626295!
+checkNotExpiredOn: aDate
+	(self isExpiredOn: aDate) ifTrue: [ self error: RestInterface cartIsExpiredErrorMessage ].! !
+!CartWrapper methodsFor: 'checks' stamp: 'FGCL 6/15/2023 10:51:26'!
+maximumDuration
+	^Timespan minutes: 30.! !
+
+!methodRemoval: RestInterface #cartIsExpiredErrorMessage stamp: 'FGCL 6/15/2023 10:51:42'!
+cartIsExpiredErrorMessage
+	^'Cart is expired'.!
+!RestInterface class methodsFor: 'errors' stamp: 'FGCL 6/15/2023 10:51:47'!
+cartIsExpiredErrorMessage
+	^'Cart is expired'.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:51:58' prior: 50626008!
+test13CanNotCheckoutAnExpiredCart
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	interface passTime: (Duration minutes: 30).
+	
+	self
+		should: [interface 
+			checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: RestInterface cartIsExpiredErrorMessage equals: anError messageText ].
+		
+		! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'FGCL 6/15/2023 10:52:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'FGCL 6/15/2023 10:52:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'FGCL 6/15/2023 10:52:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'FGCL 6/15/2023 10:52:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'FGCL 6/15/2023 10:52:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'FGCL 6/15/2023 10:52:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'FGCL 6/15/2023 10:52:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'FGCL 6/15/2023 10:52:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'FGCL 6/15/2023 10:52:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'FGCL 6/15/2023 10:52:24'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'FGCL 6/15/2023 10:52:24'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'FGCL 6/15/2023 10:52:24'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 10:52:24'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 10:52:24'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 10:52:24'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'FGCL 6/15/2023 10:52:27'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'FGCL 6/15/2023 10:52:27'!
+ERROR!
+!CartWrapper methodsFor: 'checks' stamp: 'FGCL 6/15/2023 10:53:04' prior: 50626328!
+maximumDuration
+	^Duration minutes: 30.! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'FGCL 6/15/2023 10:53:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'FGCL 6/15/2023 10:53:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'FGCL 6/15/2023 10:53:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'FGCL 6/15/2023 10:53:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'FGCL 6/15/2023 10:53:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'FGCL 6/15/2023 10:53:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'FGCL 6/15/2023 10:53:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'FGCL 6/15/2023 10:53:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'FGCL 6/15/2023 10:53:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'FGCL 6/15/2023 10:53:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'FGCL 6/15/2023 10:53:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'FGCL 6/15/2023 10:53:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 10:53:07'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 10:53:07'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 10:53:07'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 10:53:12'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 10:53:14'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 10:53:14'!
+FAILURE!
+
+----SNAPSHOT----(15 June 2023 10:53:46) CuisUniversity-5832.image priorSource: 9407212!
+
+!classDefinition: #RestInterface category: 'TusLibros' stamp: 'FGCL 6/15/2023 10:53:58'!
+Object subclass: #RestInterface
+	instanceVariableNames: 'authenticationSystem carts catalog lastId merchantProcessor salesBook passedTime'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:53:56' prior: 50625604!
+initializeAuthenticatingWith: anAuthenticationSystem acceptingItemsOf: aCatalog merchantProcessor: anMP
+
+	authenticationSystem := anAuthenticationSystem.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	lastId := 0.
+	merchantProcessor := anMP.
+	
+	passedTime := Duration zero.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:54:10' prior: 50625243!
+today
+	
+	^DateAndTime now + passedTime.! !
+!RestInterface methodsFor: 'time' stamp: 'FGCL 6/15/2023 10:54:18' prior: 50625496!
+passTime: aDuration
+	passedTime := passedTime + aDuration.! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'FGCL 6/15/2023 10:54:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'FGCL 6/15/2023 10:54:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'FGCL 6/15/2023 10:54:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'FGCL 6/15/2023 10:54:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'FGCL 6/15/2023 10:54:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'FGCL 6/15/2023 10:54:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'FGCL 6/15/2023 10:54:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'FGCL 6/15/2023 10:54:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'FGCL 6/15/2023 10:54:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'FGCL 6/15/2023 10:54:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'FGCL 6/15/2023 10:54:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'FGCL 6/15/2023 10:54:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 10:54:25'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 10:54:25'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 10:54:25'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 10:54:25'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 10:54:25'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 10:54:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 10:54:34'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 10:54:34'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 10:54:34'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 10:54:34'!
+FAILURE!
+
+----SNAPSHOT----(15 June 2023 10:54:39) CuisUniversity-5832.image priorSource: 9434810!
+!CartWrapper methodsFor: 'adding' stamp: 'FGCL 6/15/2023 10:54:56'!
+add: anAmount of: aBook on: aDate
+	lastUseDate := aDate.
+	cart add: anAmount of: aBook.! !
+
+!methodRemoval: CartWrapper #add:of: stamp: 'FGCL 6/15/2023 10:54:58'!
+add: anAmount of: aBook
+	cart add: anAmount of: aBook.!
+!CartWrapper methodsFor: 'content' stamp: 'FGCL 6/15/2023 10:55:07'!
+contentOn: aDate
+	lastUseDate := aDate.
+	^cart content.! !
+
+!methodRemoval: CartWrapper #content stamp: 'FGCL 6/15/2023 10:55:09'!
+content
+	^cart content.!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:55:36' prior: 50626216!
+add: aBook quantity: anAmount toCartIdentifiedAs: aCartId
+
+	| cart |
+	
+	cart := carts at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	cart add: anAmount of: aBook on: self today.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:55:59' prior: 50626264!
+listCartIdentifiedAs: aCartId
+
+	| cart |
+	
+	cart := carts at: aCartId ifAbsent: [ self signalInvalidCartId ].
+	
+	^cart contentOn: self today.! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'FGCL 6/15/2023 10:56:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'FGCL 6/15/2023 10:56:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'FGCL 6/15/2023 10:56:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'FGCL 6/15/2023 10:56:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'FGCL 6/15/2023 10:56:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'FGCL 6/15/2023 10:56:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'FGCL 6/15/2023 10:56:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'FGCL 6/15/2023 10:56:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'FGCL 6/15/2023 10:56:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'FGCL 6/15/2023 10:56:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'FGCL 6/15/2023 10:56:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'FGCL 6/15/2023 10:56:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 10:56:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 10:56:06'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'FGCL 6/15/2023 10:56:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'FGCL 6/15/2023 10:56:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'FGCL 6/15/2023 10:56:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'FGCL 6/15/2023 10:56:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'FGCL 6/15/2023 10:56:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'FGCL 6/15/2023 10:56:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'FGCL 6/15/2023 10:56:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'FGCL 6/15/2023 10:56:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'FGCL 6/15/2023 10:56:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'FGCL 6/15/2023 10:56:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'FGCL 6/15/2023 10:56:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'FGCL 6/15/2023 10:56:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 10:56:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 10:56:21'!
+PASSED!
+
+----SNAPSHOT----(15 June 2023 10:56:23) CuisUniversity-5832.image priorSource: 9438299!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:57:55'!
+test15CartCantBeUsedIfExpired
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface passTime: (Duration minutes: 30).
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	
+	self shouldntFail: [ interface 
+		checkOutCartIdentifiedAs: cartId 
+		withCreditCardNumbered: '1111222233334444' 
+		ownedBy: 'Juan Perez' 
+		expiringOn: testObjectsFactory notExpiredMonthOfYear ].
+		! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 10:58:23' prior: 50626732!
+test15CartCantBeUsedIfExpired
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface passTime: (Duration minutes: 30).
+	self should: [ interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: RestInterface cartIsExpiredErrorMessage equals: anError messageText ].
+		! !
+
+!testRun: #RestInterfaceTest #test15CartCantBeUsedIfExpired stamp: 'FGCL 6/15/2023 10:58:45'!
+FAILURE!
+!CartWrapper methodsFor: 'adding' stamp: 'FGCL 6/15/2023 10:59:02' prior: 50626600!
+add: anAmount of: aBook on: aDate
+	self updateLastUseDateTo: aDate.
+	lastUseDate := aDate.
+	cart add: anAmount of: aBook.! !
+!CartWrapper methodsFor: 'adding' stamp: 'FGCL 6/15/2023 10:59:06' prior: 50626774!
+add: anAmount of: aBook on: aDate
+	self updateLastUseDateTo: aDate.
+	
+	cart add: anAmount of: aBook.! !
+!CartWrapper methodsFor: 'adding' stamp: 'FGCL 6/15/2023 10:59:07' prior: 50626781!
+add: anAmount of: aBook on: aDate
+	self updateLastUseDateTo: aDate.
+	cart add: anAmount of: aBook.! !
+!CartWrapper methodsFor: 'adding' stamp: 'FGCL 6/15/2023 10:59:16'!
+updateLastUseDateTo: aDate
+	lastUseDate := aDate.! !
+!CartWrapper methodsFor: 'content' stamp: 'FGCL 6/15/2023 10:59:34' prior: 50626609!
+contentOn: aDate
+	self updateLastUseDateTo: aDate.
+	^cart content.! !
+!CartWrapper methodsFor: 'checks' stamp: 'FGCL 6/15/2023 11:00:02' prior: 50626793!
+updateLastUseDateTo: aDate
+	self checkNotExpiredOn: aDate.
+	lastUseDate := aDate.! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'FGCL 6/15/2023 11:00:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'FGCL 6/15/2023 11:00:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'FGCL 6/15/2023 11:00:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'FGCL 6/15/2023 11:00:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'FGCL 6/15/2023 11:00:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'FGCL 6/15/2023 11:00:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'FGCL 6/15/2023 11:00:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'FGCL 6/15/2023 11:00:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'FGCL 6/15/2023 11:00:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'FGCL 6/15/2023 11:00:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'FGCL 6/15/2023 11:00:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'FGCL 6/15/2023 11:00:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 11:00:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 11:00:04'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15CartCantBeUsedIfExpired stamp: 'FGCL 6/15/2023 11:00:04'!
+PASSED!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:01:59' prior: 50626275!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	| cart |
+	
+	cart := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
+	cart checkNotExpiredOn: self today.
+	
+	Cashier 
+		toCheckout: cart cart
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: self today 
+		registeringOn: salesBook.
+	
+	self removeCart: aCartId.! !
+!RestInterface methodsFor: 'cart managing' stamp: 'FGCL 6/15/2023 11:02:13'!
+removeCart: aCartId
+! !
+!RestInterface methodsFor: 'cart managing' stamp: 'FGCL 6/15/2023 11:03:03' prior: 50626877!
+removeCart: aCartId
+	carts removeKey: aCartId.! !
+!RestInterface methodsFor: 'cart managing' stamp: 'FGCL 6/15/2023 11:03:10' prior: 50626881!
+removeCart: aCartId
+	carts removeKey: aCartId ifAbsent: [].! !
+!RestInterface methodsFor: 'cart managing' stamp: 'FGCL 6/15/2023 11:03:19' prior: 50626886!
+removeCart: aCartId
+	carts removeKey: aCartId ifAbsent: [self signalInvalidCartId ].! !
+
+!methodRemoval: RestInterface #removeCart: stamp: 'FGCL 6/15/2023 11:05:05'!
+removeCart: aCartId
+	carts removeKey: aCartId ifAbsent: [self signalInvalidCartId ].!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:05:10' prior: 50626860!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	| cart |
+	
+	cart := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
+	cart checkNotExpiredOn: self today.
+	
+	Cashier 
+		toCheckout: cart cart
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: self today 
+		registeringOn: salesBook.! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'FGCL 6/15/2023 11:05:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'FGCL 6/15/2023 11:05:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'FGCL 6/15/2023 11:05:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'FGCL 6/15/2023 11:05:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'FGCL 6/15/2023 11:05:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'FGCL 6/15/2023 11:05:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'FGCL 6/15/2023 11:05:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'FGCL 6/15/2023 11:05:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'FGCL 6/15/2023 11:05:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'FGCL 6/15/2023 11:05:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'FGCL 6/15/2023 11:05:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'FGCL 6/15/2023 11:05:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 11:05:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 11:05:11'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15CartCantBeUsedIfExpired stamp: 'FGCL 6/15/2023 11:05:11'!
+PASSED!
+
+----SNAPSHOT----(15 June 2023 11:05:21) CuisUniversity-5832.image priorSource: 9442510!
+
+----SNAPSHOT----(15 June 2023 11:05:58) CuisUniversity-5832.image priorSource: 9450188!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:06:59' prior: 50626902!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	| cart date |
+	
+	date := self today.
+	
+	cart := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
+	cart checkNotExpiredOn: date.
+	
+	Cashier 
+		toCheckout: cart cart
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: date 
+		registeringOn: salesBook.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:10:11' prior: 50626502!
+initializeAuthenticatingWith: anAuthenticationSystem acceptingItemsOf: aCatalog merchantProcessor: anMP
+
+	authenticationSystem := anAuthenticationSystem.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	lastId := 0.
+	merchantProcessor := anMP.
+	salesBook := OrderedCollection new.
+	
+	passedTime := Duration zero.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:10:40' prior: 50626993!
+initializeAuthenticatingWith: anAuthenticationSystem acceptingItemsOf: aCatalog merchantProcessor: anMP
+
+	authenticationSystem := anAuthenticationSystem.
+	catalog := aCatalog.
+	carts := Dictionary new.
+	lastId := 0.
+	merchantProcessor := anMP.
+	salesBook := Dictionary new.
+	
+	passedTime := Duration zero.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:10:51' prior: 50626976!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	| cart date total |
+	
+	date := self today.
+	
+	cart := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
+	cart checkNotExpiredOn: date.
+	
+	total := Cashier 
+		toCheckout: cart cart
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: date 
+		registeringOn: salesBook.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:11:41' prior: 50627019!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	| cart date total |
+	
+	date := self today.
+	
+	cart := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
+	cart checkNotExpiredOn: date.
+	
+	total := Cashier 
+		toCheckout: cart cart
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: date 
+		registeringOn: salesBook.
+		
+	salesBook at: anOwner put: (OrderedCollection with: (cart contentOn: date) with: total).! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:14:15' prior: 50627037!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	| cart date total |
+	
+	date := self today.
+	
+	cart := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
+	cart checkNotExpiredOn: date.
+	
+	total := Cashier 
+		toCheckout: cart cart
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: date 
+		registeringOn: salesBook.
+		
+	salesBook at: anOwner put: (OrderedCollection with: {cart contentOn: date. total}).! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:15:01' prior: 50627058!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	| cart date total |
+	
+	date := self today.
+	
+	cart := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
+	cart checkNotExpiredOn: date.
+	
+	total := Cashier 
+		toCheckout: cart cart
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: date 
+		registeringOn: salesBook.
+	
+	self registerSale: {cart contentOn: date. total} for: anOwner.! !
+!RestInterface methodsFor: 'sales book' stamp: 'FGCL 6/15/2023 11:15:26'!
+registerSale: aSale for: anUser
+	salesBook at: anUser put: (OrderedCollection with: aSale).! !
+!RestInterface methodsFor: 'sales book' stamp: 'FGCL 6/15/2023 11:16:31'!
+listPurchacesOf: aUser authenticatedWith: aPassword	
+	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
+	
+	^salesBook at: aUser ifAbsent: [ OrderedCollection new ].! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:18:09'!
+test16ListPurchasesBeginsEmpty
+
+	| interface purchases |
+
+	interface := self createDefaultInterface.
+
+	purchases := interface listPurchasesFor: self validUser authenticatedWith: self validUserPassword.
+	self assert: OrderedCollection new equals: purchases.
+		! !
+!RestInterface methodsFor: 'sales book' stamp: 'FGCL 6/15/2023 11:18:21'!
+listPurchasesOf: aUser authenticatedWith: aPassword	
+	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
+	
+	^salesBook at: aUser ifAbsent: [ OrderedCollection new ].! !
+
+!methodRemoval: RestInterface #listPurchacesOf:authenticatedWith: stamp: 'FGCL 6/15/2023 11:18:21'!
+listPurchacesOf: aUser authenticatedWith: aPassword	
+	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
+	
+	^salesBook at: aUser ifAbsent: [ OrderedCollection new ].!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:19:11' prior: 50627114!
+test16ListPurchasesBeginsEmpty
+
+	| interface purchases |
+
+	interface := self createDefaultInterface.
+
+	purchases := interface listPurchasesOf: self validUser authenticatedWith: self validUserPassword.
+	self assert: OrderedCollection new equals: purchases.
+		! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:19:15' prior: 50627145!
+test16ListPurchasesBeginsEmpty
+
+	| interface purchases |
+
+	interface := self createDefaultInterface.
+
+	purchases := interface listPurchasesOf: self validUser authenticatedWith: self validUserPassword.
+	self assert: OrderedCollection new equals: purchases.! !
+
+!testRun: #RestInterfaceTest #test16ListPurchasesBeginsEmpty stamp: 'FGCL 6/15/2023 11:19:16'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'FGCL 6/15/2023 11:19:16'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'FGCL 6/15/2023 11:19:16'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'FGCL 6/15/2023 11:19:16'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'FGCL 6/15/2023 11:19:16'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'FGCL 6/15/2023 11:19:16'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'FGCL 6/15/2023 11:19:16'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'FGCL 6/15/2023 11:19:16'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'FGCL 6/15/2023 11:19:16'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'FGCL 6/15/2023 11:19:16'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'FGCL 6/15/2023 11:19:16'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'FGCL 6/15/2023 11:19:16'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'FGCL 6/15/2023 11:19:16'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 11:19:16'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 11:19:16'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15CartCantBeUsedIfExpired stamp: 'FGCL 6/15/2023 11:19:16'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesBeginsEmpty stamp: 'FGCL 6/15/2023 11:19:16'!
+PASSED!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:21:17'!
+test17ListPurchasesWithOnePurchase
+
+	| interface purchases cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.	
+	interface checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear.
+
+	purchases := interface listPurchasesOf: self validUser authenticatedWith: self validUserPassword.		
+	self assert: (OrderedCollection with: 0) equals: purchases.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:21:48' prior: 50627226!
+test17ListPurchasesWithOnePurchase
+
+	| interface purchases cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.	
+	interface checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear.
+
+	purchases := interface listPurchasesOf: self validUser authenticatedWith: self validUserPassword.		
+	self assert: (OrderedCollection with: {self validBook. 1}) equals: purchases.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:22:31' prior: 50627249!
+test17ListPurchasesWithOnePurchase
+
+	| interface purchases cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.	
+	interface checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear.
+
+	purchases := interface listPurchasesOf: self validUser authenticatedWith: self validUserPassword.		
+	self assert: (OrderedCollection with: {self validBook. 0}) equals: purchases.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:22:50' prior: 50627273!
+test17ListPurchasesWithOnePurchase
+
+	| interface purchases cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.	
+	interface checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear.
+
+	purchases := interface listPurchasesOf: self validUser authenticatedWith: self validUserPassword.		
+	self assert: (OrderedCollection with: {self validBook. testObjectsFactory itemSellByTheStorePrice}) equals: purchases.! !
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:23:14'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:23:14'!
+FAILURE!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:26:46' prior: 50626203!
+createCartFor: aUser authenticatedWith: aPassword
+
+	| cartId |
+	
+	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
+	
+	cartId := self generateCartId.
+	carts at: cartId put: (CartWrapper acceptingItemsOf: catalog createdOn: self today for: aUser).
+	
+	^cartId ! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:26:56' prior: 50627079!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	| cart date total |
+	
+	date := self today.
+	
+	cart := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
+	cart checkNotExpiredOn: date.
+	
+	total := Cashier 
+		toCheckout: cart cart
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: date 
+		registeringOn: salesBook.
+	
+	self registerSale: {cart contentOn: date. total} for: cart user.! !
+!CartWrapper class methodsFor: 'instance creation' stamp: 'FGCL 6/15/2023 11:27:08'!
+acceptingItemsOf: catalog createdOn: aDate for: aUser
+	^self new initializeAcceptingItemsOf: catalog createdOn: aDate for: aUser.! !
+!CartWrapper methodsFor: 'initialization' stamp: 'FGCL 6/15/2023 11:27:15'!
+initializeAcceptingItemsOf: catalog createdOn: aDate for: aUser
+	cart := Cart acceptingItemsOf: catalog.
+	lastUseDate := aDate.! !
+
+!methodRemoval: CartWrapper #initializeAcceptingItemsOf:createdOn: stamp: 'FGCL 6/15/2023 11:27:18'!
+initializeAcceptingItemsOf: catalog createdOn: aDate
+	cart := Cart acceptingItemsOf: catalog.
+	lastUseDate := aDate.!
+
+!classDefinition: #CartWrapper category: 'TusLibros' stamp: 'FGCL 6/15/2023 11:27:26'!
+Object subclass: #CartWrapper
+	instanceVariableNames: 'cart lastUseDate user'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!CartWrapper methodsFor: 'initialization' stamp: 'FGCL 6/15/2023 11:27:24' prior: 50627368!
+initializeAcceptingItemsOf: catalog createdOn: aDate for: aUser
+	cart := Cart acceptingItemsOf: catalog.
+	lastUseDate := aDate.
+	user := aUser.! !
+!CartWrapper methodsFor: 'getters' stamp: 'FGCL 6/15/2023 11:27:31'!
+user
+	^user.! !
+
+!methodRemoval: CartWrapper class #acceptingItemsOf:createdOn: stamp: 'FGCL 6/15/2023 11:27:33'!
+acceptingItemsOf: catalog createdOn: aDate
+	^self new initializeAcceptingItemsOf: catalog createdOn: aDate.!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'FGCL 6/15/2023 11:27:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'FGCL 6/15/2023 11:27:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'FGCL 6/15/2023 11:27:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'FGCL 6/15/2023 11:27:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'FGCL 6/15/2023 11:27:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'FGCL 6/15/2023 11:27:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'FGCL 6/15/2023 11:27:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'FGCL 6/15/2023 11:27:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'FGCL 6/15/2023 11:27:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'FGCL 6/15/2023 11:27:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'FGCL 6/15/2023 11:27:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'FGCL 6/15/2023 11:27:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 11:27:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 11:27:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15CartCantBeUsedIfExpired stamp: 'FGCL 6/15/2023 11:27:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesBeginsEmpty stamp: 'FGCL 6/15/2023 11:27:37'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:27:37'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:27:37'!
+FAILURE!
+
+----SNAPSHOT----(15 June 2023 11:27:48) CuisUniversity-5832.image priorSource: 9450277!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'FGCL 6/15/2023 11:27:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'FGCL 6/15/2023 11:27:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'FGCL 6/15/2023 11:27:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'FGCL 6/15/2023 11:27:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'FGCL 6/15/2023 11:27:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'FGCL 6/15/2023 11:27:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'FGCL 6/15/2023 11:27:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'FGCL 6/15/2023 11:27:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'FGCL 6/15/2023 11:27:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'FGCL 6/15/2023 11:27:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'FGCL 6/15/2023 11:27:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'FGCL 6/15/2023 11:27:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 11:27:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 11:27:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15CartCantBeUsedIfExpired stamp: 'FGCL 6/15/2023 11:27:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesBeginsEmpty stamp: 'FGCL 6/15/2023 11:27:50'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:27:50'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:27:50'!
+FAILURE!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:29:14' prior: 50627297!
+test17ListPurchasesWithOnePurchase
+
+	| interface purchases cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.	
+	interface checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear.
+
+	purchases := interface listPurchasesOf: self validUser authenticatedWith: self validUserPassword.		
+	self assert: (OrderedCollection with: {self validBook. Bag with: testObjectsFactory itemSellByTheStorePrice}) equals: purchases.! !
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:29:15'!
+FAILURE!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:29:26' prior: 50627533!
+test17ListPurchasesWithOnePurchase
+
+	| interface purchases cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.	
+	interface checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear.
+
+	purchases := interface listPurchasesOf: self validUser authenticatedWith: self validUserPassword.		
+	self assert: (OrderedCollection with: {Bag with: self validBook. testObjectsFactory itemSellByTheStorePrice}) equals: purchases.! !
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:29:27'!
+FAILURE!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:30:44' prior: 50627342!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	| cart date total |
+	
+	date := self today.
+	
+	cart := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
+	cart checkNotExpiredOn: date.
+	
+	total := Cashier 
+		toCheckout: cart cart
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: date 
+		registeringOn: salesBook.
+	
+	self registerSale: {cart contentOn: date. total} for: cart user.! !
+
+!classDefinition: #RestInterface category: 'TusLibros' stamp: 'FGCL 6/15/2023 11:32:46'!
+Object subclass: #RestInterface
+	instanceVariableNames: 'authenticationSystem carts catalog lastId merchantProcessor salesBook passedTime cashier'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'TusLibros'!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:32:45' prior: 50627591!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	| cart date total |
+	
+	date := self today.
+	
+	cart := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
+	cart checkNotExpiredOn: date.
+	
+	cashier := Cashier 
+		toCheckout: cart cart
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: date 
+		registeringOn: salesBook.
+	
+	total := cashier checkOut.
+	self registerSale: {cart contentOn: date. total} for: cart user.! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'FGCL 6/15/2023 11:32:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'FGCL 6/15/2023 11:32:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'FGCL 6/15/2023 11:32:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'FGCL 6/15/2023 11:32:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'FGCL 6/15/2023 11:32:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'FGCL 6/15/2023 11:32:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'FGCL 6/15/2023 11:32:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'FGCL 6/15/2023 11:32:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'FGCL 6/15/2023 11:32:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'FGCL 6/15/2023 11:32:54'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'FGCL 6/15/2023 11:32:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'FGCL 6/15/2023 11:32:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 11:32:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 11:32:54'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 11:32:54'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test15CartCantBeUsedIfExpired stamp: 'FGCL 6/15/2023 11:32:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesBeginsEmpty stamp: 'FGCL 6/15/2023 11:32:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:32:54'!
+ERROR!
+
+----SNAPSHOT----(15 June 2023 11:33:55) CuisUniversity-5832.image priorSource: 9466150!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'FGCL 6/15/2023 11:34:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'FGCL 6/15/2023 11:34:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'FGCL 6/15/2023 11:34:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'FGCL 6/15/2023 11:34:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'FGCL 6/15/2023 11:34:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'FGCL 6/15/2023 11:34:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'FGCL 6/15/2023 11:34:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'FGCL 6/15/2023 11:34:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'FGCL 6/15/2023 11:34:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'FGCL 6/15/2023 11:34:00'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'FGCL 6/15/2023 11:34:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'FGCL 6/15/2023 11:34:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 11:34:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 11:34:00'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 11:34:00'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test15CartCantBeUsedIfExpired stamp: 'FGCL 6/15/2023 11:34:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesBeginsEmpty stamp: 'FGCL 6/15/2023 11:34:00'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:34:00'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'FGCL 6/15/2023 11:34:06'!
+ERROR!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'FGCL 6/15/2023 11:34:06'!
+ERROR!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:35:06' prior: 50627620!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	| cart date |
+	
+	date := self today.
+	
+	cart := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
+	cart checkNotExpiredOn: date.
+	
+	cashier := Cashier 
+		toCheckout: cart cart
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: date 
+		registeringOn: salesBook.
+	
+	self registerSale: {cart contentOn: date. cashier calculateTotal} for: cart user.! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'FGCL 6/15/2023 11:35:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'FGCL 6/15/2023 11:35:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'FGCL 6/15/2023 11:35:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'FGCL 6/15/2023 11:35:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'FGCL 6/15/2023 11:35:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'FGCL 6/15/2023 11:35:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'FGCL 6/15/2023 11:35:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'FGCL 6/15/2023 11:35:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'FGCL 6/15/2023 11:35:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'FGCL 6/15/2023 11:35:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'FGCL 6/15/2023 11:35:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'FGCL 6/15/2023 11:35:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 11:35:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 11:35:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15CartCantBeUsedIfExpired stamp: 'FGCL 6/15/2023 11:35:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesBeginsEmpty stamp: 'FGCL 6/15/2023 11:35:09'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:35:09'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:35:09'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:35:13'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:35:14'!
+FAILURE!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:36:19' prior: 50627772!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	| cart date |
+	
+	date := self today.
+	
+	cart := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
+	cart checkNotExpiredOn: date.
+	
+	cashier := Cashier 
+		toCheckout: cart cart
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: date 
+		registeringOn: salesBook.
+	
+	self registerSale: {cart contentOn: date. cart cart total.} for: cart user.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:36:21' prior: 50627860!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	| cart date |
+	
+	date := self today.
+	
+	cart := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
+	cart checkNotExpiredOn: date.
+	
+	cashier := Cashier 
+		toCheckout: cart cart
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: date 
+		registeringOn: salesBook.
+	
+	self registerSale: {cart contentOn: date. cart cart total} for: cart user.! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'FGCL 6/15/2023 11:36:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'FGCL 6/15/2023 11:36:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'FGCL 6/15/2023 11:36:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'FGCL 6/15/2023 11:36:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'FGCL 6/15/2023 11:36:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'FGCL 6/15/2023 11:36:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'FGCL 6/15/2023 11:36:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'FGCL 6/15/2023 11:36:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'FGCL 6/15/2023 11:36:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'FGCL 6/15/2023 11:36:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'FGCL 6/15/2023 11:36:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'FGCL 6/15/2023 11:36:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 11:36:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 11:36:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15CartCantBeUsedIfExpired stamp: 'FGCL 6/15/2023 11:36:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesBeginsEmpty stamp: 'FGCL 6/15/2023 11:36:22'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:36:22'!
+PASSED!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:36:32'!
+test17ListPurchasesWithManyPurchases
+
+	| interface purchases cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.	
+	interface checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear.
+
+	purchases := interface listPurchasesOf: self validUser authenticatedWith: self validUserPassword.		
+	self assert: (OrderedCollection with: {Bag with: self validBook. testObjectsFactory itemSellByTheStorePrice}) equals: purchases.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:36:56'!
+test18ListPurchasesWithManyPurchases
+
+	| interface purchases cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.	
+	interface checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear.
+
+	purchases := interface listPurchasesOf: self validUser authenticatedWith: self validUserPassword.		
+	self assert: (OrderedCollection with: {Bag with: self validBook. testObjectsFactory itemSellByTheStorePrice}) equals: purchases.! !
+
+!methodRemoval: RestInterfaceTest #test17ListPurchasesWithManyPurchases stamp: 'FGCL 6/15/2023 11:36:56'!
+test17ListPurchasesWithManyPurchases
+
+	| interface purchases cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.	
+	interface checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear.
+
+	purchases := interface listPurchasesOf: self validUser authenticatedWith: self validUserPassword.		
+	self assert: (OrderedCollection with: {Bag with: self validBook. testObjectsFactory itemSellByTheStorePrice}) equals: purchases.!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:38:44' prior: 50627983!
+test18ListPurchasesWithManyPurchases
+
+	| interface purchases cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.	
+	interface checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear.
+			
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self anotherValidBook quantity: 1 toCartIdentifiedAs: cartId.	
+	interface checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear.
+
+	purchases := interface listPurchasesOf: self validUser authenticatedWith: self validUserPassword.		
+	self assert: (OrderedCollection
+				with: {Bag with: self validBook. testObjectsFactory itemSellByTheStorePrice}
+				with: {Bag with: self anotherValidBook. testObjectsFactory anotherItemSellByTheStorePrice}
+			) equals: purchases.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:39:17' prior: 50627562!
+test17ListPurchasesWithOnePurchase
+
+	| interface purchases cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.	
+	interface checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear.
+
+	purchases := interface listPurchasesOf: self validUser authenticatedWith: self validUserPassword.		
+	self assert: {Bag with: self validBook. testObjectsFactory itemSellByTheStorePrice} equals: purchases.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:39:49' prior: 50628033!
+test18ListPurchasesWithManyPurchases
+
+	| interface purchases cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.	
+	interface checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear.
+			
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self anotherValidBook quantity: 1 toCartIdentifiedAs: cartId.	
+	interface checkOutCartIdentifiedAs: cartId 
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear.
+
+	purchases := interface listPurchasesOf: self validUser authenticatedWith: self validUserPassword.		
+	self assert: {Bag with: self validBook with: self anotherValidBook. testObjectsFactory itemSellByTheStorePrice + testObjectsFactory anotherItemSellByTheStorePrice} equals: purchases.! !
+!RestInterface methodsFor: 'sales book' stamp: 'FGCL 6/15/2023 11:41:29' prior: 50627125!
+listPurchasesOf: aUser authenticatedWith: aPassword	
+	| items total |
+
+	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
+
+	items := Bag new.
+	total := 0.	
+	(salesBook at: aUser ifAbsent: [ OrderedCollection new ]) do: [ :aSale |
+		
+	].
+
+	^{items. total}.! !
+!RestInterface methodsFor: 'sales book' stamp: 'FGCL 6/15/2023 11:41:52' prior: 50628135!
+listPurchasesOf: aUser authenticatedWith: aPassword	
+	| items total |
+
+	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
+
+	items := Bag new.
+	total := 0.	
+	(salesBook at: aUser ifAbsent: [ OrderedCollection new ]) do: [ :aSale |
+		aSale at: 1.
+		total := total + aSale at: 2.
+	].
+
+	^{items. total}.! !
+!RestInterface methodsFor: 'sales book' stamp: 'FGCL 6/15/2023 11:42:02' prior: 50628148!
+listPurchasesOf: aUser authenticatedWith: aPassword	
+	| items total |
+
+	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
+
+	items := Bag new.
+	total := 0.	
+	(salesBook at: aUser ifAbsent: [ OrderedCollection new ]) do: [ :aSale |
+		items add: (aSale at: 1).
+		total := total + aSale at: 2.
+	].
+
+	^{items. total}.! !
+!RestInterface methodsFor: 'sales book' stamp: 'FGCL 6/15/2023 11:42:43' prior: 50628162!
+listPurchasesOf: aUser authenticatedWith: aPassword	
+	| items total |
+
+	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
+
+	items := Bag new.
+	total := 0.	
+	(salesBook at: aUser ifAbsent: [ OrderedCollection new ]) do: [ :aSale |
+		items addAll: (aSale at: 1).
+		total := total + aSale at: 2.
+	].
+
+	^{items. total}.! !
+!RestInterface methodsFor: 'sales book' stamp: 'FGCL 6/15/2023 11:43:50' prior: 50628177!
+listPurchasesOf: aUser authenticatedWith: aPassword	
+	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
+	^salesBook at: aUser ifAbsent: [ {Bag new. 0} ].! !
+!RestInterface methodsFor: 'sales book' stamp: 'FGCL 6/15/2023 11:44:34' prior: 50627098!
+registerSale: aSale for: anUser
+	| purchases |
+	
+	purchases := salesBook at: anUser ! !
+!RestInterface methodsFor: 'sales book' stamp: 'FGCL 6/15/2023 11:44:36' prior: 50628202!
+registerSale: aSale for: anUser
+	| purchases |
+	
+	purchases := salesBook at: anUser.! !
+!RestInterface methodsFor: 'sales book' stamp: 'FGCL 6/15/2023 11:44:43' prior: 50628208!
+registerSale: aSale for: anUser
+	| purchases |
+	
+	purchases := salesBook at: anUser ifAbsent: [ {Bag new. 0} ].! !
+!RestInterface methodsFor: 'sales book' stamp: 'FGCL 6/15/2023 11:44:57' prior: 50628214!
+registerSale: aSale for: aUser
+	| purchases |
+	
+	purchases := self purchasesOf: aUser.! !
+!RestInterface methodsFor: 'sales book' stamp: 'FGCL 6/15/2023 11:45:08'!
+purchasesOf: aUser.
+	^salesBook at: aUser ifAbsent: [ {Bag new. 0} ].! !
+!RestInterface methodsFor: 'sales book' stamp: 'FGCL 6/15/2023 11:45:14' prior: 50628192!
+listPurchasesOf: aUser authenticatedWith: aPassword	
+	(self is: aUser authenticatingWith: aPassword) ifFalse: [ self signalInvalidUserAndOrPassword ].
+	^self purchasesOf: aUser.! !
+!RestInterface methodsFor: 'sales book' stamp: 'FGCL 6/15/2023 11:48:55'!
+registerSaleWithContent: content WithTotal: total for: aUser
+	| purchases newBag newTotal |
+	
+	purchases := self purchasesOf: aUser.
+	
+	newBag := Bag newFrom: (purchases at: 1).
+	newBag add: content.
+	newTotal := (purchases at: 2) + total.
+	salesBook at: aUser put: { newBag. newTotal }.! !
+
+!methodRemoval: RestInterface #registerSale:for: stamp: 'FGCL 6/15/2023 11:49:01'!
+registerSale: aSale for: aUser
+	| purchases |
+	
+	purchases := self purchasesOf: aUser.!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:50:02' prior: 50627880!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	| cart date |
+	
+	date := self today.
+	
+	cart := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
+	cart checkNotExpiredOn: date.
+	
+	cashier := Cashier 
+		toCheckout: cart cart
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: date 
+		registeringOn: salesBook.
+	
+	self registerSaleWithContent: (cart contentOn: date)  WithTotal: cart total for: cart user.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:50:03' prior: 50628259!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	| cart date |
+	
+	date := self today.
+	
+	cart := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
+	cart checkNotExpiredOn: date.
+	
+	cashier := Cashier 
+		toCheckout: cart cart
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: date 
+		registeringOn: salesBook.
+	
+	self registerSaleWithContent: (cart contentOn: date) WithTotal: cart total for: cart user.! !
+!CartWrapper methodsFor: 'content' stamp: 'FGCL 6/15/2023 11:50:15'!
+total
+	^cart total.! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'FGCL 6/15/2023 11:50:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'FGCL 6/15/2023 11:50:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'FGCL 6/15/2023 11:50:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'FGCL 6/15/2023 11:50:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'FGCL 6/15/2023 11:50:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'FGCL 6/15/2023 11:50:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'FGCL 6/15/2023 11:50:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'FGCL 6/15/2023 11:50:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'FGCL 6/15/2023 11:50:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'FGCL 6/15/2023 11:50:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'FGCL 6/15/2023 11:50:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'FGCL 6/15/2023 11:50:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 11:50:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 11:50:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15CartCantBeUsedIfExpired stamp: 'FGCL 6/15/2023 11:50:21'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesBeginsEmpty stamp: 'FGCL 6/15/2023 11:50:21'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:50:21'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesWithManyPurchases stamp: 'FGCL 6/15/2023 11:50:21'!
+FAILURE!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:50:32' prior: 50627157!
+test16ListPurchasesBeginsEmpty
+
+	| interface purchases |
+
+	interface := self createDefaultInterface.
+
+	purchases := interface listPurchasesOf: self validUser authenticatedWith: self validUserPassword.
+	self assert: {Bag new. 0} equals: purchases.! !
+
+!testRun: #RestInterfaceTest #test16ListPurchasesBeginsEmpty stamp: 'FGCL 6/15/2023 11:50:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'FGCL 6/15/2023 11:50:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'FGCL 6/15/2023 11:50:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'FGCL 6/15/2023 11:50:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'FGCL 6/15/2023 11:50:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'FGCL 6/15/2023 11:50:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'FGCL 6/15/2023 11:50:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'FGCL 6/15/2023 11:50:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'FGCL 6/15/2023 11:50:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'FGCL 6/15/2023 11:50:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'FGCL 6/15/2023 11:50:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'FGCL 6/15/2023 11:50:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'FGCL 6/15/2023 11:50:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 11:50:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 11:50:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15CartCantBeUsedIfExpired stamp: 'FGCL 6/15/2023 11:50:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesBeginsEmpty stamp: 'FGCL 6/15/2023 11:50:33'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:50:33'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesWithManyPurchases stamp: 'FGCL 6/15/2023 11:50:33'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:50:35'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:50:35'!
+FAILURE!
+!RestInterface methodsFor: 'sales book' stamp: 'FGCL 6/15/2023 11:50:53' prior: 50628241!
+registerSaleWithContent: content WithTotal: total for: aUser
+	| purchases newBag newTotal |
+	
+	purchases := self purchasesOf: aUser.
+	
+	newBag := Bag withAll: (purchases at: 1).
+	newBag add: content.
+	newTotal := (purchases at: 2) + total.
+	salesBook at: aUser put: { newBag. newTotal }.! !
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:50:56'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:50:56'!
+FAILURE!
+!RestInterface methodsFor: 'sales book' stamp: 'FGCL 6/15/2023 11:51:30' prior: 50628448!
+registerSaleWithContent: content WithTotal: total for: aUser
+	| purchases newBag newTotal |
+	
+	purchases := self purchasesOf: aUser.
+	
+	newBag := Bag new.
+	newBag addAll: (purchases at: 1).
+	newBag add: content.
+	newTotal := (purchases at: 2) + total.
+	salesBook at: aUser put: { newBag. newTotal }.! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'FGCL 6/15/2023 11:51:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'FGCL 6/15/2023 11:51:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'FGCL 6/15/2023 11:51:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'FGCL 6/15/2023 11:51:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'FGCL 6/15/2023 11:51:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'FGCL 6/15/2023 11:51:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'FGCL 6/15/2023 11:51:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'FGCL 6/15/2023 11:51:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'FGCL 6/15/2023 11:51:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'FGCL 6/15/2023 11:51:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'FGCL 6/15/2023 11:51:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'FGCL 6/15/2023 11:51:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 11:51:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 11:51:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15CartCantBeUsedIfExpired stamp: 'FGCL 6/15/2023 11:51:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesBeginsEmpty stamp: 'FGCL 6/15/2023 11:51:31'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:51:31'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesWithManyPurchases stamp: 'FGCL 6/15/2023 11:51:31'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:51:36'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:51:36'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'FGCL 6/15/2023 11:52:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'FGCL 6/15/2023 11:52:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'FGCL 6/15/2023 11:52:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'FGCL 6/15/2023 11:52:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'FGCL 6/15/2023 11:52:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'FGCL 6/15/2023 11:52:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'FGCL 6/15/2023 11:52:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'FGCL 6/15/2023 11:52:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'FGCL 6/15/2023 11:52:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'FGCL 6/15/2023 11:52:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'FGCL 6/15/2023 11:52:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'FGCL 6/15/2023 11:52:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 11:52:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 11:52:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15CartCantBeUsedIfExpired stamp: 'FGCL 6/15/2023 11:52:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesBeginsEmpty stamp: 'FGCL 6/15/2023 11:52:13'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:52:13'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesWithManyPurchases stamp: 'FGCL 6/15/2023 11:52:13'!
+FAILURE!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:52:14'!
+FAILURE!
+!RestInterface methodsFor: 'sales book' stamp: 'FGCL 6/15/2023 11:52:47' prior: 50628467!
+registerSaleWithContent: content WithTotal: total for: aUser
+	| purchases newBag newTotal |
+	
+	purchases := self purchasesOf: aUser.
+	
+	newBag := Bag new.
+	newBag addAll: (purchases at: 1).
+	newBag addAll: content.
+	newTotal := (purchases at: 2) + total.
+	salesBook at: aUser put: { newBag. newTotal }.! !
+!RestInterface methodsFor: 'sales book' stamp: 'FGCL 6/15/2023 11:52:52' prior: 50628613!
+registerSaleWithContent: content WithTotal: total for: aUser
+	| purchases newBag newTotal |
+	
+	purchases := self purchasesOf: aUser.
+	
+	newBag := Bag newFrom: (purchases at: 1).
+	newBag addAll: content.
+	newTotal := (purchases at: 2) + total.
+	salesBook at: aUser put: { newBag. newTotal }.! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'FGCL 6/15/2023 11:52:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'FGCL 6/15/2023 11:52:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'FGCL 6/15/2023 11:52:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'FGCL 6/15/2023 11:52:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'FGCL 6/15/2023 11:52:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'FGCL 6/15/2023 11:52:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'FGCL 6/15/2023 11:52:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'FGCL 6/15/2023 11:52:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'FGCL 6/15/2023 11:52:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'FGCL 6/15/2023 11:52:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'FGCL 6/15/2023 11:52:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'FGCL 6/15/2023 11:52:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 11:52:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 11:52:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15CartCantBeUsedIfExpired stamp: 'FGCL 6/15/2023 11:52:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesBeginsEmpty stamp: 'FGCL 6/15/2023 11:52:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:52:54'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesWithManyPurchases stamp: 'FGCL 6/15/2023 11:52:54'!
+PASSED!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:53:59'!
+validCheckoutOnInterface: anInterface withCartId: aCartId
+	^anInterface checkOutCartIdentifiedAs: aCartId
+			withCreditCardNumbered: '1111222233334444' 
+			ownedBy: 'Juan Perez' 
+			expiringOn: testObjectsFactory notExpiredMonthOfYear! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:54:19' prior: 50628097!
+test18ListPurchasesWithManyPurchases
+
+	| interface purchases cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.	
+	self validCheckoutOnInterface: interface withCartId: cartId.
+			
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self anotherValidBook quantity: 1 toCartIdentifiedAs: cartId.	
+	self validCheckoutOnInterface: interface withCartId: cartId.
+
+	purchases := interface listPurchasesOf: self validUser authenticatedWith: self validUserPassword.		
+	self assert: {Bag with: self validBook with: self anotherValidBook. testObjectsFactory itemSellByTheStorePrice + testObjectsFactory anotherItemSellByTheStorePrice} equals: purchases.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:54:23' prior: 50628073!
+test17ListPurchasesWithOnePurchase
+
+	| interface purchases cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.	
+	self validCheckoutOnInterface: interface withCartId: cartId.
+
+	purchases := interface listPurchasesOf: self validUser authenticatedWith: self validUserPassword.		
+	self assert: {Bag with: self validBook. testObjectsFactory itemSellByTheStorePrice} equals: purchases.! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:54:30' prior: 50625897!
+test14CartDoesntExpireIfUsedInTime
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface passTime: (Duration minutes: 15).
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	interface passTime: (Duration minutes: 15).
+	
+	self shouldntFail: [ self validCheckoutOnInterface: interface withCartId: cartId. ].
+		! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:54:35' prior: 50628763!
+test14CartDoesntExpireIfUsedInTime
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	
+	interface passTime: (Duration minutes: 15).
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	interface passTime: (Duration minutes: 15).
+	
+	self shouldntFail: [ self validCheckoutOnInterface: interface withCartId: cartId ].
+		! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'FGCL 6/15/2023 11:54:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'FGCL 6/15/2023 11:54:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'FGCL 6/15/2023 11:54:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'FGCL 6/15/2023 11:54:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'FGCL 6/15/2023 11:54:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'FGCL 6/15/2023 11:54:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'FGCL 6/15/2023 11:54:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'FGCL 6/15/2023 11:54:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'FGCL 6/15/2023 11:54:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'FGCL 6/15/2023 11:54:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'FGCL 6/15/2023 11:54:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'FGCL 6/15/2023 11:54:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 11:54:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 11:54:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15CartCantBeUsedIfExpired stamp: 'FGCL 6/15/2023 11:54:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesBeginsEmpty stamp: 'FGCL 6/15/2023 11:54:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:54:36'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesWithManyPurchases stamp: 'FGCL 6/15/2023 11:54:36'!
+PASSED!
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:54:42' prior: 50626342!
+test13CanNotCheckoutAnExpiredCart
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	interface passTime: (Duration minutes: 30).
+	
+	self
+		should: [ self validCheckoutOnInterface: interface withCartId: cartId ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: RestInterface cartIsExpiredErrorMessage equals: anError messageText ].
+		
+		! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:54:46' prior: 50624858!
+test12CanNotCheckoutAnEmptyCart
+
+	| interface cartId |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	self
+		should: [ self validCheckoutOnInterface: interface withCartId: cartId ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = interface cartCanNotBeEmptyErrorMessage ]
+		
+		! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:55:03' prior: 50624840!
+test11CanNotCheckoutANotCreatedCart
+
+	| interface |
+
+	interface := self createDefaultInterface.
+
+	self
+		should: [ self validCheckoutOnInterface: interface withCartId: self invalidCartId ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anError messageText = interface invalidCartIdErrorDescription ]
+		
+		! !
+!RestInterfaceTest methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:55:09' prior: 50624821!
+test10CanCheckoutACart
+
+	| interface cartId  |
+
+	interface := self createDefaultInterface.
+
+	cartId := interface createCartFor: self validUser authenticatedWith: self validUserPassword.
+	interface add: self validBook quantity: 1 toCartIdentifiedAs: cartId.
+	self
+		shouldnt: [ self validCheckoutOnInterface: interface withCartId: cartId]
+		raise: Error - MessageNotUnderstood
+		
+		! !
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'FGCL 6/15/2023 11:55:15'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'FGCL 6/15/2023 11:55:15'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'FGCL 6/15/2023 11:55:15'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'FGCL 6/15/2023 11:55:15'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'FGCL 6/15/2023 11:55:15'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'FGCL 6/15/2023 11:55:15'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'FGCL 6/15/2023 11:55:15'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'FGCL 6/15/2023 11:55:15'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'FGCL 6/15/2023 11:55:15'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'FGCL 6/15/2023 11:55:15'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'FGCL 6/15/2023 11:55:15'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'FGCL 6/15/2023 11:55:15'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 11:55:15'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 11:55:15'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15CartCantBeUsedIfExpired stamp: 'FGCL 6/15/2023 11:55:15'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesBeginsEmpty stamp: 'FGCL 6/15/2023 11:55:15'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:55:15'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesWithManyPurchases stamp: 'FGCL 6/15/2023 11:55:15'!
+PASSED!
+
+----SNAPSHOT----(15 June 2023 11:55:17) CuisUniversity-5832.image priorSource: 9473611!
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:55:46'!
+generateTransactionId
+	
+	lastId := lastId + 1.
+	^lastId! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:56:06' prior: 50628280!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	| cart date |
+	
+	date := self today.
+	
+	cart := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
+	cart checkNotExpiredOn: date.
+	
+	cashier := Cashier 
+		toCheckout: cart cart
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: date 
+		registeringOn: salesBook.
+	
+	self registerSaleWithContent: (cart contentOn: date) WithTotal: cart total for: cart user.
+	^self generateCartId.! !
+!RestInterface methodsFor: 'as yet unclassified' stamp: 'FGCL 6/15/2023 11:56:10' prior: 50628997!
+checkOutCartIdentifiedAs: aCartId withCreditCardNumbered: aCreditCartNumber ownedBy: anOwner expiringOn: anExpirationMonthOfYear
+
+	| cart date |
+	
+	date := self today.
+	
+	cart := carts at: aCartId ifAbsent: [self signalInvalidCartId ].
+	cart checkNotExpiredOn: date.
+	
+	cashier := Cashier 
+		toCheckout: cart cart
+		charging: (CreditCard expiringOn: anExpirationMonthOfYear) 
+		throught: merchantProcessor 
+		on: date 
+		registeringOn: salesBook.
+	
+	self registerSaleWithContent: (cart contentOn: date) WithTotal: cart total for: cart user.
+	^self generateTransactionId.! !
+
+----SNAPSHOT----(15 June 2023 11:56:12) CuisUniversity-5832.image priorSource: 9514824!
+
+!testRun: #RestInterfaceTest #test01CanCreateCartWithValidUserAndPassword stamp: 'FGCL 6/15/2023 11:56:14'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test02CanNotCreateCartWithInvalidUser stamp: 'FGCL 6/15/2023 11:56:14'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test03CanNotCreateCartWithInvalidPassword stamp: 'FGCL 6/15/2023 11:56:14'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test04CanAddItemsToACreatedCart stamp: 'FGCL 6/15/2023 11:56:14'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test05CanNotAddItemToNotCreatedCart stamp: 'FGCL 6/15/2023 11:56:14'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test06CanNotAddItemNotSellByTheStore stamp: 'FGCL 6/15/2023 11:56:14'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test07ListCartOfAnEmptyCartReturnsAnEmptyBag stamp: 'FGCL 6/15/2023 11:56:14'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test08CanNotListCartOfInvalidCartId stamp: 'FGCL 6/15/2023 11:56:14'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test09ListCartReturnsTheRightNumberOfItems stamp: 'FGCL 6/15/2023 11:56:14'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test10CanCheckoutACart stamp: 'FGCL 6/15/2023 11:56:14'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test11CanNotCheckoutANotCreatedCart stamp: 'FGCL 6/15/2023 11:56:14'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test12CanNotCheckoutAnEmptyCart stamp: 'FGCL 6/15/2023 11:56:14'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test13CanNotCheckoutAnExpiredCart stamp: 'FGCL 6/15/2023 11:56:14'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test14CartDoesntExpireIfUsedInTime stamp: 'FGCL 6/15/2023 11:56:14'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test15CartCantBeUsedIfExpired stamp: 'FGCL 6/15/2023 11:56:14'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test16ListPurchasesBeginsEmpty stamp: 'FGCL 6/15/2023 11:56:14'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test17ListPurchasesWithOnePurchase stamp: 'FGCL 6/15/2023 11:56:14'!
+PASSED!
+
+!testRun: #RestInterfaceTest #test18ListPurchasesWithManyPurchases stamp: 'FGCL 6/15/2023 11:56:14'!
+PASSED!
+
+----SNAPSHOT----(15 June 2023 11:56:52) CuisUniversity-5832.image priorSource: 9516413!
