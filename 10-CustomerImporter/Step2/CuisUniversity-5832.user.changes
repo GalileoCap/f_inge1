@@ -1,0 +1,1593 @@
+
+
+----QUIT----(30 May 2023 00:05:32) CuisUniversity-5832.image priorSource: 4928100!
+
+----STARTUP---- (30 May 2023 00:05:33) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5832.image!
+
+
+----QUIT----(30 May 2023 00:05:33) CuisUniversity-5832.image priorSource: 9366537!
+
+----STARTUP---- (29 June 2023 11:35:28) as /mnt/data/facu/inge1/ejercicios/cuis/CuisUniversity-5832.image!
+
+
+----SNAPSHOT----(29 June 2023 11:35:37) CuisUniversity-5832.image priorSource: 9366758!
+
+----End fileIn of /mnt/data/facu/inge1/ejercicios/consignas/10-CustomerImporter/Step1/CustomerImporter-35.st----!
+
+----SNAPSHOT----(29 June 2023 11:35:50) CuisUniversity-5832.image priorSource: 9366951!
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 11:35:58'!
+PASSED!
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'FGCL 6/29/2023 11:36:12' prior: 50624633 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	|  line |
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'FGCL 6/29/2023 11:36:12'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'session readStream newCustomer'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'FGCL 6/29/2023 11:36:15' prior: 50624791 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'FGCL 6/29/2023 11:36:15'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'session readStream newCustomer line'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:36:39' prior: 50624833 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ newCustomer := Customer new.
+			newCustomer firstName: (line findTokens: $,) second.
+			newCustomer lastName: (line findTokens: $,) third.
+			newCustomer identificationType: (line findTokens: $,) fourth.
+			newCustomer identificationNumber: (line findTokens: $,) fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:36:48' prior: 50624874 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'session readStream newCustomer line data'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'FGCL 6/29/2023 11:36:53'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'session readStream newCustomer line data'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:36:58' prior: 50624906 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ newCustomer := Customer new.
+			newCustomer firstName: (line findTokens: $,) second.
+			newCustomer lastName: (line findTokens: $,) third.
+			newCustomer identificationType: (line findTokens: $,) fourth.
+			newCustomer identificationNumber: (line findTokens: $,) fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:36:48' prior: 50624953 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | customerData |
+			customerData := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: customerData second.
+			newCustomer lastName: customerData third.
+			newCustomer identificationType: customerData fourth.
+			newCustomer identificationNumber: customerData fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'session readStream newCustomer line'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'FGCL 6/29/2023 11:37:39'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'session readStream newCustomer line'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:37:48' prior: 50624985 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [ | data |
+			data := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: data second.
+			newCustomer lastName: data third.
+			newCustomer identificationType: data fourth.
+			newCustomer identificationNumber: data fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'FGCL 6/29/2023 11:37:53' prior: 50625032 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [  
+			data := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: data second.
+			newCustomer lastName: data third.
+			newCustomer identificationType: data fourth.
+			newCustomer identificationNumber: data fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | addressData newAddress |
+			addressData := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: addressData second.
+			newAddress streetNumber: addressData third asNumber .
+			newAddress town: addressData fourth.
+			newAddress zipCode: addressData fifth asNumber .
+			newAddress province: addressData sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'FGCL 6/29/2023 11:37:54'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'session readStream newCustomer line data'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:38:16' prior: 50625063 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+
+	line := readStream nextLine.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [  
+			data := line findTokens: $,.
+			newCustomer := Customer new.
+			newCustomer firstName: data second.
+			newCustomer lastName: data third.
+			newCustomer identificationType: data fourth.
+			newCustomer identificationNumber: data fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | newAddress |
+			data := line findTokens: $,.
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: data second.
+			newAddress streetNumber: data third asNumber .
+			newAddress town: data fourth.
+			newAddress zipCode: data fifth asNumber .
+			newAddress province: data sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:38:37' prior: 50625103 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+
+	line := readStream nextLine.
+	data := line findTokens: $,.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [  
+			newCustomer := Customer new.
+			newCustomer firstName: data second.
+			newCustomer lastName: data third.
+			newCustomer identificationType: data fourth.
+			newCustomer identificationNumber: data fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | newAddress |
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: data second.
+			newAddress streetNumber: data third asNumber .
+			newAddress town: data fourth.
+			newAddress zipCode: data fifth asNumber .
+			newAddress province: data sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:38:55'!
+readLineParameters
+
+	line := readStream nextLine.
+	data := line findTokens: $,! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:38:55' prior: 50625132 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	 
+
+	self readLineParameters.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [  
+			newCustomer := Customer new.
+			newCustomer firstName: data second.
+			newCustomer lastName: data third.
+			newCustomer identificationType: data fourth.
+			newCustomer identificationNumber: data fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | newAddress |
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: data second.
+			newAddress streetNumber: data third asNumber .
+			newAddress town: data fourth.
+			newAddress zipCode: data fifth asNumber .
+			newAddress province: data sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:38:57' prior: 50625166 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	
+	self readLineParameters.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [  
+			newCustomer := Customer new.
+			newCustomer firstName: data second.
+			newCustomer lastName: data third.
+			newCustomer identificationType: data fourth.
+			newCustomer identificationNumber: data fifth.
+			session persist: newCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | newAddress |
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: data second.
+			newAddress streetNumber: data third asNumber .
+			newAddress town: data fourth.
+			newAddress zipCode: data fifth asNumber .
+			newAddress province: data sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:39:09'!
+parseNewCustomer
+
+	newCustomer := Customer new.
+			newCustomer firstName: data second.
+			newCustomer lastName: data third.
+			newCustomer identificationType: data fourth.
+			newCustomer identificationNumber: data fifth.
+			session persist: newCustomer! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:39:09' prior: 50625193 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	
+	self readLineParameters.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [  
+			self parseNewCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ | newAddress |
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: data second.
+			newAddress streetNumber: data third asNumber .
+			newAddress town: data fourth.
+			newAddress zipCode: data fifth asNumber .
+			newAddress province: data sixth ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:39:25'!
+parseAddress
+
+	| newAddress |
+			newAddress := Address new.
+			newCustomer addAddress: newAddress.
+			newAddress streetName: data second.
+			newAddress streetNumber: data third asNumber .
+			newAddress town: data fourth.
+			newAddress zipCode: data fifth asNumber .
+			newAddress province: data sixth! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:39:25' prior: 50625231 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	
+	self readLineParameters.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [  
+			self parseNewCustomer ].
+
+		(line beginsWith: 'A') ifTrue: [ self parseAddress ].
+
+		line := readStream nextLine. ].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:39:44' prior: 50625264 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	
+	self readLineParameters.
+	[ line notNil ] whileTrue: [
+		(line beginsWith: 'C') ifTrue: [  self parseNewCustomer ].
+		(line beginsWith: 'A') ifTrue: [ self parseAddress ].
+		self readLineParameters.
+	].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:40:10'!
+isACustomer
+
+	^ line beginsWith: 'C'! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:40:10' prior: 50625276 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	
+	self readLineParameters.
+	[ line notNil ] whileTrue: [
+		(self isACustomer) ifTrue: [  self parseNewCustomer ].
+		(line beginsWith: 'A') ifTrue: [ self parseAddress ].
+		self readLineParameters.
+	].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:40:15'!
+isAnAddress
+
+	^ line beginsWith: 'A'! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:40:15' prior: 50625292 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	
+	self readLineParameters.
+	[ line notNil ] whileTrue: [
+		(self isACustomer) ifTrue: [  self parseNewCustomer ].
+		(self isAnAddress) ifTrue: [ self parseAddress ].
+		self readLineParameters.
+	].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:40:21' prior: 50625307 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	
+	self readLineParameters.
+	[ line notNil ] whileTrue: [
+		self isACustomer ifTrue: [  self parseNewCustomer ].
+		self isAnAddress ifTrue: [ self parseAddress ].
+		self readLineParameters.
+	].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:40:41'!
+isFinished
+
+	^ line notNil! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:40:41' prior: 50625318 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	
+	self readLineParameters.
+	[ self isFinished ] whileTrue: [
+		self isACustomer ifTrue: [  self parseNewCustomer ].
+		self isAnAddress ifTrue: [ self parseAddress ].
+		self readLineParameters.
+	].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:40:52'!
+isNotFinished
+
+	^ line notNil! !
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'FGCL 6/29/2023 11:40:52' prior: 50625333 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	
+	self readLineParameters.
+	[ self isNotFinished ] whileTrue: [
+		self isACustomer ifTrue: [  self parseNewCustomer ].
+		self isAnAddress ifTrue: [ self parseAddress ].
+		self readLineParameters.
+	].
+
+	! !
+
+!methodRemoval: CustomerImporter #isFinished stamp: 'FGCL 6/29/2023 11:40:52'!
+isFinished
+
+	^ line notNil!
+
+----SNAPSHOT----(29 June 2023 11:40:57) CuisUniversity-5832.image priorSource: 9380275!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:41:18' prior: 50625219!
+parseNewCustomer
+
+	newCustomer := Customer new.
+	newCustomer firstName: data second.
+	newCustomer lastName: data third.
+	newCustomer identificationType: data fourth.
+	newCustomer identificationNumber: data fifth.
+	session persist: newCustomer! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:41:34'!
+parseLine
+
+	self isACustomer ifTrue: [  self parseNewCustomer ].
+		self isAnAddress ifTrue: [ self parseAddress ]! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:41:34' prior: 50625348 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	
+	self readLineParameters.
+	[ self isNotFinished ] whileTrue: [
+		self parseLine.
+		self readLineParameters.
+	].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:41:41' prior: 50625376!
+parseLine
+
+	self isACustomer ifTrue: [  self parseNewCustomer ].
+	self isAnAddress ifTrue: [ self parseAddress ]! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:42:00' prior: 50625392!
+parseLine
+
+	self isACustomer ifTrue: [  ^self parseNewCustomer ].
+	self isAnAddress ifTrue: [ ^self parseAddress ]
+	" TODO: Error "! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:42:05' prior: 50625250!
+parseAddress
+
+	| newAddress |
+	newAddress := Address new.
+	newCustomer addAddress: newAddress.
+	newAddress streetName: data second.
+	newAddress streetNumber: data third asNumber .
+	newAddress town: data fourth.
+	newAddress zipCode: data fifth asNumber .
+	newAddress province: data sixth! !
+
+----SNAPSHOT----(29 June 2023 11:42:25) CuisUniversity-5832.image priorSource: 9398749!
+
+----SNAPSHOT----(29 June 2023 11:42:42) CuisUniversity-5832.image priorSource: 9400577!
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 6/29/2023 11:44:22'!
+test02ImportEmpty
+
+	CustomerImporter valueFrom: '' into: session.
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 11:44:23'!
+ERROR!
+!ImportTest methodsFor: 'assertions' stamp: 'FGCL 6/29/2023 11:44:54'!
+assertImportedRightNumberOfCustomersOf: numberOfCustomers
+
+	^ self assert: numberOfCustomers equals: (session selectAllOfType: Customer) size! !
+
+!methodRemoval: ImportTest #assertImportedRightNumberOfCustomers stamp: 'FGCL 6/29/2023 11:44:56'!
+assertImportedRightNumberOfCustomers
+
+	^ self assert: 2 equals: (session selectAllOfType: Customer) size!
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 6/29/2023 11:45:05' prior: 50624382!
+test01Import
+
+	CustomerImporter valueFrom: self validImportData into: session..
+
+	self assertImportedRightNumberOfCustomersOf: 2.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 6/29/2023 11:45:19' prior: 50625424!
+test02ImportEmpty
+
+	CustomerImporter valueFrom: '' into: session.
+
+	self assertImportedRightNumberOfCustomersOf: 0.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 6/29/2023 11:45:21' prior: 50625460!
+test02ImportEmpty
+
+	CustomerImporter valueFrom: '' into: session.
+
+	self assertImportedRightNumberOfCustomersOf: 0.! !
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 6/29/2023 11:48:06' prior: 50625469!
+test02ImportEmpty
+
+	CustomerImporter valueFrom: '' into: session.
+
+	self assertImportedRightNumberOfCustomersOf: 0.
+	self assert: 0 equals: (session selectAllOfType: Address) size.! !
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 6/29/2023 11:48:14' prior: 50625450!
+test01Import
+
+	CustomerImporter valueFrom: self validImportData into: session..
+
+	self assertImportedRightNumberOfCustomersOf: 2.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly.
+	
+	self assert: 3 equals: (session selectAllOfType: Address) size.! !
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 11:48:16'!
+ERROR!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:48:55'!
+readLine
+
+	line := readStream nextLine.
+! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:48:59'!
+readData
+	data := line findTokens: $,! !
+
+!methodRemoval: CustomerImporter #readLineParameters stamp: 'FGCL 6/29/2023 11:49:00'!
+readLineParameters
+
+	line := readStream nextLine.
+	data := line findTokens: $,!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:49:08' prior: 50625384 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+	
+	self readLine.
+	[ self isNotFinished ] whileTrue: [
+		self parseLine.
+		self readLine.
+	].
+
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:49:13' prior: 50625399!
+parseLine
+
+	self readData.
+	self isACustomer ifTrue: [  ^self parseNewCustomer ].
+	self isAnAddress ifTrue: [ ^self parseAddress ]
+	" TODO: Error "! !
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 11:49:15'!
+FAILURE!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 11:49:15'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 11:49:17'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 11:49:18'!
+FAILURE!
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 11:49:20'!
+FAILURE!
+!ImportTest methodsFor: 'assertions' stamp: 'FGCL 6/29/2023 11:50:52'!
+assertImportedThisNumber: expectedNumber of: aType
+
+	^ self assert: expectedNumber equals: (session selectAllOfType: aType) size! !
+
+!methodRemoval: ImportTest #assertImportedRightNumberOfCustomersOf: stamp: 'FGCL 6/29/2023 11:50:54'!
+assertImportedRightNumberOfCustomersOf: numberOfCustomers
+
+	^ self assert: numberOfCustomers equals: (session selectAllOfType: Customer) size!
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 6/29/2023 11:51:11' prior: 50625485!
+test01Import
+
+	CustomerImporter valueFrom: self validImportData into: session..
+
+	self assertImportedThisNumber: 2 of: Customer.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly.
+	
+	self assertImportedThisNumber: 3 of: Address.! !
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 6/29/2023 11:51:25' prior: 50625476!
+test02ImportEmpty
+
+	CustomerImporter valueFrom: '' into: session.
+
+	self assertImportedThisNumber: 0 of: Customer.
+	self assertImportedThisNumber: 0 of: Address.! !
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 11:51:26'!
+ERROR!
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 11:51:43'!
+emptyImportData
+
+	^ ReadStream on: ''.! !
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 6/29/2023 11:51:51' prior: 50625568!
+test02ImportEmpty
+
+	CustomerImporter valueFrom: self emptyImportData into: session.
+
+	self assertImportedThisNumber: 0 of: Customer.
+	self assertImportedThisNumber: 0 of: Address.! !
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 11:51:52'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 11:51:53'!
+FAILURE!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 11:51:53'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 11:51:54'!
+FAILURE!
+
+----SNAPSHOT----(29 June 2023 11:51:57) CuisUniversity-5832.image priorSource: 9400666!
+!ImportTest methodsFor: 'assertions' stamp: 'FGCL 6/29/2023 11:52:47' prior: 50625542!
+assertImportedThisNumber: expectedNumber of: aType
+
+	(aType = Address) ifTrue: [ " TODO: Sacar esto, debería de andar lo de abajo "
+		^(session selectAllOfType: Customer) inject: 0 into: [ :sum :aCustomer | sum + (aCustomer addresses size)].
+	].
+
+	^ self assert: expectedNumber equals: (session selectAllOfType: aType) size! !
+
+----SNAPSHOT----(29 June 2023 11:52:51) CuisUniversity-5832.image priorSource: 9406398!
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 11:52:55'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 11:52:56'!
+PASSED!
+
+----SNAPSHOT----(29 June 2023 11:53:00) CuisUniversity-5832.image priorSource: 9406919!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'FGCL 6/29/2023 11:53:24' prior: 50624464 overrides: 16961394!
+setUp
+
+	session := DataBaseSession for: (Array with: Address with: Customer).
+	session beginTransaction.! !
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 6/29/2023 11:53:45' prior: 50625582!
+test02ImportEmpty
+
+	CustomerImporter valueFrom: self emptyImportData into: session.
+	session commit.
+
+	self assertImportedThisNumber: 0 of: Customer.
+	self assertImportedThisNumber: 0 of: Address.! !
+!ImportTest methodsFor: 'assertions' stamp: 'FGCL 6/29/2023 11:53:59' prior: 50625604!
+assertImportedThisNumber: expectedNumber of: aType
+
+	^ self assert: expectedNumber equals: (session selectAllOfType: aType) size! !
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 11:54:01'!
+FAILURE!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 11:54:02'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 11:54:02'!
+FAILURE!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 11:54:07'!
+PASSED!
+!ImportTest methodsFor: 'assertions' stamp: 'FGCL 6/29/2023 11:54:17' prior: 50625644!
+assertImportedThisNumber: expectedNumber of: aType
+
+	(aType = Address) ifTrue: [ " TODO: Sacar esto, debería de andar lo de abajo "
+		^(session selectAllOfType: Customer) inject: 0 into: [ :sum :aCustomer | sum + (aCustomer addresses size)].
+	].
+
+	^ self assert: expectedNumber equals: (session selectAllOfType: aType) size! !
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 6/29/2023 11:54:23' prior: 50625635!
+test02ImportEmpty
+
+	CustomerImporter valueFrom: self emptyImportData into: session.
+
+	self assertImportedThisNumber: 0 of: Customer.
+	self assertImportedThisNumber: 0 of: Address.! !
+
+----SNAPSHOT----(29 June 2023 11:54:27) CuisUniversity-5832.image priorSource: 9407171!
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 6/29/2023 11:56:11'!
+test03ImportLineWithAnEmptyCell
+
+	CustomerImporter valueFrom: self emptyImportData into: session.
+
+	self assertImportedThisNumber: 0 of: Customer.
+	self assertImportedThisNumber: 0 of: Address.! !
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 6/29/2023 11:56:58' prior: 50625686!
+test03ImportLineWithAnEmptyCell	
+	CustomerImporter valueFrom: self emptyCellImportData into: session.
+
+	self assertImportedThisNumber: 0 of: Customer.
+	self assertImportedThisNumber: 0 of: Address.! !
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 6/29/2023 11:58:28' prior: 50625695!
+test03ImportLineWithAnEmptyCell	
+
+	self should: [ CustomerImporter valueFrom: self emptyCellsImportData into: session ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo:  [ :anError |
+			self assert: anError messageText equals: CustomerImporter emptyCellsTypeErrorDescription. 
+			"Se importo lo que queria"
+			"No se importo lo que se rompia"
+		].! !
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 6/29/2023 11:58:37'!
+test04ImportLineWithEmptyCells	
+
+	self should: [ CustomerImporter valueFrom: self emptyCellsImportData into: session ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo:  [ :anError |
+			self assert: anError messageText equals: CustomerImporter emptyCellsTypeErrorDescription. 
+			"Se importo lo que queria"
+			"No se importo lo que se rompia"
+		].! !
+
+!methodRemoval: ImportTest #test03ImportLineWithAnEmptyCell stamp: 'FGCL 6/29/2023 11:58:37'!
+test03ImportLineWithAnEmptyCell	
+
+	self should: [ CustomerImporter valueFrom: self emptyCellsImportData into: session ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo:  [ :anError |
+			self assert: anError messageText equals: CustomerImporter emptyCellsTypeErrorDescription. 
+			"Se importo lo que queria"
+			"No se importo lo que se rompia"
+		].!
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 6/29/2023 11:58:40'!
+test03ImportLineWithEmptyCells	
+
+	self should: [ CustomerImporter valueFrom: self emptyCellsImportData into: session ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo:  [ :anError |
+			self assert: anError messageText equals: CustomerImporter emptyCellsTypeErrorDescription. 
+			"Se importo lo que queria"
+			"No se importo lo que se rompia"
+		].! !
+
+!methodRemoval: ImportTest #test04ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 11:58:40'!
+test04ImportLineWithEmptyCells	
+
+	self should: [ CustomerImporter valueFrom: self emptyCellsImportData into: session ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo:  [ :anError |
+			self assert: anError messageText equals: CustomerImporter emptyCellsTypeErrorDescription. 
+			"Se importo lo que queria"
+			"No se importo lo que se rompia"
+		].!
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 11:59:56'!
+emptyCellsImportData
+
+	^ ReadStream on: 
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez,C,23-25666777-9',
+		'A,Alem,1122,CABA,1001,CABA'.! !
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 12:00:08' prior: 50625774!
+emptyCellsImportData
+
+	^ ReadStream on: 
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez,C,',
+		'A,Alem,1122,CABA,1001,CABA'.! !
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 12:00:27' prior: 50624485!
+validImportData
+
+	^ ReadStream on:
+'C,Pepe,Sanchez,D,22333444',
+'A,San Martin,3322,Olivos,1636,BsAs',
+'A,Maipu,888,Florida,1122,Buenos Aires',
+'C,Juan,Perez,C,23-25666777-9',
+'A,Alem,1122,CABA,1001,CABA'.! !
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 12:00:47' prior: 50625789!
+validImportData
+
+	^ ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+',
+'A,San Martin,3322,Olivos,1636,BsAs
+',
+'A,Maipu,888,Florida,1122,Buenos Aires
+',
+'C,Juan,Perez,C,23-25666777-9
+',
+'A,Alem,1122,CABA,1001,CABA
+'.! !
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 12:01:32'!
+pepeSanchezImportData
+
+	^ 'C,Pepe,Sanchez,D,22333444
+',
+'A,San Martin,3322,Olivos,1636,BsAs
+',
+'A,Maipu,888,Florida,1122,Buenos Aires
+'! !
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 12:01:32' prior: 50625799!
+validImportData
+
+	^ ReadStream on:
+self pepeSanchezImportData,
+'C,Juan,Perez,C,23-25666777-9
+',
+'A,Alem,1122,CABA,1001,CABA
+'.! !
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 12:01:42' prior: 50625816!
+validImportData
+
+	^ ReadStream on: self pepeSanchezImportData,
+'C,Juan,Perez,C,23-25666777-9
+',
+'A,Alem,1122,CABA,1001,CABA
+'.! !
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 12:01:58' prior: 50625823!
+validImportData
+
+	^ ReadStream on: self pepeSanchezImportData, self juanPerezImportData.! !
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 12:02:15'!
+juanPerezImportData
+	^
+'C,Juan,Perez,C,23-25666777-9
+',
+'A,Alem,1122,CABA,1001,CABA
+'.! !
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 12:02:18' prior: 50625808!
+pepeSanchezImportData
+
+	^
+'C,Pepe,Sanchez,D,22333444
+',
+'A,San Martin,3322,Olivos,1636,BsAs
+',
+'A,Maipu,888,Florida,1122,Buenos Aires
+'! !
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 12:02:26'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 12:02:28'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 6/29/2023 12:03:17' prior: 50625746!
+test03ImportLineWithEmptyCells	
+
+	self should: [ CustomerImporter valueFrom: self emptyCellsImportData into: session ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo:  [ :anError |
+			self assert: anError messageText equals: CustomerImporter emptyCellsTypeErrorDescription. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumber: 1 of: Customer.
+			self assertImportedThisNumber: 2 of: Address.
+		].! !
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 6/29/2023 12:03:42' prior: 50625854!
+test03ImportLineWithEmptyCells	
+
+	self should: [ CustomerImporter valueFrom: self emptyCellsImportData into: session ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo:  [ :anError |
+			self assert: anError messageText equals: CustomerImporter emptyCellsTypeErrorDescription. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+		].! !
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 6/29/2023 12:04:01' prior: 50625871!
+test03ImportLineWithEmptyCells	
+
+	self should: [ CustomerImporter valueFrom: self emptyCellsImportData into: session ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo:  [ :anError |
+			self assert: anError messageText equals: CustomerImporter emptyCellsTypeErrorDescription. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+		].! !
+!ImportTest methodsFor: 'assertions' stamp: 'FGCL 6/29/2023 12:04:28'!
+assertImportedThisNumberOfCustomers: numberOfCustomers andAddresses: numberOfAddresses.
+	self assertImportedThisNumber: numberOfCustomers of: Customer.
+	self assertImportedThisNumber: numberOfAddresses of: Address.! !
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 6/29/2023 12:04:38' prior: 50625675!
+test02ImportEmpty
+
+	CustomerImporter valueFrom: self emptyImportData into: session.
+
+	self assertImportedThisNumberOfCustomers: 0 andAddresses: 0.! !
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 6/29/2023 12:04:46' prior: 50625557!
+test01Import
+
+	CustomerImporter valueFrom: self validImportData into: session..
+
+	self assertImportedThisNumberOfCustomers: 2 andAddresses: 3.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly.! !
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 12:04:48'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 12:04:49'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 12:04:49'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:04:50'!
+FAILURE!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:04:50'!
+FAILURE!
+
+----SNAPSHOT----(29 June 2023 12:04:58) CuisUniversity-5832.image priorSource: 9409046!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 12:05:23' prior: 50625499!
+readLine
+	line := readStream nextLine.
+! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 12:05:45' prior: 50625503!
+readData
+	data := line findTokens: $,.
+! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 12:07:15' prior: 50625952!
+readData
+	data := line findTokens: $,.
+	(data select: [ :aDataPoint | aDataPoint empty ]) ifNotEmpty: [ self error: '' ].! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 12:07:26' prior: 50625957!
+readData
+	data := line findTokens: $,.
+	(data select: [ :aDataPoint | aDataPoint empty ]) ifNotEmpty: [ self error: CustomerImporter emptyCellsTypeErrorDescription ].! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 12:08:26'!
+checkDataIsValid
+
+	^ (data select: [ :aDataPoint | aDataPoint empty ]) ifNotEmpty: [ self error: CustomerImporter emptyCellsTypeErrorDescription ]! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 12:08:26' prior: 50625964!
+readData
+	data := line findTokens: $,.
+	self checkDataIsValid.! !
+!CustomerImporter methodsFor: 'checks' stamp: 'FGCL 6/29/2023 12:08:53' prior: 50625972!
+checkDataIsValid
+
+	(data select: [ :aDataPoint | aDataPoint empty ]) ifNotEmpty: [ self error: CustomerImporter emptyCellsTypeErrorDescription ].! !
+!CustomerImporter methodsFor: 'checks' stamp: 'FGCL 6/29/2023 12:09:06'!
+checkNoEmptyCells
+
+	^ (data select: [ :aDataPoint | aDataPoint empty ]) ifNotEmpty: [ self error: CustomerImporter emptyCellsTypeErrorDescription ]! !
+!CustomerImporter methodsFor: 'checks' stamp: 'FGCL 6/29/2023 12:09:06' prior: 50625985!
+checkDataIsValid
+
+	self checkNoEmptyCells.! !
+!CustomerImporter methodsFor: 'checks' stamp: 'FGCL 6/29/2023 12:09:30'!
+checkAllCellsAreFilled
+
+	^ (data select: [ :aDataPoint | aDataPoint empty ]) ifNotEmpty: [ self error: CustomerImporter emptyCellsTypeErrorDescription ]! !
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'FGCL 6/29/2023 12:09:30' prior: 50626000!
+checkDataIsValid
+
+	self checkAllCellsAreFilled.! !
+
+!methodRemoval: CustomerImporter #checkNoEmptyCells stamp: 'FGCL 6/29/2023 12:09:30'!
+checkNoEmptyCells
+
+	^ (data select: [ :aDataPoint | aDataPoint empty ]) ifNotEmpty: [ self error: CustomerImporter emptyCellsTypeErrorDescription ]!
+!CustomerImporter methodsFor: 'checks' stamp: 'FGCL 6/29/2023 12:10:13' prior: 50626004!
+checkAllCellsAreFilled
+
+	(data select: [ :aDataPoint | aDataPoint empty ]) ifNotEmpty: [ self error: CustomerImporter emptyCellsTypeErrorDescription ].! !
+
+----SNAPSHOT----(29 June 2023 12:10:48) CuisUniversity-5832.image priorSource: 9417374!
+!CustomerImporter class methodsFor: 'errors' stamp: 'FGCL 6/29/2023 12:11:16'!
+emptyCellsTypeErrorDescription
+	^'Cells cannot be empty'.! !
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 12:11:18'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 12:11:18'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:11:18'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 12:11:26'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 12:11:26'!
+ERROR!
+!CustomerImporter methodsFor: 'checks' stamp: 'FGCL 6/29/2023 12:11:53' prior: 50626025!
+checkAllCellsAreFilled
+
+	(data select: [ :aDataPoint | aDataPoint = '' ]) ifNotEmpty: [ self error: CustomerImporter emptyCellsTypeErrorDescription ].! !
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 12:11:55'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 12:11:56'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:11:56'!
+FAILURE!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:11:57'!
+FAILURE!
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 12:12:30' prior: 50625782!
+emptyCellsImportData
+
+	^ ReadStream on: 
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez,,',
+		'A,Alem,1122,CABA,1001,CABA'.! !
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 12:12:32'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 12:12:32'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:12:32'!
+FAILURE!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:12:33'!
+FAILURE!
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 12:12:49' prior: 50626073!
+emptyCellsImportData
+
+	^ ReadStream on: 
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez,,
+		',
+		'A,Alem,1122,CABA,1001,CABA'.! !
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 12:12:52' prior: 50626091!
+emptyCellsImportData
+
+	^ ReadStream on: 
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez,,
+		',
+		'A,Alem,1122,CABA,1001,CABA
+		'.! !
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 12:12:58'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 12:12:58'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:12:59'!
+FAILURE!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:12:59'!
+FAILURE!
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 12:13:14'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:13:36'!
+FAILURE!
+!CustomerImporter methodsFor: 'checks' stamp: 'FGCL 6/29/2023 12:14:43' prior: 50626054!
+checkAllCellsAreFilled
+
+	(data select: [ :aDataPoint | aDataPoint size = 0]) ifNotEmpty: [ self error: CustomerImporter emptyCellsTypeErrorDescription ].! !
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 12:14:49'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 12:14:50'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:14:50'!
+FAILURE!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:14:50'!
+FAILURE!
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 6/29/2023 12:15:20' prior: 50625887!
+test03ImportLineWithEmptyCells	
+
+	self should: [ CustomerImporter valueFrom: self emptyCellsImportData into: session ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter emptyCellsTypeErrorDescription equals: anError messageText. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+		].! !
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:15:21'!
+FAILURE!
+!CustomerImporter methodsFor: 'checks' stamp: 'FGCL 6/29/2023 12:15:36' prior: 50626122!
+checkAllCellsAreFilled
+
+	(data select: [ :aDataPoint | aDataPoint = '']) ifNotEmpty: [ self error: CustomerImporter emptyCellsTypeErrorDescription ].! !
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 12:15:37'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 12:15:37'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:15:38'!
+FAILURE!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:15:38'!
+FAILURE!
+!CustomerImporter methodsFor: 'checks' stamp: 'FGCL 6/29/2023 12:15:48' prior: 50626160!
+checkAllCellsAreFilled
+
+	(data select: [ :aDataPoint | aDataPoint = '']) ifNotEmpty: [ self error: CustomerImporter emptyCellsTypeErrorDescription ].! !
+!CustomerImporter methodsFor: 'checks' stamp: 'FGCL 6/29/2023 12:16:08' prior: 50626179!
+checkAllCellsAreFilled
+
+	data do: [ :aDataPoint | (aDataPoint = '') ifTrue: [ self error: CustomerImporter emptyCellsTypeErrorDescription ]].! !
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 12:16:10'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 12:16:10'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:16:10'!
+FAILURE!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:16:11'!
+FAILURE!
+!CustomerImporter methodsFor: 'checks' stamp: 'FGCL 6/29/2023 12:16:50' prior: 50626187!
+checkAllCellsAreFilled
+
+	"data do: [ :aDataPoint | (aDataPoint = '') ifTrue: [ self error: CustomerImporter emptyCellsTypeErrorDescription ]]."! !
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 12:16:52'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 12:16:52'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:16:52'!
+FAILURE!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:16:52'!
+FAILURE!
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 12:17:17' prior: 50626098!
+emptyCellsImportData
+
+	^ ReadStream on: 
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez,1,1
+		',
+		'A,Alem,1122,CABA,1001,CABA
+		'.! !
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 12:17:18'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 12:17:18'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:17:19'!
+FAILURE!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:17:19'!
+FAILURE!
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 12:17:22' prior: 50626225!
+emptyCellsImportData
+
+	^ ReadStream on: 
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez,1,
+		',
+		'A,Alem,1122,CABA,1001,CABA
+		'.! !
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 12:17:23'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 12:17:24'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:17:24'!
+FAILURE!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:17:24'!
+FAILURE!
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 12:17:29' prior: 50626244!
+emptyCellsImportData
+
+	^ ReadStream on: 
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez,,1
+		',
+		'A,Alem,1122,CABA,1001,CABA
+		'.! !
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 12:17:30'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 12:17:30'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:17:31'!
+FAILURE!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:17:31'!
+FAILURE!
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 12:17:34' prior: 50626263!
+emptyCellsImportData
+
+	^ ReadStream on: 
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez,1,1
+		',
+		'A,Alem,1122,CABA,1001,CABA
+		'.! !
+!CustomerImporter methodsFor: 'checks' stamp: 'FGCL 6/29/2023 12:17:53' prior: 50626206!
+checkAllCellsAreFilled
+	self error: CustomerImporter emptyCellsTypeErrorDescription.
+	"data do: [ :aDataPoint | (aDataPoint = '') ifTrue: [ self error: CustomerImporter emptyCellsTypeErrorDescription ]]."! !
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 12:17:54'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 12:17:54'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:17:55'!
+ERROR!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:18:02'!
+ERROR!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:18:02'!
+ERROR!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:18:07'!
+ERROR!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:18:07'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 12:18:20'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 12:18:20'!
+ERROR!
+!CustomerImporter methodsFor: 'checks' stamp: 'FGCL 6/29/2023 12:18:28' prior: 50626290!
+checkAllCellsAreFilled
+	data do: [ :aDataPoint | (aDataPoint = '') ifTrue: [ self error: CustomerImporter emptyCellsTypeErrorDescription ]].! !
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:18:31'!
+FAILURE!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:18:32'!
+FAILURE!
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 12:18:35'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 12:18:37'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 6/29/2023 12:18:42' prior: 50626141!
+test03ImportLineWithEmptyCells	
+
+	self should: [ CustomerImporter valueFrom: self emptyCellsImportData into: session ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter emptyCellsTypeErrorDescription equals: anError messageText. 
+			"self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2."
+		].! !
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:18:43'!
+FAILURE!
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 6/29/2023 12:18:48' prior: 50626344!
+test03ImportLineWithEmptyCells	
+
+	self should: [ CustomerImporter valueFrom: self emptyCellsImportData into: session ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter emptyCellsTypeErrorDescription equals: anError messageText. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+		].! !
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:18:48'!
+FAILURE!
+
+----SNAPSHOT----(29 June 2023 12:18:54) CuisUniversity-5832.image priorSource: 9420218!
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 12:19:05'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 12:19:07'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:19:09'!
+FAILURE!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:19:10'!
+FAILURE!
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 12:19:46' prior: 50626282!
+emptyCellsImportData
+
+	^ ReadStream on: 
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez,,1
+		',
+		'A,Alem,1122,CABA,1001,CABA
+		'.! !
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:19:52'!
+FAILURE!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:19:52'!
+FAILURE!
+
+----SNAPSHOT----(29 June 2023 12:23:06) CuisUniversity-5832.image priorSource: 9431379!
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 12:23:31' prior: 50626396!
+emptyCellsImportData
+
+	^ ReadStream on: 
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez, ,1
+		',
+		'A,Alem,1122,CABA,1001,CABA
+		'.! !
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 12:23:36'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 12:23:36'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:23:37'!
+FAILURE!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:23:37'!
+FAILURE!
+!CustomerImporter methodsFor: 'checks' stamp: 'FGCL 6/29/2023 12:23:45' prior: 50626325!
+checkAllCellsAreFilled
+	data do: [ :aDataPoint | (aDataPoint = ' ') ifTrue: [ self error: CustomerImporter emptyCellsTypeErrorDescription ]].! !
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 12:23:46'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 12:23:46'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:23:47'!
+PASSED!
+
+----SNAPSHOT----(29 June 2023 12:23:56) CuisUniversity-5832.image priorSource: 9432267!
+
+----SNAPSHOT----(29 June 2023 12:24:19) CuisUniversity-5832.image priorSource: 9433460!
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 12:24:43' prior: 50626412!
+emptyCellsImportData
+
+	^ ReadStream on: 
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez,  ,1
+		',
+		'A,Alem,1122,CABA,1001,CABA
+		'.! !
+
+!testRun: #ImportTest #test01Import stamp: 'FGCL 6/29/2023 12:24:45'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'FGCL 6/29/2023 12:24:45'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:24:45'!
+FAILURE!
+
+!testRun: #ImportTest #test03ImportLineWithEmptyCells stamp: 'FGCL 6/29/2023 12:24:46'!
+FAILURE!
+
+----SNAPSHOT----(29 June 2023 12:24:50) CuisUniversity-5832.image priorSource: 9433549!
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 12:24:55' prior: 50626452!
+emptyCellsImportData
+
+	^ ReadStream on: 
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez, ,1
+		',
+		'A,Alem,1122,CABA,1001,CABA
+		'.! !

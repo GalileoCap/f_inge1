@@ -5,58 +5,32 @@ TestCase subclass: #ImportTest
 	poolDictionaries: ''
 	category: 'CustomerImporter'!
 
-!ImportTest methodsFor: 'tests' stamp: 'sr 6/26/2023 21:34:10'!
-test01ReceivedValidDataShouldBeImportedCorrectly
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 6/29/2023 12:04:46'!
+test01Import
 
 	CustomerImporter valueFrom: self validImportData into: session..
 
-	self assertImportedThisAmountOfCustomers: 2.
-	self assertImportedThisAmountOfAddresses: 3.
+	self assertImportedThisNumberOfCustomers: 2 andAddresses: 3.
 	self assertPepeSanchezWasImportedCorrecty.
-	self assertJuanPerezWasImportedCorrectly ! !
+	self assertJuanPerezWasImportedCorrectly.! !
 
-!ImportTest methodsFor: 'tests' stamp: 'sr 6/26/2023 21:34:31'!
-test02NothingShouldBeImportedAfterReceivingNoData
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 6/29/2023 12:04:38'!
+test02ImportEmpty
 
-	CustomerImporter valueFrom: self emptyImportData into: session..
-	
-	self assertImportedThisAmountOfCustomers: 0.
-	self assertImportedThisAmountOfAddresses: 0.
-! !
+	CustomerImporter valueFrom: self emptyImportData into: session.
 
-!ImportTest methodsFor: 'tests' stamp: 'sr 6/26/2023 21:51:58'!
-test03DataWithWrongTypeShouldntBeImported
+	self assertImportedThisNumberOfCustomers: 0 andAddresses: 0.! !
 
-	self 
-		should: [ CustomerImporter valueFrom: self invalidTypeImportData into: session. ]
-		raise: Error 
-		withExceptionDo: [ :anError |
-			self assert: anError messageText equals: CustomerImporter invalidLineTypeErrorDescription.
-			"Se importo lo que queria"
-			self assertImportedThisAmountOfCustomers: 1.
-			self assertImportedThisAmountOfAddresses: 2.
-			self assertPepeSanchezWasImportedCorrecty.			
-			"No se importo lo que se rompia"
-			self should: [ self assertJuanPerezWasImportedCorrectly ]
-				raise: Error
-				withExceptionDo: [ :aSetError |
-						self assert: aSetError messageText equals: Set emptyCollectionDescription.
-					 ]
-			 ].
-! !
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 6/29/2023 12:18:48'!
+test03ImportLineWithEmptyCells	
 
-!ImportTest methodsFor: 'tests' stamp: 'sr 6/26/2023 21:55:14'!
-test04DataWithEmptyCellsShouldntBeImported
-
-	self 
-		should: [ CustomerImporter valueFrom: self emptyCellsImportData into: session. ]
-		raise: Error 
-		withExceptionDo: [ :anError |
-			self assert: anError messageText equals: CustomerImporter emptyCellsTypeErrorDescription. 
-			"Se importo lo que queria"
-			"No se importo lo que se rompia"
-			].
-! !
+	self should: [ CustomerImporter valueFrom: self emptyCellsImportData into: session ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter emptyCellsTypeErrorDescription equals: anError messageText. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+		].! !
 
 
 !ImportTest methodsFor: 'assertions' stamp: 'HAW 5/22/2022 18:22:05'!
@@ -89,14 +63,19 @@ assertCustomerWithIdentificationType: anIdType number: anIdNumber hasFirstName: 
 
 	! !
 
-!ImportTest methodsFor: 'assertions' stamp: 'sr 6/26/2023 21:43:16'!
-assertImportedThisAmountOfAddresses: aNumberOfAddresses 
-	^(session selectAllOfType: Customer) inject: 0 into: [ :sum :customer | sum + (customer addresses size)].! !
+!ImportTest methodsFor: 'assertions' stamp: 'FGCL 6/29/2023 11:54:17'!
+assertImportedThisNumber: expectedNumber of: aType
 
-!ImportTest methodsFor: 'assertions' stamp: 'sr 6/26/2023 21:35:23'!
-assertImportedThisAmountOfCustomers: aNumberOfCustomers
+	(aType = Address) ifTrue: [ " TODO: Sacar esto, debería de andar lo de abajo "
+		^(session selectAllOfType: Customer) inject: 0 into: [ :sum :aCustomer | sum + (aCustomer addresses size)].
+	].
 
-	^ self assert: aNumberOfCustomers equals: (session selectAllOfType: Customer) size! !
+	^ self assert: expectedNumber equals: (session selectAllOfType: aType) size! !
+
+!ImportTest methodsFor: 'assertions' stamp: 'FGCL 6/29/2023 12:04:28'!
+assertImportedThisNumberOfCustomers: numberOfCustomers andAddresses: numberOfAddresses.
+	self assertImportedThisNumber: numberOfCustomers of: Customer.
+	self assertImportedThisNumber: numberOfAddresses of: Address.! !
 
 !ImportTest methodsFor: 'assertions' stamp: 'HAW 5/22/2022 18:28:45'!
 assertJuanPerezWasImportedCorrectly
@@ -120,12 +99,11 @@ assertPepeSanchezWasImportedCorrecty
 	! !
 
 
-!ImportTest methodsFor: 'setUp/tearDown' stamp: 'HAW 5/22/2022 00:27:50'!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'FGCL 6/29/2023 11:53:24'!
 setUp
 
 	session := DataBaseSession for: (Array with: Address with: Customer).
-	session beginTransaction.
-! !
+	session beginTransaction.! !
 
 !ImportTest methodsFor: 'setUp/tearDown' stamp: 'HAW 5/22/2022 00:28:23'!
 tearDown
@@ -143,40 +121,44 @@ customerWithIdentificationType: anIdType number: anIdNumber
 		ofType: Customer) anyOne! !
 
 
-!ImportTest methodsFor: 'test data' stamp: 'sr 6/26/2023 21:53:51'!
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 12:24:55'!
 emptyCellsImportData
 
-	^ ReadStream on:
-'C,Pepe,Sanchez,D,22333444
-A,San Martin,3322,,1636,BsAs
-A,Maipu,888,Florida,1122,Buenos Aires
-C,Juan,,C,23-25666777-9
-A,Alem,1122,CABA,1001,'! !
+	^ ReadStream on: 
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez, ,1
+		',
+		'A,Alem,1122,CABA,1001,CABA
+		'.! !
 
-!ImportTest methodsFor: 'test data' stamp: 'sr 6/26/2023 20:40:43'!
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 11:51:43'!
 emptyImportData
 
-	^ ReadStream on: ''! !
+	^ ReadStream on: ''.! !
 
-!ImportTest methodsFor: 'test data' stamp: 'sr 6/26/2023 21:00:13'!
-invalidTypeImportData
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 12:02:15'!
+juanPerezImportData
+	^
+'C,Juan,Perez,C,23-25666777-9
+',
+'A,Alem,1122,CABA,1001,CABA
+'.! !
 
-	^ ReadStream on:
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 12:02:18'!
+pepeSanchezImportData
+
+	^
 'C,Pepe,Sanchez,D,22333444
-A,San Martin,3322,Olivos,1636,BsAs
-A,Maipu,888,Florida,1122,Buenos Aires
-X,Juan,Perez,C,23-25666777-9
-A,Alem,1122,CABA,1001,CABA'! !
+',
+'A,San Martin,3322,Olivos,1636,BsAs
+',
+'A,Maipu,888,Florida,1122,Buenos Aires
+'! !
 
-!ImportTest methodsFor: 'test data' stamp: 'HAW 5/22/2022 18:08:08'!
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 12:01:58'!
 validImportData
 
-	^ ReadStream on:
-'C,Pepe,Sanchez,D,22333444
-A,San Martin,3322,Olivos,1636,BsAs
-A,Maipu,888,Florida,1122,Buenos Aires
-C,Juan,Perez,C,23-25666777-9
-A,Alem,1122,CABA,1001,CABA'! !
+	^ ReadStream on: self pepeSanchezImportData, self juanPerezImportData.! !
 
 
 !classDefinition: #Address category: 'CustomerImporter'!
@@ -321,7 +303,7 @@ initialize
 
 !classDefinition: #CustomerImporter category: 'CustomerImporter'!
 Object subclass: #CustomerImporter
-	instanceVariableNames: 'session readStream newCustomer newAddress data line'
+	instanceVariableNames: 'session readStream newCustomer line data'
 	classVariableNames: ''
 	poolDictionaries: ''
 	category: 'CustomerImporter'!
@@ -332,94 +314,85 @@ initializeFrom: aReadStream into: aSession
 	readStream := aReadStream.! !
 
 
-!CustomerImporter methodsFor: 'testing' stamp: 'sr 6/26/2023 21:58:53'!
-checkLineIsValid
+!CustomerImporter methodsFor: 'parsing' stamp: 'FGCL 6/29/2023 11:42:05'!
+parseAddress
 
-	self isCorrectTypeLine. 
-	self everyCellIsFilled.
-	! !
+	| newAddress |
+	newAddress := Address new.
+	newCustomer addAddress: newAddress.
+	newAddress streetName: data second.
+	newAddress streetNumber: data third asNumber .
+	newAddress town: data fourth.
+	newAddress zipCode: data fifth asNumber .
+	newAddress province: data sixth! !
 
-!CustomerImporter methodsFor: 'testing' stamp: 'sr 6/26/2023 22:00:29'!
-everyCellIsFilled
-	
-	"TODO (chequear que cada campo customerData no sea vacio)..."
-	
-	! !
+!CustomerImporter methodsFor: 'parsing' stamp: 'FGCL 6/29/2023 11:49:13'!
+parseLine
 
-!CustomerImporter methodsFor: 'testing' stamp: 'sr 6/26/2023 20:26:05'!
-isAddressLine
+	self readData.
+	self isACustomer ifTrue: [  ^self parseNewCustomer ].
+	self isAnAddress ifTrue: [ ^self parseAddress ]
+	" TODO: Error "! !
 
-	^ line beginsWith: 'A'! !
+!CustomerImporter methodsFor: 'parsing' stamp: 'FGCL 6/29/2023 11:41:18'!
+parseNewCustomer
 
-!CustomerImporter methodsFor: 'testing' stamp: 'sr 6/26/2023 21:57:43'!
-isCorrectTypeLine
+	newCustomer := Customer new.
+	newCustomer firstName: data second.
+	newCustomer lastName: data third.
+	newCustomer identificationType: data fourth.
+	newCustomer identificationNumber: data fifth.
+	session persist: newCustomer! !
 
-	^ (self isAddressLine or: self isCustomerLine) ifFalse: [ self error: CustomerImporter invalidLineTypeErrorDescription ]! !
 
-!CustomerImporter methodsFor: 'testing' stamp: 'sr 6/26/2023 20:26:25'!
-isCustomerLine
+!CustomerImporter methodsFor: 'checks' stamp: 'FGCL 6/29/2023 12:23:45'!
+checkAllCellsAreFilled
+	data do: [ :aDataPoint | (aDataPoint = ' ') ifTrue: [ self error: CustomerImporter emptyCellsTypeErrorDescription ]].! !
+
+!CustomerImporter methodsFor: 'checks' stamp: 'FGCL 6/29/2023 12:09:30'!
+checkDataIsValid
+
+	self checkAllCellsAreFilled.! !
+
+
+!CustomerImporter methodsFor: 'testing data' stamp: 'FGCL 6/29/2023 11:40:10'!
+isACustomer
 
 	^ line beginsWith: 'C'! !
 
+!CustomerImporter methodsFor: 'testing data' stamp: 'FGCL 6/29/2023 11:40:15'!
+isAnAddress
 
-!CustomerImporter methodsFor: 'evaluating' stamp: 'sr 6/26/2023 19:45:50'!
-goToNextLine
+	^ line beginsWith: 'A'! !
 
-	^ line := readStream nextLine! !
+!CustomerImporter methodsFor: 'testing data' stamp: 'FGCL 6/29/2023 11:40:52'!
+isNotFinished
 
-!CustomerImporter methodsFor: 'evaluating' stamp: 'sr 6/26/2023 20:29:20'!
-importAddressInfoForCostumer
-	| addressData |
-	
-	addressData := self lineParameters.
-	
-	newAddress := Address new.
-	newCustomer addAddress: newAddress.
-	newAddress streetName: addressData second.
-	newAddress streetNumber: addressData third asNumber .
-	newAddress town: addressData fourth.
-	newAddress zipCode: addressData fifth asNumber .
-	newAddress province: addressData sixth! !
+	^ line notNil! !
 
-!CustomerImporter methodsFor: 'evaluating' stamp: 'sr 6/26/2023 20:28:12'!
-importAddressLine
 
-	^ self isAddressLine ifTrue: [ self importAddressInfoForCostumer ]! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 12:08:26'!
+readData
+	data := line findTokens: $,.
+	self checkDataIsValid.! !
 
-!CustomerImporter methodsFor: 'evaluating' stamp: 'sr 6/26/2023 20:28:02'!
-importCustomerLine
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 12:05:23'!
+readLine
+	line := readStream nextLine.
+! !
 
-	^ self isCustomerLine ifTrue: [			self importWithCustomerInfo ]! !
-
-!CustomerImporter methodsFor: 'evaluating' stamp: 'sr 6/26/2023 19:51:30'!
-importWithCustomerInfo
-	
-	| customerData |
-	
-	customerData := self lineParameters.
-
-	newCustomer := Customer new.
-	newCustomer firstName: customerData second.
-	newCustomer lastName: customerData third.
-	newCustomer identificationType: customerData fourth.
-	newCustomer identificationNumber: customerData fifth.
-	session persist: newCustomer ! !
-
-!CustomerImporter methodsFor: 'evaluating' stamp: 'sr 6/26/2023 19:43:16'!
-lineParameters
-
-	^ data := line findTokens: $,! !
-
-!CustomerImporter methodsFor: 'evaluating' stamp: 'sr 6/26/2023 21:08:31'!
+!CustomerImporter methodsFor: 'evaluating' stamp: 'FGCL 6/29/2023 11:49:08'!
 value
 
-	self goToNextLine.
+	"
+	self importCustomers
+	"
 	
-	[ line notNil ] whileTrue: [		
-		self checkLineIsValid.
-		self importCustomerLine.
-		self importAddressLine.
-		self goToNextLine. ].
+	self readLine.
+	[ self isNotFinished ] whileTrue: [
+		self parseLine.
+		self readLine.
+	].
 
 	! !
 
@@ -434,13 +407,9 @@ from: aReadStream into: aSession
 	^self new initializeFrom: aReadStream into: aSession! !
 
 
-!CustomerImporter class methodsFor: 'error messages' stamp: 'sr 6/26/2023 21:55:00'!
+!CustomerImporter class methodsFor: 'errors' stamp: 'FGCL 6/29/2023 12:11:16'!
 emptyCellsTypeErrorDescription
-	'There is one or more cells missing.'! !
-
-!CustomerImporter class methodsFor: 'error messages' stamp: 'sr 6/26/2023 21:04:28'!
-invalidLineTypeErrorDescription
-	'Unknown type!!'! !
+	^'Cells cannot be empty'.! !
 
 
 !CustomerImporter class methodsFor: 'importing' stamp: 'HAW 5/22/2022 18:11:27'!
