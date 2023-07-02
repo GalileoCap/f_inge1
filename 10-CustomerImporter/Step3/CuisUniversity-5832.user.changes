@@ -1,0 +1,593 @@
+
+
+----QUIT----(30 May 2023 00:05:32) CuisUniversity-5832.image priorSource: 4928100!
+
+----STARTUP---- (30 May 2023 00:05:33) as /Users/hernan/Documents/Cuis/5.0-64Bits/Cuis-University-Installer/CuisUniversity-5832.image!
+
+
+----QUIT----(30 May 2023 00:05:33) CuisUniversity-5832.image priorSource: 9366537!
+
+----STARTUP---- (1 July 2023 20:05:48) as /mnt/data/facu/inge1/ejercicios/cuis/CuisUniversity-5832.image!
+
+
+----SNAPSHOT----(1 July 2023 20:05:57) CuisUniversity-5832.image priorSource: 9366758!
+
+----End fileIn of /mnt/data/facu/inge1/ejercicios/consignas/10-CustomerImporter/Step2/Step2/CustomerImporter-60.st----!
+
+----SNAPSHOT----(1 July 2023 20:07:48) CuisUniversity-5832.image priorSource: 9366950!
+
+----SNAPSHOT----(1 July 2023 21:12:20) CuisUniversity-5832.image priorSource: 9387993!
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'FGCL 7/1/2023 21:12:43'!
+session
+
+	^ session! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'FGCL 7/1/2023 21:12:43' prior: 50624582 overrides: 16961402!
+tearDown
+
+	self session commit.
+	session close.
+	! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'FGCL 7/1/2023 21:12:49' prior: 50625036 overrides: 16961402!
+tearDown
+
+	self session commit.
+	self session close.
+	! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'FGCL 7/1/2023 21:12:56' prior: 50624575 overrides: 16961394!
+setUp
+
+	session := DataBaseSession for: (Array with: Address with: Customer).
+	self session beginTransaction.
+! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'FGCL 7/1/2023 21:13:05' prior: 50625031!
+session
+
+	^session.! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'FGCL 7/1/2023 21:13:06' prior: 50625055!
+session
+	^session.! !
+!ImportTest methodsFor: 'customer' stamp: 'FGCL 7/1/2023 21:13:11' prior: 50624586!
+customerWithIdentificationType: anIdType number: anIdNumber
+
+	^ (self session
+		select: [ :aCustomer | aCustomer identificationType = anIdType and: [ aCustomer identificationNumber = anIdNumber ]]
+		ofType: Customer) anyOne! !
+!ImportTest methodsFor: 'customer' stamp: 'FGCL 7/1/2023 21:13:15' prior: 50624596!
+numberOfCustomers
+
+	^ (self session selectAllOfType: Customer) size! !
+!ImportTest methodsFor: 'tests' stamp: 'FGCL 7/1/2023 21:13:37' prior: 50624392!
+test02CanNotImportAddressWithoutCustomer
+
+	self
+		should: [ CustomerImporter valueFrom: self addressWithoutCustomerData into: self session. ]
+		raise: Error - MessageNotUnderstood
+		withMessageText: CustomerImporter canNotImportAddressWithoutCustomerErrorDescription
+
+	! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'FGCL 7/1/2023 21:13:48'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'FGCL 7/1/2023 21:13:48'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'FGCL 7/1/2023 21:13:48'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'FGCL 7/1/2023 21:13:48'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'FGCL 7/1/2023 21:13:49'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'FGCL 7/1/2023 21:13:49'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'FGCL 7/1/2023 21:13:49'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'FGCL 7/1/2023 21:13:49'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'FGCL 7/1/2023 21:13:49'!
+PASSED!
+
+----SNAPSHOT----(1 July 2023 21:13:52) CuisUniversity-5832.image priorSource: 9388081!
+
+----SNAPSHOT----(1 July 2023 21:26:08) CuisUniversity-5832.image priorSource: 9391051!
+
+Object subclass: #PersistentClientService
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #PersistentClientService category: 'CustomerImporter' stamp: 'FGCL 7/1/2023 21:27:08'!
+Object subclass: #PersistentClientService
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #ImportTest category: 'CustomerImporter' stamp: 'FGCL 7/1/2023 21:27:33'!
+TestCase subclass: #ImportTest
+	instanceVariableNames: 'service'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'FGCL 7/1/2023 21:27:33' prior: 50625059!
+session
+	^service.! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'FGCL 7/1/2023 21:27:33' prior: 50624382!
+test01ValidDataIsImportedCorrectly
+
+	CustomerImporter valueFrom: self validImportData into: service..
+
+	self assertImportedRightNumberOfCustomers.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly ! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'FGCL 7/1/2023 21:27:33' prior: 50624561!
+shouldFailImporting: aReadStream messageText: anErrorMessageText asserting: anAssertionBlock
+
+	self
+		should: [ CustomerImporter valueFrom: aReadStream into: service. ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo: [ :anError |
+			self assert: anErrorMessageText equals: anError messageText.
+			anAssertionBlock value ]
+
+	! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'FGCL 7/1/2023 21:27:33' prior: 50625048 overrides: 16961394!
+setUp
+
+	service := DataBaseSession for: (Array with: Address with: Customer).
+	self session beginTransaction.
+! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'FGCL 7/1/2023 21:27:50' prior: 50625177 overrides: 16961394!
+setUp
+
+	service := PersistentClientService new.
+	service start.
+! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'FGCL 7/1/2023 21:28:14' prior: 50625042 overrides: 16961402!
+tearDown
+
+	service stop.
+	"self session commit.
+	self session close."
+	! !
+
+!classDefinition: #PersistentClientService category: 'CustomerImporter' stamp: 'FGCL 7/1/2023 21:28:50'!
+Object subclass: #PersistentClientService
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!PersistentClientService methodsFor: 'start' stamp: 'FGCL 7/1/2023 21:28:48'!
+start
+	session := DataBaseSession for: (Array with: Address with: Customer).
+	session beginTransaction.! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'FGCL 7/1/2023 21:29:03' prior: 50625190 overrides: 16961402!
+tearDown
+
+	service stop.! !
+!PersistentClientService methodsFor: 'start' stamp: 'FGCL 7/1/2023 21:29:13'!
+stop
+	session commit.
+	session close.
+	! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'FGCL 7/1/2023 21:29:16'!
+ERROR!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'FGCL 7/1/2023 21:29:16'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'FGCL 7/1/2023 21:29:16'!
+ERROR!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'FGCL 7/1/2023 21:29:16'!
+ERROR!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'FGCL 7/1/2023 21:29:16'!
+ERROR!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'FGCL 7/1/2023 21:29:16'!
+ERROR!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'FGCL 7/1/2023 21:29:16'!
+ERROR!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'FGCL 7/1/2023 21:29:16'!
+ERROR!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'FGCL 7/1/2023 21:29:16'!
+ERROR!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'FGCL 7/1/2023 21:29:20'!
+ERROR!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'FGCL 7/1/2023 21:29:39'!
+ERROR!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'FGCL 7/1/2023 21:29:39'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'FGCL 7/1/2023 21:29:39'!
+ERROR!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'FGCL 7/1/2023 21:29:39'!
+ERROR!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'FGCL 7/1/2023 21:29:39'!
+ERROR!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'FGCL 7/1/2023 21:29:39'!
+ERROR!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'FGCL 7/1/2023 21:29:39'!
+ERROR!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'FGCL 7/1/2023 21:29:39'!
+ERROR!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'FGCL 7/1/2023 21:29:39'!
+ERROR!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'FGCL 7/1/2023 21:29:42'!
+ERROR!
+!PersistentClientService methodsFor: 'proxy' stamp: 'FGCL 7/1/2023 21:30:00'!
+persist: aNewCustomer
+	session persist: aNewCustomer.! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'FGCL 7/1/2023 21:30:02'!
+ERROR!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'FGCL 7/1/2023 21:30:03'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'FGCL 7/1/2023 21:30:03'!
+ERROR!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'FGCL 7/1/2023 21:30:03'!
+ERROR!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'FGCL 7/1/2023 21:30:03'!
+ERROR!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'FGCL 7/1/2023 21:30:03'!
+ERROR!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'FGCL 7/1/2023 21:30:03'!
+ERROR!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'FGCL 7/1/2023 21:30:03'!
+ERROR!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'FGCL 7/1/2023 21:30:03'!
+ERROR!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'FGCL 7/1/2023 21:30:04'!
+ERROR!
+!PersistentClientService methodsFor: 'proxy' stamp: 'FGCL 7/1/2023 21:30:42'!
+selectAllOfType: aType
+	session selectAllOfType: aType.! !
+!PersistentClientService methodsFor: 'proxy' stamp: 'FGCL 7/1/2023 21:30:44' prior: 50625327!
+selectAllOfType: aType
+	^session selectAllOfType: aType.! !
+!PersistentClientService methodsFor: 'proxy' stamp: 'FGCL 7/1/2023 21:30:47' prior: 50625288!
+persist: aNewCustomer
+	^session persist: aNewCustomer.! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'FGCL 7/1/2023 21:30:51'!
+ERROR!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'FGCL 7/1/2023 21:30:51'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'FGCL 7/1/2023 21:30:51'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'FGCL 7/1/2023 21:30:52'!
+ERROR!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'FGCL 7/1/2023 21:30:52'!
+ERROR!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'FGCL 7/1/2023 21:30:52'!
+ERROR!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'FGCL 7/1/2023 21:30:52'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'FGCL 7/1/2023 21:30:52'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'FGCL 7/1/2023 21:30:52'!
+PASSED!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'FGCL 7/1/2023 21:30:54'!
+ERROR!
+!PersistentClientService methodsFor: 'proxy' stamp: 'FGCL 7/1/2023 21:31:26'!
+select: aConditionBlock ofType: aType
+	^session select: aConditionBlock ofType: aType.! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'FGCL 7/1/2023 21:31:39'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'FGCL 7/1/2023 21:31:39'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'FGCL 7/1/2023 21:31:39'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'FGCL 7/1/2023 21:31:40'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'FGCL 7/1/2023 21:31:40'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'FGCL 7/1/2023 21:31:40'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'FGCL 7/1/2023 21:31:40'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'FGCL 7/1/2023 21:31:40'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'FGCL 7/1/2023 21:31:40'!
+PASSED!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'FGCL 7/1/2023 21:31:43'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'FGCL 7/1/2023 21:31:44'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'FGCL 7/1/2023 21:31:44'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'FGCL 7/1/2023 21:31:44'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'FGCL 7/1/2023 21:31:44'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'FGCL 7/1/2023 21:31:45'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'FGCL 7/1/2023 21:31:45'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'FGCL 7/1/2023 21:31:45'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'FGCL 7/1/2023 21:31:45'!
+PASSED!
+
+----SNAPSHOT----(1 July 2023 21:31:52) CuisUniversity-5832.image priorSource: 9391139!
+
+!classDefinition: #ClientService category: 'CustomerImporter' stamp: 'FGCL 7/1/2023 21:32:04'!
+Object subclass: #ClientService
+	instanceVariableNames: ''
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #PersistentClientService category: 'CustomerImporter' stamp: 'FGCL 7/1/2023 21:32:04'!
+ClientService subclass: #PersistentClientService
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+----SNAPSHOT----(1 July 2023 21:32:26) CuisUniversity-5832.image priorSource: 9401455!
+!ClientService methodsFor: 'start - stop' stamp: 'FGCL 7/1/2023 21:32:53'!
+start
+	self subclassResponsibility.! !
+!ClientService methodsFor: 'start - stop' stamp: 'FGCL 7/1/2023 21:32:54'!
+stop
+	self subclassResponsibility.! !
+!ClientService methodsFor: 'proxy' stamp: 'FGCL 7/1/2023 21:33:04'!
+persist: aNewCustomer
+	self subclassResponsibility.! !
+!ClientService methodsFor: 'proxy' stamp: 'FGCL 7/1/2023 21:33:19'!
+select: aConditionBlock ofType: aType
+	self subclassResponsibility.! !
+!ClientService methodsFor: 'proxy' stamp: 'FGCL 7/1/2023 21:33:24'!
+selectAllOfType: aType
+	self subclassResponsibility.! !
+
+ClientService subclass: #TransientClientService
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #TransientClientService category: 'CustomerImporter' stamp: 'FGCL 7/1/2023 21:33:34'!
+ClientService subclass: #TransientClientService
+	instanceVariableNames: 'session'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!ClientService class methodsFor: 'instance creation' stamp: 'FGCL 7/1/2023 21:35:08'!
+current
+	^self subclasses detect: [ :aTypeOfService | aTypeOfService canHandle ].! !
+!ClientService class methodsFor: 'instance creation' stamp: 'FGCL 7/1/2023 21:35:19'!
+canHandle
+	self subclassResponsibility.! !
+!PersistentClientService class methodsFor: 'instance creation' stamp: 'FGCL 7/1/2023 21:35:31' overrides: 50625508!
+canHandle
+	^true.! !
+!TransientClientService class methodsFor: 'instance creation' stamp: 'FGCL 7/1/2023 21:35:35' overrides: 50625508!
+canHandle
+	^false.! !
+!ImportTest methodsFor: 'setUp/tearDown' stamp: 'FGCL 7/1/2023 21:37:35' prior: 50625184 overrides: 16961394!
+setUp
+
+	service := ClientService current new.
+	service start.
+! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'FGCL 7/1/2023 21:37:36'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'FGCL 7/1/2023 21:37:37'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'FGCL 7/1/2023 21:37:37'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'FGCL 7/1/2023 21:37:37'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'FGCL 7/1/2023 21:37:37'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'FGCL 7/1/2023 21:37:38'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'FGCL 7/1/2023 21:37:38'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'FGCL 7/1/2023 21:37:38'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'FGCL 7/1/2023 21:37:38'!
+PASSED!
+
+----SNAPSHOT----(1 July 2023 21:37:41) CuisUniversity-5832.image priorSource: 9402041!
+!PersistentClientService class methodsFor: 'instance creation' stamp: 'FGCL 7/1/2023 21:37:56' prior: 50625513 overrides: 50625508!
+canHandle
+	^false.! !
+!TransientClientService class methodsFor: 'instance creation' stamp: 'FGCL 7/1/2023 21:38:00' prior: 50625518 overrides: 50625508!
+canHandle
+	^true.! !
+!TransientClientService methodsFor: 'start - stop' stamp: 'FGCL 7/1/2023 21:38:27' overrides: 50625467!
+start
+	session := OrderedCollection new.! !
+!TransientClientService methodsFor: 'start - stop' stamp: 'FGCL 7/1/2023 21:38:31' prior: 50625573 overrides: 50625467!
+start
+	"session := OrderedCollection new."! !
+!TransientClientService methodsFor: 'start - stop' stamp: 'FGCL 7/1/2023 21:38:40' prior: 50625579 overrides: 50625467!
+start
+	session := OrderedCollection new.! !
+
+!classDefinition: #TransientClientService category: 'CustomerImporter' stamp: 'FGCL 7/1/2023 21:38:43'!
+ClientService subclass: #TransientClientService
+	instanceVariableNames: 'clients'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!TransientClientService methodsFor: 'as yet unclassified' stamp: 'FGCL 7/1/2023 21:38:43' prior: 50625585 overrides: 50625467!
+start
+	clients := OrderedCollection new.! !
+!TransientClientService methodsFor: 'start - stop' stamp: 'FGCL 7/1/2023 21:38:51' overrides: 50625471!
+stop! !
+!TransientClientService methodsFor: 'proxy' stamp: 'FGCL 7/1/2023 21:39:15' overrides: 50625475!
+persist: aNewCustomer
+	clients add: aNewCustomer.! !
+!TransientClientService methodsFor: 'proxy' stamp: 'FGCL 7/1/2023 21:39:36' overrides: 50625479!
+select: aConditionBlock ofType: aType
+	^clients select: aConditionBlock.! !
+!TransientClientService methodsFor: 'proxy' stamp: 'FGCL 7/1/2023 21:39:44' overrides: 50625484!
+selectAllOfType: aType
+	^clients copy.! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'FGCL 7/1/2023 21:39:49'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'FGCL 7/1/2023 21:39:49'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'FGCL 7/1/2023 21:39:49'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'FGCL 7/1/2023 21:39:49'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'FGCL 7/1/2023 21:39:49'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'FGCL 7/1/2023 21:39:49'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'FGCL 7/1/2023 21:39:49'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'FGCL 7/1/2023 21:39:49'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'FGCL 7/1/2023 21:39:49'!
+PASSED!
+
+----SNAPSHOT----(1 July 2023 21:39:51) CuisUniversity-5832.image priorSource: 9405084!
+
+!methodRemoval: TransientClientService #persist: stamp: 'FGCL 7/1/2023 21:39:57'!
+persist: aNewCustomer
+	clients add: aNewCustomer.!
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'FGCL 7/1/2023 21:39:57'!
+ERROR!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'FGCL 7/1/2023 21:39:57'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'FGCL 7/1/2023 21:39:57'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'FGCL 7/1/2023 21:39:57'!
+FAILURE!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'FGCL 7/1/2023 21:39:57'!
+FAILURE!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'FGCL 7/1/2023 21:39:57'!
+FAILURE!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'FGCL 7/1/2023 21:39:57'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'FGCL 7/1/2023 21:39:57'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'FGCL 7/1/2023 21:39:57'!
+PASSED!
+!TransientClientService methodsFor: 'proxy' stamp: 'FGCL 7/1/2023 21:40:02' overrides: 50625475!
+persist: aNewCustomer
+	clients add: aNewCustomer.! !
+
+!testRun: #ImportTest #test01ValidDataIsImportedCorrectly stamp: 'FGCL 7/1/2023 21:40:03'!
+PASSED!
+
+!testRun: #ImportTest #test02CanNotImportAddressWithoutCustomer stamp: 'FGCL 7/1/2023 21:40:03'!
+PASSED!
+
+!testRun: #ImportTest #test03DoesNotImportRecordsStartingWithCButMoreCharacters stamp: 'FGCL 7/1/2023 21:40:03'!
+PASSED!
+
+!testRun: #ImportTest #test04DoesNotImportRecordsStartingWithAButMoreCharacters stamp: 'FGCL 7/1/2023 21:40:03'!
+PASSED!
+
+!testRun: #ImportTest #test05CanNotImportAddressRecordWithLessThanSixFields stamp: 'FGCL 7/1/2023 21:40:03'!
+PASSED!
+
+!testRun: #ImportTest #test06CanNotImportAddressRecordWithMoreThanSixFields stamp: 'FGCL 7/1/2023 21:40:03'!
+PASSED!
+
+!testRun: #ImportTest #test07CanNotImportCustomerRecordWithLessThanFiveFields stamp: 'FGCL 7/1/2023 21:40:03'!
+PASSED!
+
+!testRun: #ImportTest #test08CanNotImportCustomerRecordWithMoreThanFiveFields stamp: 'FGCL 7/1/2023 21:40:03'!
+PASSED!
+
+!testRun: #ImportTest #test09CannotImportEmptyLine stamp: 'FGCL 7/1/2023 21:40:03'!
+PASSED!
+
+----SNAPSHOT----(1 July 2023 21:40:04) CuisUniversity-5832.image priorSource: 9408132!
+
+----SNAPSHOT----(1 July 2023 21:40:18) CuisUniversity-5832.image priorSource: 9410575!
+
+----SNAPSHOT----(1 July 2023 21:40:50) CuisUniversity-5832.image priorSource: 9410663!
