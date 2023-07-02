@@ -1591,3 +1591,2192 @@ emptyCellsImportData
 		',
 		'A,Alem,1122,CABA,1001,CABA
 		'.! !
+
+----STARTUP---- (29 June 2023 12:39:58) as C:\Users\Tincho\Desktop\Customer Importer\CuisUniversity-5832.image!
+
+
+----End fileIn of C:\Users\Tincho\Desktop\Customer Importer\CustomerImporter.st----!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 12:44:31'!
+test03ImportLineWithWrongLength	
+	self should: [ CustomerImporter valueFrom: self emptyCellsImportData into: session ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter wrongLineLengthErrorDescription equals: anError messageText. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+		].! !
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 12:44:45' prior: 50624893!
+test03ImportLineWithWrongLength	
+
+	self should: [ CustomerImporter valueFrom: self emptyCellsImportData into: session ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter wrongLineLengthErrorDescription equals: anError messageText. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+		].! !
+
+!methodRemoval: ImportTest #test03ImportLineWithEmptyCells stamp: 'MFAM 6/29/2023 12:44:46'!
+test03ImportLineWithEmptyCells	
+
+	self should: [ CustomerImporter valueFrom: self emptyCellsImportData into: session ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter emptyCellsTypeErrorDescription equals: anError messageText. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+		].!
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 12:45:53'!
+checkLineLengthIsCorrect
+	data do: [ :aDataPoint | (aDataPoint = ' ') ifTrue: [ self error: CustomerImporter emptyCellsTypeErrorDescription ]].! !
+
+!methodRemoval: CustomerImporter #checkAllCellsAreFilled stamp: 'MFAM 6/29/2023 12:46:11'!
+checkAllCellsAreFilled
+	data do: [ :aDataPoint | (aDataPoint = ' ') ifTrue: [ self error: CustomerImporter emptyCellsTypeErrorDescription ]].!
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 12:46:16' prior: 50624735!
+checkDataIsValid
+
+	self checkLineLengthIsCorrect ! !
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 12:49:43' prior: 50624940!
+checkLineLengthIsCorrect
+	self isACustomer ifTrue: [data size = 5].
+	self isAnAddress ifTrue: [data size = 6]. 
+	data do: [ :aDataPoint | (aDataPoint = ' ') ifTrue: [ self error: CustomerImporter emptyCellsTypeErrorDescription ]].! !
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 12:51:59' prior: 50624960!
+checkLineLengthIsCorrect
+	self isACustomer ifTrue: [^data size = 5].
+	self isAnAddress ifTrue: [^data size = 6]. 
+	self error: CustomerImporter emptyCellsTypeErrorDescription.! !
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 12:52:14' prior: 50624971!
+checkLineLengthIsCorrect
+	self isACustomer ifTrue: [^data size = 5].
+	self isAnAddress ifTrue: [^data size = 6]. 
+	self error: CustomerImporter wrongLineLengthErrorDescription.! !
+!CustomerImporter class methodsFor: 'errors' stamp: 'MFAM 6/29/2023 12:53:04'!
+wrongLineLengthErrorDescription
+	^'There cant be missing cells or an extra amount of cells'.! !
+
+!methodRemoval: CustomerImporter class #emptyCellsTypeErrorDescription stamp: 'MFAM 6/29/2023 12:53:06'!
+emptyCellsTypeErrorDescription
+	^'Cells cannot be empty'.!
+
+!testRun: #ImportTest #test03ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 12:53:14'!
+FAILURE!
+
+!testRun: #ImportTest #test03ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 12:53:14'!
+FAILURE!
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 12:55:07'!
+wrongLineLengthImportData
+
+	^ ReadStream on: 
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez, ,1
+		',
+		'A,Alem,1122,CABA,1001,CABA
+		'.! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'MFAM 6/29/2023 12:55:07' prior: 50624909!
+test03ImportLineWithWrongLength	
+
+	self should: [ CustomerImporter valueFrom: self wrongLineLengthImportData into: session ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter wrongLineLengthErrorDescription equals: anError messageText. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+		].! !
+
+!methodRemoval: ImportTest #emptyCellsImportData stamp: 'MFAM 6/29/2023 12:55:07'!
+emptyCellsImportData
+
+	^ ReadStream on: 
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez, ,1
+		',
+		'A,Alem,1122,CABA,1001,CABA
+		'.!
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 12:55:47' prior: 50625006!
+wrongLineLengthImportData
+
+	^ ReadStream on:
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez, ,1	',
+		'A,Alem,1122,CABA,1001,CABA	'.! !
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 12:56:37' prior: 50625037!
+wrongLineLengthImportData
+
+	^ ReadStream on:
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez,,1	',
+		'A,Alem,1122,CABA,1001,CABA	'.! !
+
+!testRun: #ImportTest #test03ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 12:56:40'!
+FAILURE!
+
+!testRun: #ImportTest #test03ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 12:56:41'!
+FAILURE!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 12:57:34' prior: 50625014!
+test03ImportLineWithWrongLength	
+
+	self should: [ CustomerImporter valueFrom: self wrongLineLengthImportData into: session ]
+		raise: Error
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter wrongLineLengthErrorDescription equals: anError messageText. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+		].! !
+
+!testRun: #ImportTest #test03ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 12:57:35'!
+FAILURE!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 12:58:17' prior: 50625059!
+test03ImportLineWithWrongLength	
+
+	self should: [ CustomerImporter valueFrom: self wrongLineLengthImportData into: session ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo:  [ :anError |
+			self assert: anError messageText equals: CustomerImporter wrongLineLengthErrorDescription. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+		].! !
+
+!testRun: #ImportTest #test03ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 12:58:19'!
+FAILURE!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 12:59:30' prior: 50625077!
+test03ImportLineWithWrongLength	
+
+	self should: [ CustomerImporter valueFrom: self wrongLineLengthImportData into: session ]
+		raise: Error - MessageNotUnderstood
+		withExceptionDo:  [ :anError |
+			self assert: anError messageText equals: CustomerImporter wrongLineLengthErrorDescription. 
+			"self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2."
+		].! !
+
+!testRun: #ImportTest #test03ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 12:59:31'!
+FAILURE!
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 12:59:56' prior: 50625045!
+wrongLineLengthImportData
+
+	^ ReadStream on:
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez, ,1	',
+		'A,Alem,1122,CABA,1001,CABA	'.! !
+
+!testRun: #ImportTest #test03ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:00:00'!
+FAILURE!
+
+!testRun: #ImportTest #test03ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:00:00'!
+FAILURE!
+
+!testRun: #ImportTest #test03ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:00:16'!
+FAILURE!
+
+!testRun: #ImportTest #test03ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:00:46'!
+FAILURE!
+
+!testRun: #ImportTest #test03ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:02:10'!
+FAILURE!
+
+!testRun: #ImportTest #test03ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:02:51'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'MFAM 6/29/2023 13:03:27'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'MFAM 6/29/2023 13:03:27'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:03:27'!
+FAILURE!
+
+!testRun: #ImportTest #test03ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:03:28'!
+FAILURE!
+
+!testRun: #ImportTest #test03ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:03:38'!
+FAILURE!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 13:05:18' prior: 50625096!
+test03ImportLineWithWrongLength	
+
+	self should: [ CustomerImporter valueFrom: self wrongLineLengthImportData into: session ]
+		raise: Error
+		withExceptionDo:  [ :anError |
+			self assert: anError messageText equals: CustomerImporter wrongLineLengthErrorDescription. 
+			"self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2."
+		].! !
+
+!testRun: #ImportTest #test03ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:05:19'!
+FAILURE!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 13:06:49'!
+test04ImportLineWithWrongLength	
+
+	self should: [ CustomerImporter valueFrom: self wrongLineLengthImportData into: session ]
+		raise: Error
+		withExceptionDo:  [ :anError |
+			self assert: anError messageText equals: CustomerImporter wrongLineLengthErrorDescription. 
+			"self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2."
+		].! !
+
+!methodRemoval: ImportTest #test03ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:06:49'!
+test03ImportLineWithWrongLength	
+
+	self should: [ CustomerImporter valueFrom: self wrongLineLengthImportData into: session ]
+		raise: Error
+		withExceptionDo:  [ :anError |
+			self assert: anError messageText equals: CustomerImporter wrongLineLengthErrorDescription. 
+			"self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2."
+		].!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 13:07:31'!
+test03ImportLineWithWrongType
+
+	self 
+		should: [ CustomerImporter valueFrom: self invalidTypeImportData into: session. ]
+		raise: Error 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText equals: CustomerImporter invalidLineTypeErrorDescription.
+			"Se importo lo que queria"
+			self assertPepeSanchezWasImportedCorrecty.			
+			"No se importo lo que se rompia"
+			self should: [ self assertJuanPerezWasImportedCorrectly ]
+				raise: Error
+				withExceptionDo: [ :aSetError |
+						self assert: aSetError messageText equals: Set emptyCollectionDescription.
+					 ]
+			 ].! !
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 13:08:04' prior: 50625203!
+test03ImportLineWithWrongType
+
+	self 
+		should: [ CustomerImporter valueFrom: self invalidTypeImportData into: session. ]
+		raise: Error 
+		withExceptionDo: [ :anError |
+			self assert: anError messageText equals: CustomerImporter invalidLineTypeErrorDescription.
+			"Se importo lo que queria"
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+			self assertPepeSanchezWasImportedCorrecty.			
+			"No se importo lo que se rompia"
+			self should: [ self assertJuanPerezWasImportedCorrectly ]
+				raise: Error
+				withExceptionDo: [ :aSetError |
+						self assert: aSetError messageText equals: Set emptyCollectionDescription.
+					 ]
+			 ].! !
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 13:08:24'!
+invalidTypeImportData
+
+	^ ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires
+X,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'! !
+!CustomerImporter class methodsFor: 'errors' stamp: 'MFAM 6/29/2023 13:08:53'!
+invalidLineTypeErrorDescription
+	'Unknown type!!!!'! !
+
+!testRun: #ImportTest #test03ImportLineWithWrongType stamp: 'MFAM 6/29/2023 13:09:01'!
+FAILURE!
+
+!testRun: #ImportTest #test03ImportLineWithWrongType stamp: 'MFAM 6/29/2023 13:09:01'!
+FAILURE!
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 13:10:23'!
+checkIsCorrectTypeLine
+
+	^ (self isAnAddress or: self isACustomer) ifFalse: [ self error: CustomerImporter invalidLineTypeErrorDescription ].
+! !
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 13:11:33' prior: 50624980!
+checkLineLengthIsCorrect
+	self isACustomer ifTrue: [^data size = 5 ifFalse: [ self error: CustomerImporter wrongLineLengthErrorDescription.  ] ].
+	self isAnAddress ifTrue: [^data size = 6]. 
+	! !
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 13:11:42' prior: 50625276!
+checkLineLengthIsCorrect
+	self isACustomer ifTrue: [^data size = 5 ifFalse: [ self error: CustomerImporter wrongLineLengthErrorDescription.  ] ].
+	self isAnAddress ifTrue: [^data size = 6 ifFalse: [ self error: CustomerImporter wrongLineLengthErrorDescription.  ] ]. 
+	! !
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 13:12:08' prior: 50625285!
+checkLineLengthIsCorrect
+	self isACustomer ifTrue: [(data size = 5) ifFalse: [ self error: CustomerImporter wrongLineLengthErrorDescription.  ] ].
+	self isAnAddress ifTrue: [(data size = 6) ifFalse: [ self error: CustomerImporter wrongLineLengthErrorDescription.  ] ]. 
+	! !
+
+!testRun: #ImportTest #test03ImportLineWithWrongType stamp: 'MFAM 6/29/2023 13:12:19'!
+FAILURE!
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 13:12:53' prior: 50624955!
+checkDataIsValid
+	self checkIsCorrectTypeLine.
+	self checkLineLengthIsCorrect ! !
+
+!testRun: #ImportTest #test03ImportLineWithWrongType stamp: 'MFAM 6/29/2023 13:12:57'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:12:59'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 13:13:06' prior: 50625173!
+test04ImportLineWithWrongLength	
+
+	self should: [ CustomerImporter valueFrom: self wrongLineLengthImportData into: session ]
+		raise: Error
+		withExceptionDo:  [ :anError |
+			self assert: anError messageText equals: CustomerImporter wrongLineLengthErrorDescription. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+		].! !
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:13:07'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'MFAM 6/29/2023 13:13:08'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'MFAM 6/29/2023 13:13:08'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithWrongType stamp: 'MFAM 6/29/2023 13:13:09'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:13:09'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 13:13:24' prior: 50625324!
+test04ImportLineWithWrongLength	
+
+	self should: [ CustomerImporter valueFrom: self wrongLineLengthImportData into: session ]
+		raise: Error
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter wrongLineLengthErrorDescription equals: anError messageText. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+		].! !
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:13:25'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'MFAM 6/29/2023 13:13:26'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'MFAM 6/29/2023 13:13:27'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithWrongType stamp: 'MFAM 6/29/2023 13:13:27'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:13:28'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 13:13:44' prior: 50625225!
+test03ImportLineWithWrongType
+
+	self 
+		should: [ CustomerImporter valueFrom: self invalidTypeImportData into: session. ]
+		raise: Error 
+		withExceptionDo: [ :anError |
+			self assert: CustomerImporter invalidLineTypeErrorDescription equals: anError messageText.
+			"Se importo lo que queria"
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+			self assertPepeSanchezWasImportedCorrecty.			
+			"No se importo lo que se rompia"
+			self should: [ self assertJuanPerezWasImportedCorrectly ]
+				raise: Error
+				withExceptionDo: [ :aSetError |
+						self assert: aSetError messageText equals: Set emptyCollectionDescription.
+					 ]
+			 ].! !
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 13:13:59' prior: 50625382!
+test03ImportLineWithWrongType
+
+	self 
+		should: [ CustomerImporter valueFrom: self invalidTypeImportData into: session. ]
+		raise: Error 
+		withExceptionDo: [ :anError |
+			self assert: CustomerImporter invalidLineTypeErrorDescription equals: anError messageText.
+			"Se importo lo que queria"
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+			self assertPepeSanchezWasImportedCorrecty.			
+			"No se importo lo que se rompia"
+			self should: [ self assertJuanPerezWasImportedCorrectly ]
+				raise: Error
+				withExceptionDo: [ :aSetError |
+						self assert: Set emptyCollectionDescription equals: aSetError messageText.
+					 ]
+			 ].! !
+
+!testRun: #ImportTest #test03ImportLineWithWrongType stamp: 'MFAM 6/29/2023 13:14:00'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'MFAM 6/29/2023 13:14:01'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'MFAM 6/29/2023 13:14:02'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithWrongType stamp: 'MFAM 6/29/2023 13:14:02'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:14:03'!
+PASSED!
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 13:14:38' prior: 50625115!
+wrongLineLengthImportData
+
+	^ ReadStream on:
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez,,1	',
+		'A,Alem,1122,CABA,1001,CABA	'.! !
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:14:45'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'MFAM 6/29/2023 13:14:46'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'MFAM 6/29/2023 13:14:47'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithWrongType stamp: 'MFAM 6/29/2023 13:14:47'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:14:48'!
+PASSED!
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 13:16:21'!
+checkCustomerLineLengthIsValid
+
+	^ self isACustomer ifTrue: [(data size = 5) ifFalse: [ self error: CustomerImporter wrongLineLengthErrorDescription.  ] ]! !
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 13:16:21' prior: 50625297!
+checkLineLengthIsCorrect
+	self checkCustomerLineLengthIsValid.
+	self isAnAddress ifTrue: [(data size = 6) ifFalse: [ self error: CustomerImporter wrongLineLengthErrorDescription.  ] ]. 
+	! !
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 13:16:37'!
+checkAddressLineLengthIsValid
+
+	^ self isAnAddress ifTrue: [(data size = 6) ifFalse: [ self error: CustomerImporter wrongLineLengthErrorDescription.  ] ]! !
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 13:16:37' prior: 50625473!
+checkLineLengthIsCorrect
+	self checkCustomerLineLengthIsValid.
+	self checkAddressLineLengthIsValid. 
+	! !
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 13:16:48'!
+checkLineLengthIsValid
+	self checkCustomerLineLengthIsValid.
+	self checkAddressLineLengthIsValid. 
+	! !
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'MFAM 6/29/2023 13:16:48' prior: 50625312!
+checkDataIsValid
+	self checkIsCorrectTypeLine.
+	self checkLineLengthIsValid ! !
+
+!methodRemoval: CustomerImporter #checkLineLengthIsCorrect stamp: 'MFAM 6/29/2023 13:16:48'!
+checkLineLengthIsCorrect
+	self checkCustomerLineLengthIsValid.
+	self checkAddressLineLengthIsValid. 
+	!
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 13:17:07' prior: 50625482!
+checkAddressLineLengthIsValid
+
+	^ self isAnAddress ifTrue: [data size = 6 ifFalse: [ self error: CustomerImporter wrongLineLengthErrorDescription.  ] ]! !
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 13:17:11' prior: 50625465!
+checkCustomerLineLengthIsValid
+
+	^ self isACustomer ifTrue: [data size = 5 ifFalse: [ self error: CustomerImporter wrongLineLengthErrorDescription.  ] ]! !
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:17:15'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 13:17:30' prior: 50625406!
+test03ImportLineWithWrongType
+
+	self 
+		should: [ CustomerImporter valueFrom: self invalidTypeImportData into: session. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: CustomerImporter invalidLineTypeErrorDescription equals: anError messageText.
+			"Se importo lo que queria"
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+			self assertPepeSanchezWasImportedCorrecty.			
+			"No se importo lo que se rompia"
+			self should: [ self assertJuanPerezWasImportedCorrectly ]
+				raise: Error
+				withExceptionDo: [ :aSetError |
+						self assert: Set emptyCollectionDescription equals: aSetError messageText.
+					 ]
+			 ].! !
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 13:17:32' prior: 50625353!
+test04ImportLineWithWrongLength	
+
+	self should: [ CustomerImporter valueFrom: self wrongLineLengthImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter wrongLineLengthErrorDescription equals: anError messageText. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+		].! !
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:17:34'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'MFAM 6/29/2023 13:17:34'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'MFAM 6/29/2023 13:17:35'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithWrongType stamp: 'MFAM 6/29/2023 13:17:36'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:17:36'!
+PASSED!
+
+----SNAPSHOT----(29 June 2023 13:17:47) CuisUniversity-5832.image priorSource: 9366758!
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 13:18:14' prior: 50625248!
+invalidTypeImportData
+
+	^ ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires
+C,Juan,Perez,C,23-25666777-9
+X,Alem,1122,CABA,1001,CABA'! !
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 13:18:24' prior: 50625558!
+test04ImportLineWithWrongLength	
+
+	self should: [ CustomerImporter valueFrom: self wrongLineLengthImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter wrongLineLengthErrorDescription equals: anError messageText. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 2 andAddresses: 2.
+		].! !
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:18:26'!
+FAILURE!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:18:36'!
+FAILURE!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:18:40'!
+FAILURE!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 13:18:46' prior: 50625534!
+test03ImportLineWithWrongType
+
+	self 
+		should: [ CustomerImporter valueFrom: self invalidTypeImportData into: session. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: CustomerImporter invalidLineTypeErrorDescription equals: anError messageText.
+			"Se importo lo que queria"
+			self assertImportedThisNumberOfCustomers: 2 andAddresses: 2.
+			self assertPepeSanchezWasImportedCorrecty.			
+			"No se importo lo que se rompia"
+			self should: [ self assertJuanPerezWasImportedCorrectly ]
+				raise: Error
+				withExceptionDo: [ :aSetError |
+						self assert: Set emptyCollectionDescription equals: aSetError messageText.
+					 ]
+			 ].! !
+
+!testRun: #ImportTest #test03ImportLineWithWrongType stamp: 'MFAM 6/29/2023 13:18:48'!
+FAILURE!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:18:57'!
+FAILURE!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:18:57'!
+FAILURE!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 13:19:07' prior: 50625600!
+test04ImportLineWithWrongLength	
+
+	self should: [ CustomerImporter valueFrom: self wrongLineLengthImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter wrongLineLengthErrorDescription equals: anError messageText. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+		].! !
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:19:09'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'MFAM 6/29/2023 13:19:10'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'MFAM 6/29/2023 13:19:10'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithWrongType stamp: 'MFAM 6/29/2023 13:19:11'!
+FAILURE!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:19:11'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithWrongType stamp: 'MFAM 6/29/2023 13:19:12'!
+FAILURE!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:19:19'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'MFAM 6/29/2023 13:19:24'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'MFAM 6/29/2023 13:19:28'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 13:20:06' prior: 50625625!
+test03ImportLineWithWrongType
+
+	self 
+		should: [ CustomerImporter valueFrom: self invalidTypeImportData into: session. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: CustomerImporter invalidLineTypeErrorDescription equals: anError messageText.
+			"Se importo lo que queria"
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+			self assertPepeSanchezWasImportedCorrecty.			
+			"No se importo lo que se rompia"
+			self should: [ self assertJuanPerezWasImportedCorrectly ]
+				raise: Error
+				withExceptionDo: [ :aSetError |
+						self assert: Set emptyCollectionDescription equals: aSetError messageText.
+					 ]
+			 ].! !
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 13:20:18' prior: 50625591!
+invalidTypeImportData
+
+	^ ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires
+X,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'! !
+
+!testRun: #ImportTest #test03ImportLineWithWrongType stamp: 'MFAM 6/29/2023 13:20:25'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'MFAM 6/29/2023 13:20:26'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'MFAM 6/29/2023 13:20:27'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithWrongType stamp: 'MFAM 6/29/2023 13:20:27'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:20:28'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 13:21:19' prior: 50625658!
+test04ImportLineWithWrongLength	
+
+	self should: [ CustomerImporter valueFrom: self wrongLineLengthImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter wrongLineLengthErrorDescription equals: anError messageText. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 2 andAddresses: 2.
+		].! !
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 13:21:35' prior: 50625444!
+wrongLineLengthImportData
+
+	^ ReadStream on:
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez,,1	',
+		'A,Alem,1122,,1001,CABA	'.! !
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 13:21:48' prior: 50625762!
+wrongLineLengthImportData
+
+	^ ReadStream on:
+		(self pepeSanchezImportData), 
+		'C,Pepe,Sanchez,D,22333444	',
+		'A,Alem,1122,,1001,CABA	'.! !
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 13:21:59' prior: 50625769!
+wrongLineLengthImportData
+
+	^ ReadStream on:
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez,C,23-25666777-9',
+		'A,Alem,1122,,1001,CABA	'.! !
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:22:03'!
+FAILURE!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:22:03'!
+FAILURE!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:23:01'!
+FAILURE!
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 13:24:50' prior: 50625777!
+wrongLineLengthImportData
+
+	^ ReadStream on:
+		(self pepeSanchezImportData), 
+		'X,Juan,Perez,C,23-25666777-9,
+		A,Alem,1122,,1001,CABA	'.! !
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 13:24:54' prior: 50625794!
+wrongLineLengthImportData
+
+	^ ReadStream on:
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez,C,23-25666777-9,
+		A,Alem,1122,,1001,CABA	'.! !
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:25:04'!
+FAILURE!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:25:05'!
+FAILURE!
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 13:26:38' prior: 50624534!
+juanPerezImportData
+	^
+'C,Juan,Perez,C,23-25666777-9',
+'A,Alem,1122,CABA,1001,CABA'.! !
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 13:26:58' prior: 50624540!
+pepeSanchezImportData
+	^
+'C,Pepe,Sanchez,D,22333444',
+'A,San Martin,3322,Olivos,1636,BsAs',
+'A,Maipu,888,Florida,1122,Buenos Aires'! !
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 13:27:26' prior: 50625802!
+wrongLineLengthImportData
+
+	^ ReadStream on:
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez,,23-25666777-9',
+		'A,Alem,1122,,1001,CABA	'.! !
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 13:27:40' prior: 50625746!
+test04ImportLineWithWrongLength	
+
+	self should: [ CustomerImporter valueFrom: self wrongLineLengthImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter wrongLineLengthErrorDescription equals: anError messageText. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+		].! !
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:27:42'!
+ERROR!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:27:48'!
+ERROR!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:27:48'!
+ERROR!
+
+----STARTUP---- (29 June 2023 13:28:27) as C:\Users\Tincho\Desktop\Customer Importer\CuisUniversity-5832.image!
+
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:28:31'!
+PASSED!
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 13:30:55' prior: 50625248!
+invalidTypeImportData
+
+	^ ReadStream on:
+self pepeSanchezImportData,
+'X,Juan,Perez,C,23-25666777-9',
+'A,Alem,1122,CABA,1001,CABA'! !
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:33:02'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'MFAM 6/29/2023 13:33:06'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'MFAM 6/29/2023 13:33:06'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithWrongType stamp: 'MFAM 6/29/2023 13:33:07'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:33:08'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 13:34:35'!
+test05ImportLineWithoutBegginingWithAConsumer
+
+	self should: [ CustomerImporter valueFrom: self beginsWithAnAddressImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter doesntBeginWithConsumerErrorDescription equals: anError messageText. 
+			self assertImportedThisNumberOfCustomers: 0 andAddresses: 0.
+		].! !
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 13:35:07'!
+beginsWithAnAddressImportData
+
+	^ ReadStream on:
+self pepeSanchezImportData,
+'X,Juan,Perez,C,23-25666777-9',
+'A,Alem,1122,CABA,1001,CABA'! !
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 13:35:33' prior: 50625905!
+beginsWithAnAddressImportData
+
+	^ ReadStream on:
+'A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires
+C,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'! !
+!CustomerImporter class methodsFor: 'errors' stamp: 'MFAM 6/29/2023 13:41:28'!
+doesntBeginWithConsumerErrorDescription
+	^'First line should contain consumer data.'.! !
+!CustomerImporter methodsFor: 'parsing' stamp: 'MFAM 6/29/2023 13:41:54' prior: 50624709!
+parseLine
+
+	self readData.
+	self isACustomer ifTrue: [  ^self parseNewCustomer ].
+	self isAnAddress ifTrue: [ ^self parseAddress ]
+	! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'MFAM 6/29/2023 13:44:37' prior: 50624762 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+		self checkItBeginsWithCustomerLine.
+	self readLine.
+	[ self isNotFinished ] whileTrue: [
+		self parseLine.
+		self readLine.
+	].
+
+	! !
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 13:44:53'!
+checkItBeginsWithCustomerLine! !
+!CustomerImporter methodsFor: 'evaluating' stamp: 'MFAM 6/29/2023 13:45:50' prior: 50625936 overrides: 16902254!
+value
+
+	"
+	self importCustomers
+	"
+		
+	self readLine.	self checkItBeginsWithCustomerLine.
+	
+	[ self isNotFinished ] whileTrue: [
+		self parseLine.
+		self readLine.
+	].
+
+	! !
+
+!testRun: #ImportTest #test01Import stamp: 'MFAM 6/29/2023 13:45:52'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'MFAM 6/29/2023 13:45:53'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithWrongType stamp: 'MFAM 6/29/2023 13:45:53'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 13:45:54'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportLineWithoutBegginingWithAConsumer stamp: 'MFAM 6/29/2023 13:45:54'!
+ERROR!
+
+!testRun: #ImportTest #test05ImportLineWithoutBegginingWithAConsumer stamp: 'MFAM 6/29/2023 13:45:54'!
+ERROR!
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 13:46:34' prior: 50625944!
+checkItBeginsWithCustomerLine
+	
+	self isACustomer ifFalse: [ CustomerImporter doesntBeginWithConsumerErrorDescription ].! !
+
+!testRun: #ImportTest #test05ImportLineWithoutBegginingWithAConsumer stamp: 'MFAM 6/29/2023 13:46:46'!
+ERROR!
+
+!testRun: #ImportTest #test05ImportLineWithoutBegginingWithAConsumer stamp: 'MFAM 6/29/2023 13:46:46'!
+ERROR!
+
+!testRun: #ImportTest #test05ImportLineWithoutBegginingWithAConsumer stamp: 'MFAM 6/29/2023 13:47:28'!
+ERROR!
+
+!testRun: #ImportTest #test05ImportLineWithoutBegginingWithAConsumer stamp: 'MFAM 6/29/2023 13:47:28'!
+ERROR!
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 13:48:37' prior: 50625976!
+checkItBeginsWithCustomerLine
+	
+	self readData.
+	self isACustomer ifFalse: [ CustomerImporter doesntBeginWithConsumerErrorDescription ].! !
+
+!testRun: #ImportTest #test05ImportLineWithoutBegginingWithAConsumer stamp: 'MFAM 6/29/2023 13:48:43'!
+ERROR!
+
+!testRun: #ImportTest #test05ImportLineWithoutBegginingWithAConsumer stamp: 'MFAM 6/29/2023 13:48:43'!
+ERROR!
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 14:21:51' prior: 50625997!
+checkItBeginsWithCustomerLine
+	
+	self isACustomer ifFalse: [ CustomerImporter doesntBeginWithConsumerErrorDescription ].! !
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 14:22:11' prior: 50626012!
+checkItBeginsWithCustomerLine
+	
+	self isACustomer ifFalse: [ self error: CustomerImporter doesntBeginWithConsumerErrorDescription ].! !
+
+!testRun: #ImportTest #test05ImportLineWithoutBegginingWithAConsumer stamp: 'MFAM 6/29/2023 14:22:17'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 14:22:31'!
+test05ImportLineWithoutBegginingWithACostumer
+
+	self should: [ CustomerImporter valueFrom: self beginsWithAnAddressImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter doesntBeginWithConsumerErrorDescription equals: anError messageText. 
+			self assertImportedThisNumberOfCustomers: 0 andAddresses: 0.
+		].! !
+
+!methodRemoval: ImportTest #test05ImportLineWithoutBegginingWithAConsumer stamp: 'MFAM 6/29/2023 14:22:31'!
+test05ImportLineWithoutBegginingWithAConsumer
+
+	self should: [ CustomerImporter valueFrom: self beginsWithAnAddressImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter doesntBeginWithConsumerErrorDescription equals: anError messageText. 
+			self assertImportedThisNumberOfCustomers: 0 andAddresses: 0.
+		].!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 14:26:32'!
+test06ImportCustomerWithNoAddress
+
+	self should: [ CustomerImporter valueFrom: self beginsWithAnAddressImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter doesntBeginWithConsumerErrorDescription equals: anError messageText. 
+			self assertImportedThisNumberOfCustomers: 0 andAddresses: 0.
+		].! !
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 14:27:16' prior: 50626059!
+test06ImportCustomerWithNoAddress
+
+	self should: [ CustomerImporter valueFrom: self onlyCustomersData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter customerDoesntHaveAnAddressErrorDescription equals: anError messageText. 
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 0.
+		].! !
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 14:27:34'!
+onlyCustomersData
+
+	^ ReadStream on:
+'A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires
+C,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'! !
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 14:27:44'!
+onlyCustomersImportData
+
+	^ ReadStream on:
+'A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires
+C,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'MFAM 6/29/2023 14:27:44' prior: 50626074!
+test06ImportCustomerWithNoAddress
+
+	self should: [ CustomerImporter valueFrom: self onlyCustomersImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter customerDoesntHaveAnAddressErrorDescription equals: anError messageText. 
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 0.
+		].! !
+
+!methodRemoval: ImportTest #onlyCustomersData stamp: 'MFAM 6/29/2023 14:27:44'!
+onlyCustomersData
+
+	^ ReadStream on:
+'A,San Martin,3322,Olivos,1636,BsAs
+A,Maipu,888,Florida,1122,Buenos Aires
+C,Juan,Perez,C,23-25666777-9
+A,Alem,1122,CABA,1001,CABA'!
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 14:27:58' prior: 50626096!
+onlyCustomersImportData
+
+	^ ReadStream on:
+'A,San Martin,3322,Olivos,1636,BsAs
+C,Juan,Perez,C,23-25666777-9'! !
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 14:28:14' prior: 50626128!
+onlyCustomersImportData
+
+	^ ReadStream on:
+'C,Pepe,Sanchez,D,22333444
+C,Juan,Perez,C,23-25666777-9'! !
+!CustomerImporter class methodsFor: 'errors' stamp: 'MFAM 6/29/2023 14:30:40'!
+customerDoesntHaveAnAddressErrorDescription
+	^'Customer should come with its address.'.! !
+!CustomerImporter class methodsFor: 'errors' stamp: 'MFAM 6/29/2023 14:31:57'!
+doesntBeginWithCostumerErrorDescription
+	^'First line should contain consumer data.'.! !
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'MFAM 6/29/2023 14:31:57' prior: 50626019!
+checkItBeginsWithCustomerLine
+	
+	self isACustomer ifFalse: [ self error: CustomerImporter doesntBeginWithCostumerErrorDescription ].! !
+
+!methodRemoval: CustomerImporter class #doesntBeginWithConsumerErrorDescription stamp: 'MFAM 6/29/2023 14:31:57'!
+doesntBeginWithConsumerErrorDescription
+	^'First line should contain consumer data.'.!
+!CustomerImporter class methodsFor: 'errors' stamp: 'MFAM 6/29/2023 14:32:05' prior: 50626147!
+doesntBeginWithCostumerErrorDescription
+	^'First line should contain costumer data.'.! !
+!CustomerImporter class methodsFor: 'errors' stamp: 'MFAM 6/29/2023 14:32:24'!
+doesntBeginWithCustomerErrorDescription
+	^'First line should contain costumer data.'.! !
+!CustomerImporter methodsFor: 'as yet unclassified' stamp: 'MFAM 6/29/2023 14:32:24' prior: 50626153!
+checkItBeginsWithCustomerLine
+	
+	self isACustomer ifFalse: [ self error: CustomerImporter doesntBeginWithCustomerErrorDescription ].! !
+
+!methodRemoval: CustomerImporter class #doesntBeginWithCostumerErrorDescription stamp: 'MFAM 6/29/2023 14:32:24'!
+doesntBeginWithCostumerErrorDescription
+	^'First line should contain costumer data.'.!
+!CustomerImporter class methodsFor: 'errors' stamp: 'MFAM 6/29/2023 14:32:28' prior: 50626173!
+doesntBeginWithCustomerErrorDescription
+	^'First line should contain customer data.'.! !
+
+!testRun: #ImportTest #test01Import stamp: 'MFAM 6/29/2023 14:32:42'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'MFAM 6/29/2023 14:32:43'!
+ERROR!
+
+!testRun: #ImportTest #test03ImportLineWithWrongType stamp: 'MFAM 6/29/2023 14:32:43'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 14:32:44'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportLineWithoutBegginingWithACostumer stamp: 'MFAM 6/29/2023 14:32:44'!
+ERROR!
+
+!testRun: #ImportTest #test06ImportCustomerWithNoAddress stamp: 'MFAM 6/29/2023 14:32:44'!
+FAILURE!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 14:33:13' prior: 50626029!
+test05ImportLineWithoutBegginingWithACostumer
+
+	self should: [ CustomerImporter valueFrom: self beginsWithAnAddressImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter doesntBeginWithCustomerErrorDescription equals: anError messageText. 
+			self assertImportedThisNumberOfCustomers: 0 andAddresses: 0.
+		].! !
+
+!testRun: #ImportTest #test05ImportLineWithoutBegginingWithACostumer stamp: 'MFAM 6/29/2023 14:33:16'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'MFAM 6/29/2023 14:33:16'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'MFAM 6/29/2023 14:33:16'!
+ERROR!
+
+!testRun: #ImportTest #test03ImportLineWithWrongType stamp: 'MFAM 6/29/2023 14:33:17'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 14:33:18'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportLineWithoutBegginingWithACostumer stamp: 'MFAM 6/29/2023 14:33:18'!
+PASSED!
+
+!testRun: #ImportTest #test06ImportCustomerWithNoAddress stamp: 'MFAM 6/29/2023 14:33:18'!
+FAILURE!
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 14:34:36' prior: 50626179!
+checkItBeginsWithCustomerLine
+	
+	(self isACustomer and: self isNotFinished) ifFalse: [ self error: CustomerImporter doesntBeginWithCustomerErrorDescription ].! !
+
+!testRun: #ImportTest #test01Import stamp: 'MFAM 6/29/2023 14:34:43'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportLineWithoutBegginingWithACostumer stamp: 'MFAM 6/29/2023 14:34:47'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 14:35:15'!
+test05ImportLineWithoutBegginingWithACustomer
+
+	self should: [ CustomerImporter valueFrom: self beginsWithAnAddressImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter doesntBeginWithCustomerErrorDescription equals: anError messageText. 
+			self assertImportedThisNumberOfCustomers: 0 andAddresses: 0.
+		].! !
+
+!methodRemoval: ImportTest #test05ImportLineWithoutBegginingWithACostumer stamp: 'MFAM 6/29/2023 14:35:15'!
+test05ImportLineWithoutBegginingWithACostumer
+
+	self should: [ CustomerImporter valueFrom: self beginsWithAnAddressImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter doesntBeginWithCustomerErrorDescription equals: anError messageText. 
+			self assertImportedThisNumberOfCustomers: 0 andAddresses: 0.
+		].!
+
+!testRun: #ImportTest #test06ImportCustomerWithNoAddress stamp: 'MFAM 6/29/2023 14:35:31'!
+FAILURE!
+
+!testRun: #ImportTest #test06ImportCustomerWithNoAddress stamp: 'MFAM 6/29/2023 14:35:32'!
+FAILURE!
+
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'session readStream newCustomer line data lastParsed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'MFAM 6/29/2023 14:40:11'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'session readStream newCustomer line data lastParsed'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'MFAM 6/29/2023 14:41:20'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'session readStream newCustomer line data lastParsed lastParsedType'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!CustomerImporter methodsFor: 'parsing' stamp: 'MFAM 6/29/2023 14:41:18' prior: 50624697!
+parseAddress
+
+	| newAddress |
+	newAddress := Address new.
+	newCustomer addAddress: newAddress.
+	newAddress streetName: data second.
+	newAddress streetNumber: data third asNumber .
+	newAddress town: data fourth.
+	newAddress zipCode: data fifth asNumber .
+	newAddress province: data sixth.
+	
+	lastParsedType := 'A'.! !
+
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'session readStream newCustomer line data lastParsedType'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+
+!classDefinition: #CustomerImporter category: 'CustomerImporter' stamp: 'MFAM 6/29/2023 14:41:27'!
+Object subclass: #CustomerImporter
+	instanceVariableNames: 'session readStream newCustomer line data lastParsedType'
+	classVariableNames: ''
+	poolDictionaries: ''
+	category: 'CustomerImporter'!
+!CustomerImporter methodsFor: 'parsing' stamp: 'MFAM 6/29/2023 14:41:45' prior: 50624717!
+parseNewCustomer
+
+	newCustomer := Customer new.
+	newCustomer firstName: data second.
+	newCustomer lastName: data third.
+	newCustomer identificationType: data fourth.
+	newCustomer identificationNumber: data fifth.
+	session persist: newCustomer.
+	
+	lastParsedType := 'C'.! !
+!CustomerImporter methodsFor: 'parsing' stamp: 'MFAM 6/29/2023 14:43:49' prior: 50626359!
+parseNewCustomer
+	lastParsedType ifNotNil: [ self checkPreviousParsingWasAnAddress ].
+	newCustomer := Customer new.
+	newCustomer firstName: data second.
+	newCustomer lastName: data third.
+	newCustomer identificationType: data fourth.
+	newCustomer identificationNumber: data fifth.
+	session persist: newCustomer.
+	
+	lastParsedType := 'C'.! !
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 14:43:59'!
+checkPreviousParsingWasAnAddress! !
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 14:44:06' prior: 50626385!
+checkPreviousParsingWasAnAddress
+
+	lastParsedType = 'A'.! !
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 14:44:53' prior: 50626389!
+checkPreviousParsingWasAnAddress
+
+	lastParsedType = 'A' ifFalse: [ self error: CustomerImporter customerDoesntHaveAnAddressErrorDescription ].! !
+
+!testRun: #ImportTest #test06ImportCustomerWithNoAddress stamp: 'MFAM 6/29/2023 14:44:59'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'MFAM 6/29/2023 14:45:05'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'MFAM 6/29/2023 14:45:05'!
+ERROR!
+
+!testRun: #ImportTest #test03ImportLineWithWrongType stamp: 'MFAM 6/29/2023 14:45:06'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 14:45:07'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportLineWithoutBegginingWithACustomer stamp: 'MFAM 6/29/2023 14:45:07'!
+PASSED!
+
+!testRun: #ImportTest #test06ImportCustomerWithNoAddress stamp: 'MFAM 6/29/2023 14:45:07'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'MFAM 6/29/2023 14:45:07'!
+ERROR!
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 14:46:18' prior: 50626254!
+checkItBeginsWithCustomerLine
+	
+	(self isNotFinished and: self isACustomer) ifFalse: [ self error: CustomerImporter doesntBeginWithCustomerErrorDescription ].! !
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 14:47:18' prior: 50626425!
+checkItBeginsWithCustomerLine
+	
+	self isNotFinished ifFalse: [
+		self isACustomer ifFalse: [ self error: CustomerImporter doesntBeginWithCustomerErrorDescription ].
+		] ! !
+
+!testRun: #ImportTest #test01Import stamp: 'MFAM 6/29/2023 14:47:23'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'MFAM 6/29/2023 14:47:25'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'MFAM 6/29/2023 14:47:25'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'MFAM 6/29/2023 14:47:31'!
+ERROR!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'MFAM 6/29/2023 14:47:31'!
+ERROR!
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 14:48:26' prior: 50626433!
+checkItBeginsWithCustomerLine
+	
+	self isNotFinished ifTrue: [
+		self isACustomer ifFalse: [ self error: CustomerImporter doesntBeginWithCustomerErrorDescription ].
+		] ! !
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'MFAM 6/29/2023 14:48:36'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'MFAM 6/29/2023 14:48:39'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'MFAM 6/29/2023 14:48:39'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithWrongType stamp: 'MFAM 6/29/2023 14:48:40'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 14:48:40'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportLineWithoutBegginingWithACustomer stamp: 'MFAM 6/29/2023 14:48:41'!
+PASSED!
+
+!testRun: #ImportTest #test06ImportCustomerWithNoAddress stamp: 'MFAM 6/29/2023 14:48:41'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 14:50:35'!
+test07ImportLineWithShiftedData
+
+	self should: [ CustomerImporter valueFrom: self shiftedImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter shiftedDataErrorDescription equals: anError messageText. 
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 1.
+		].! !
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 14:51:05'!
+shiftedImportData
+
+	^ ReadStream on:
+'C,Juan,Perez,C,23-25666777-9',
+'A,Alem,1122,CABA,1001,CABA'! !
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 14:51:13' prior: 50626497!
+shiftedImportData
+
+	^ ReadStream on:
+'C,Juan,Perez,C,23-25666777-9',
+'A,Alem,1122,CABA,1001,CABA',
+''! !
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 14:52:11' prior: 50626503!
+shiftedImportData
+
+	^ ReadStream on:
+'C,Juan,Perez,C,23-25666777-9',
+'A,Alem,1122,CABA,1001,CABA',
+'C,22333444,D,Sanchez'! !
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 14:52:23' prior: 50626509!
+shiftedImportData
+
+	^ ReadStream on:
+'C,Juan,Perez,C,23-25666777-9',
+'A,Alem,1122,CABA,1001,CABA',
+'C,22333444,D,Sanchez,Pepe'! !
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 14:52:34' prior: 50626516!
+shiftedImportData
+
+	^ ReadStream on:
+'C,Juan,Perez,C,23-25666777-9',
+'A,Alem,1122,CABA,1001,CABA',
+'C,22333444,D,Sanchez,Pepe'.! !
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 14:54:17' prior: 50626523!
+shiftedImportData
+
+	^ ReadStream on:
+'C,Juan,Perez,C,23-25666777-9',
+'A,Alem,1122,CABA,1001,CABA',
+'C,22333444,D,Sanchez,Pepe',
+'A,BsAs, San Martin,3322,Olivos,1636'.! !
+!CustomerImporter class methodsFor: 'errors' stamp: 'MFAM 6/29/2023 14:57:02'!
+shiftedDataErrorDescription
+
+	'Data was shifted.'! !
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 14:57:14'!
+FAILURE!
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 14:57:14'!
+FAILURE!
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:00:04'!
+FAILURE!
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:00:04'!
+FAILURE!
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:00:26'!
+FAILURE!
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:00:32'!
+FAILURE!
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 15:02:31' prior: 50626530!
+shiftedImportData
+
+	^ ReadStream on:
+self juanPerezImportData,
+'X,Juan,Perez,C,23-25666777-9',
+'A,Alem,1122,CABA,1001,CABA'! !
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 15:02:56' prior: 50626561!
+shiftedImportData
+
+	^ ReadStream on:
+self juanPerezImportData,
+'C,Pepe,Sanchez,D,22333444',
+'A,San Martin,3322,Olivos,1636,BsAs'! !
+
+!testRun: #ImportTest #test01Import stamp: 'MFAM 6/29/2023 15:02:57'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'MFAM 6/29/2023 15:02:58'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithWrongType stamp: 'MFAM 6/29/2023 15:02:58'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 15:02:59'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportLineWithoutBegginingWithACustomer stamp: 'MFAM 6/29/2023 15:02:59'!
+PASSED!
+
+!testRun: #ImportTest #test06ImportCustomerWithNoAddress stamp: 'MFAM 6/29/2023 15:03:00'!
+PASSED!
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:03:00'!
+FAILURE!
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:03:00'!
+FAILURE!
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 15:03:34' prior: 50624534!
+juanPerezImportData
+	^
+'C,Juan,Perez,C,23-25666777-9',
+'A,Alem,1122,CABA,1001,CABA'.! !
+
+!testRun: #ImportTest #test01Import stamp: 'MFAM 6/29/2023 15:03:38'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'MFAM 6/29/2023 15:03:38'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'MFAM 6/29/2023 15:03:43'!
+ERROR!
+
+!testRun: #ImportTest #test01Import stamp: 'MFAM 6/29/2023 15:03:44'!
+ERROR!
+!ImportTest methodsFor: 'test data' stamp: 'FGCL 6/29/2023 12:02:15' prior: 50626599!
+juanPerezImportData
+	^
+'C,Juan,Perez,C,23-25666777-9
+',
+'A,Alem,1122,CABA,1001,CABA
+'.! !
+
+!testRun: #ImportTest #test01Import stamp: 'MFAM 6/29/2023 15:04:22'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'MFAM 6/29/2023 15:04:23'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithWrongType stamp: 'MFAM 6/29/2023 15:04:23'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 15:04:24'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportLineWithoutBegginingWithACustomer stamp: 'MFAM 6/29/2023 15:04:24'!
+PASSED!
+
+!testRun: #ImportTest #test06ImportCustomerWithNoAddress stamp: 'MFAM 6/29/2023 15:04:25'!
+PASSED!
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:04:25'!
+FAILURE!
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:04:25'!
+FAILURE!
+
+!testRun: #ImportTest #test01Import stamp: 'MFAM 6/29/2023 15:04:32'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'MFAM 6/29/2023 15:04:34'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithWrongType stamp: 'MFAM 6/29/2023 15:04:35'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 15:04:38'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportLineWithoutBegginingWithACustomer stamp: 'MFAM 6/29/2023 15:04:40'!
+PASSED!
+
+!testRun: #ImportTest #test06ImportCustomerWithNoAddress stamp: 'MFAM 6/29/2023 15:04:41'!
+PASSED!
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:04:43'!
+FAILURE!
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:04:43'!
+FAILURE!
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 15:05:11' prior: 50626568!
+shiftedImportData
+
+	^ ReadStream on:
+self juanPerezImportData! !
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:05:14'!
+FAILURE!
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:05:14'!
+FAILURE!
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 15:06:03'!
+pepeSanchezShiftedImportData
+
+	^
+'C,Pepe,Sanchez,D,22333444
+',
+'A,San Martin,3322,Olivos,1636,BsAs
+',
+'A,Maipu,888,Florida,1122,Buenos Aires
+'! !
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 15:06:12' prior: 50626669!
+shiftedImportData
+
+	^ ReadStream on:
+self juanPerezImportData,
+self pepeSanchezShiftedImportData ! !
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:06:16'!
+FAILURE!
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:06:16'!
+FAILURE!
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 15:07:05' prior: 50626680!
+pepeSanchezShiftedImportData
+
+	^
+'C,22333444,Pepe,Sanchez,D
+',
+'A,San Martin,3322,Olivos,1636,BsAs
+',
+'A,Maipu,888,Florida,1122,Buenos Aires
+'! !
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:07:10'!
+FAILURE!
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:07:10'!
+FAILURE!
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 15:07:44' prior: 50626701!
+pepeSanchezShiftedImportData
+
+	^
+'C,22333444,Pepe,Sanchez,D
+',
+'A,BsAs,San Martin,3322,Olivos,1636
+',
+'A,Maipu,888,Florida,1122,Buenos Aires
+'! !
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:07:47'!
+FAILURE!
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:07:47'!
+FAILURE!
+!CustomerImporter methodsFor: 'parsing' stamp: 'MFAM 6/29/2023 15:09:41' prior: 50626371!
+parseNewCustomer
+	lastParsedType ifNotNil: [ self checkPreviousParsingWasAnAddress ].
+	self checkForDigit.
+	
+	newCustomer := Customer new.
+	newCustomer firstName: data second.
+	newCustomer lastName: data third.
+	newCustomer identificationType: data fourth.
+	newCustomer identificationNumber: data fifth.
+	session persist: newCustomer.
+	
+	lastParsedType := 'C'.! !
+!CustomerImporter methodsFor: 'parsing' stamp: 'MFAM 6/29/2023 15:10:27' prior: 50626729!
+parseNewCustomer
+	lastParsedType ifNotNil: [ self checkPreviousParsingWasAnAddress ].
+	self checkForDigit of: Customer.
+	
+	newCustomer := Customer new.
+	newCustomer firstName: data second.
+	newCustomer lastName: data third.
+	newCustomer identificationType: data fourth.
+	newCustomer identificationNumber: data fifth.
+	session persist: newCustomer.
+	
+	lastParsedType := 'C'.! !
+!CustomerImporter methodsFor: 'parsing' stamp: 'MFAM 6/29/2023 15:10:41' prior: 50626744!
+parseNewCustomer
+	lastParsedType ifNotNil: [ self checkPreviousParsingWasAnAddress ].
+	self checkForDigitOf: Customer.
+	
+	newCustomer := Customer new.
+	newCustomer firstName: data second.
+	newCustomer lastName: data third.
+	newCustomer identificationType: data fourth.
+	newCustomer identificationNumber: data fifth.
+	session persist: newCustomer.
+	
+	lastParsedType := 'C'.! !
+!CustomerImporter methodsFor: 'parsing' stamp: 'MFAM 6/29/2023 15:11:12' prior: 50626330!
+parseAddress
+
+	| newAddress |
+	newAddress := Address new.	self checkForDigitOf: Address.
+	
+	newCustomer addAddress: newAddress.
+	newAddress streetName: data second.
+	newAddress streetNumber: data third asNumber .
+	newAddress town: data fourth.
+	newAddress zipCode: data fifth asNumber .
+	newAddress province: data sixth.
+	
+	lastParsedType := 'A'.! !
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 15:12:23'!
+checkForDigitOf: aType
+
+	aType = Customer 
+		ifTrue: [  ] 
+		ifFalse: [  ]! !
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 15:13:15' prior: 50626788!
+checkForDigitOf: aType
+
+	aType = Customer 
+		ifTrue: [  ] 
+		ifFalse: [ data third.
+		data fifth . ]! !
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 15:15:59' prior: 50626794!
+checkForDigitOf: aType
+
+	aType = Customer 
+		ifTrue: [  ] 
+		ifFalse: [ 
+			data third asNumber on: Error do: [ self error: CustomerImporter shiftedDataErrorDescription ].
+			data fifth asNumber on: Error do: [ self error: CustomerImporter shiftedDataErrorDescription ].
+		]! !
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 15:20:18'!
+checkForDigit
+
+	data third asNumber on: Error do: [ self error: CustomerImporter shiftedDataErrorDescription ].
+	data fifth asNumber on: Error do: [ self error: CustomerImporter shiftedDataErrorDescription ].
+! !
+
+!methodRemoval: CustomerImporter #checkForDigitOf: stamp: 'MFAM 6/29/2023 15:20:21'!
+checkForDigitOf: aType
+
+	aType = Customer 
+		ifTrue: [  ] 
+		ifFalse: [ 
+			data third asNumber on: Error do: [ self error: CustomerImporter shiftedDataErrorDescription ].
+			data fifth asNumber on: Error do: [ self error: CustomerImporter shiftedDataErrorDescription ].
+		]!
+!CustomerImporter methodsFor: 'parsing' stamp: 'MFAM 6/29/2023 15:20:29' prior: 50626774!
+parseAddress
+
+	| newAddress |
+	newAddress := Address new.	self checkForDigit.
+	
+	newCustomer addAddress: newAddress.
+	newAddress streetName: data second.
+	newAddress streetNumber: data third asNumber .
+	newAddress town: data fourth.
+	newAddress zipCode: data fifth asNumber .
+	newAddress province: data sixth.
+	
+	lastParsedType := 'A'.! !
+!CustomerImporter methodsFor: 'parsing' stamp: 'MFAM 6/29/2023 15:20:34' prior: 50626759!
+parseNewCustomer
+	lastParsedType ifNotNil: [ self checkPreviousParsingWasAnAddress ].
+	
+	newCustomer := Customer new.
+	newCustomer firstName: data second.
+	newCustomer lastName: data third.
+	newCustomer identificationType: data fourth.
+	newCustomer identificationNumber: data fifth.
+	session persist: newCustomer.
+	
+	lastParsedType := 'C'.! !
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:20:42'!
+ERROR!
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:20:42'!
+ERROR!
+!CustomerImporter methodsFor: 'checks' stamp: 'MFAM 6/29/2023 15:21:48' prior: 50626812!
+checkForDigit
+
+	"data third asNumber on: Error do: [ self error: CustomerImporter shiftedDataErrorDescription ].
+	data fifth asNumber on: Error do: [ self error: CustomerImporter shiftedDataErrorDescription ].
+"! !
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:21:52'!
+FAILURE!
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:21:52'!
+FAILURE!
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:22:14'!
+FAILURE!
+!CustomerImporter methodsFor: 'parsing' stamp: 'MFAM 6/29/2023 15:23:11' prior: 50626833!
+parseAddress
+
+	| newAddress |
+	newAddress := Address new.	self checkForDigit.
+	
+	newCustomer addAddress: newAddress.
+	newAddress streetName: data second.
+	(newAddress streetNumber: data third asNumber) on: Error do: [ self error: CustomerImporter shiftedDataErrorDescription ] .
+	newAddress town: data fourth.
+	newAddress zipCode: data fifth asNumber .
+	newAddress province: data sixth.
+	
+	lastParsedType := 'A'.! !
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:23:20'!
+ERROR!
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:23:20'!
+ERROR!
+!CustomerImporter methodsFor: 'parsing' stamp: 'MFAM 6/29/2023 15:29:19' prior: 50626886!
+parseAddress
+
+	| newAddress |
+	newAddress := Address new.	self checkForDigit.
+	
+	newCustomer addAddress: newAddress.
+	newAddress streetName: data second.
+	[newAddress streetNumber: data third asNumber.
+	newAddress zipCode: data fifth asNumber ]  on: Error do: [ self error: CustomerImporter shiftedDataErrorDescription ] .
+
+	newAddress town: data fourth.	
+	newAddress province: data sixth.
+	
+	lastParsedType := 'A'.! !
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:29:23'!
+FAILURE!
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:29:24'!
+FAILURE!
+
+!testRun: #ImportTest #test06ImportCustomerWithNoAddress stamp: 'MFAM 6/29/2023 15:29:34'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportLineWithoutBegginingWithACustomer stamp: 'MFAM 6/29/2023 15:29:36'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 15:29:37'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithWrongType stamp: 'MFAM 6/29/2023 15:29:40'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'MFAM 6/29/2023 15:29:42'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'MFAM 6/29/2023 15:29:45'!
+PASSED!
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 15:30:35' prior: 50626715!
+pepeSanchezShiftedImportData
+
+	^
+'C,22333444,Pepe,Sanchez,D
+',
+'A,BsAs,San Martin,3322,Olivos,1636
+'! !
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:30:41'!
+FAILURE!
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:30:42'!
+FAILURE!
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 15:30:35' prior: 50626949!
+pepeSanchezShiftedImportData
+
+	^
+'C,22333444,Pepe,Sanchez,D
+',
+'A,BsAs,San Martin,3322,Olivos,1636
+'! !
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 15:30:35' prior: 50626962!
+pepeSanchezShiftedImportData
+
+	^
+'C,22333444,Pepe,Sanchez,D
+',
+'A,BsAs,San Martin,3322,Olivos,1636
+'! !
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 15:31:46' prior: 50626969!
+pepeSanchezShiftedImportData
+
+	^
+'C,22333444,Pepe,Sanchez,D
+',
+'A,BsAs,San Martin,3322,Olivos,1636
+',
+'A,Maipu,888,Florida,1122,Buenos Aires
+'! !
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 15:31:56' prior: 50626483!
+test07ImportLineWithShiftedData
+
+	self should: [ CustomerImporter valueFrom: self shiftedImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter shiftedDataErrorDescription equals: anError messageText. 
+			self assertImportedThisNumberOfCustomers: 2 andAddresses: 1.
+		].! !
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:31:57'!
+PASSED!
+
+!testRun: #ImportTest #test01Import stamp: 'MFAM 6/29/2023 15:31:58'!
+PASSED!
+
+!testRun: #ImportTest #test02ImportEmpty stamp: 'MFAM 6/29/2023 15:31:58'!
+PASSED!
+
+!testRun: #ImportTest #test03ImportLineWithWrongType stamp: 'MFAM 6/29/2023 15:31:59'!
+PASSED!
+
+!testRun: #ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 15:31:59'!
+PASSED!
+
+!testRun: #ImportTest #test05ImportLineWithoutBegginingWithACustomer stamp: 'MFAM 6/29/2023 15:32:00'!
+PASSED!
+
+!testRun: #ImportTest #test06ImportCustomerWithNoAddress stamp: 'MFAM 6/29/2023 15:32:00'!
+PASSED!
+
+!testRun: #ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:32:01'!
+PASSED!
+
+!methodRemoval: CustomerImporter #checkForDigit stamp: 'MFAM 6/29/2023 15:32:10'!
+checkForDigit
+
+	"data third asNumber on: Error do: [ self error: CustomerImporter shiftedDataErrorDescription ].
+	data fifth asNumber on: Error do: [ self error: CustomerImporter shiftedDataErrorDescription ].
+"!
+!CustomerImporter methodsFor: 'parsing' stamp: 'MFAM 6/29/2023 15:32:16' prior: 50626909!
+parseAddress
+
+	| newAddress |
+	newAddress := Address new.
+	
+	newCustomer addAddress: newAddress.
+	newAddress streetName: data second.
+	[newAddress streetNumber: data third asNumber.
+	newAddress zipCode: data fifth asNumber ]  on: Error do: [ self error: CustomerImporter shiftedDataErrorDescription ] .
+
+	newAddress town: data fourth.	
+	newAddress province: data sixth.
+	
+	lastParsedType := 'A'.! !
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 15:35:10'!
+test01CorrectFormatDataShouldBeImported
+
+	CustomerImporter valueFrom: self validImportData into: session..
+
+	self assertImportedThisNumberOfCustomers: 2 andAddresses: 3.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly.! !
+
+!methodRemoval: ImportTest #test01Import stamp: 'MFAM 6/29/2023 15:35:10'!
+test01Import
+
+	CustomerImporter valueFrom: self validImportData into: session..
+
+	self assertImportedThisNumberOfCustomers: 2 andAddresses: 3.
+	self assertPepeSanchezWasImportedCorrecty.
+	self assertJuanPerezWasImportedCorrectly.!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 15:35:54'!
+test02NothingShouldBeImportedIfNoDataWasReceived
+
+	CustomerImporter valueFrom: self emptyImportData into: session.
+
+	self assertImportedThisNumberOfCustomers: 0 andAddresses: 0.! !
+
+!methodRemoval: ImportTest #test02ImportEmpty stamp: 'MFAM 6/29/2023 15:35:54'!
+test02ImportEmpty
+
+	CustomerImporter valueFrom: self emptyImportData into: session.
+
+	self assertImportedThisNumberOfCustomers: 0 andAddresses: 0.!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 15:36:28'!
+test03LineWithWrongTypeShouldInterruptTheImport
+
+	self 
+		should: [ CustomerImporter valueFrom: self invalidTypeImportData into: session. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: CustomerImporter invalidLineTypeErrorDescription equals: anError messageText.
+			"Se importo lo que queria"
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+			self assertPepeSanchezWasImportedCorrecty.			
+			"No se importo lo que se rompia"
+			self should: [ self assertJuanPerezWasImportedCorrectly ]
+				raise: Error
+				withExceptionDo: [ :aSetError |
+						self assert: Set emptyCollectionDescription equals: aSetError messageText.
+					 ]
+			 ].! !
+
+!methodRemoval: ImportTest #test03ImportLineWithWrongType stamp: 'MFAM 6/29/2023 15:36:28'!
+test03ImportLineWithWrongType
+
+	self 
+		should: [ CustomerImporter valueFrom: self invalidTypeImportData into: session. ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo: [ :anError |
+			self assert: CustomerImporter invalidLineTypeErrorDescription equals: anError messageText.
+			"Se importo lo que queria"
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+			self assertPepeSanchezWasImportedCorrecty.			
+			"No se importo lo que se rompia"
+			self should: [ self assertJuanPerezWasImportedCorrectly ]
+				raise: Error
+				withExceptionDo: [ :aSetError |
+						self assert: Set emptyCollectionDescription equals: aSetError messageText.
+					 ]
+			 ].!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 15:36:49'!
+test04LineWithWrongLengthShouldInterruptTheImport	
+
+	self should: [ CustomerImporter valueFrom: self wrongLineLengthImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter wrongLineLengthErrorDescription equals: anError messageText. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+		].! !
+
+!methodRemoval: ImportTest #test04ImportLineWithWrongLength stamp: 'MFAM 6/29/2023 15:36:49'!
+test04ImportLineWithWrongLength	
+
+	self should: [ CustomerImporter valueFrom: self wrongLineLengthImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter wrongLineLengthErrorDescription equals: anError messageText. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+		].!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 15:37:48'!
+test05DataThatDoesNotBeginWithACustomerShouldInterruptTheImport
+
+	self should: [ CustomerImporter valueFrom: self beginsWithAnAddressImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter doesntBeginWithCustomerErrorDescription equals: anError messageText. 
+			self assertImportedThisNumberOfCustomers: 0 andAddresses: 0.
+		].! !
+
+!methodRemoval: ImportTest #test05ImportLineWithoutBegginingWithACustomer stamp: 'MFAM 6/29/2023 15:37:48'!
+test05ImportLineWithoutBegginingWithACustomer
+
+	self should: [ CustomerImporter valueFrom: self beginsWithAnAddressImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter doesntBeginWithCustomerErrorDescription equals: anError messageText. 
+			self assertImportedThisNumberOfCustomers: 0 andAddresses: 0.
+		].!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 15:38:01'!
+test06CustomerWithNoAddressShouldInterruptTheImport
+
+	self should: [ CustomerImporter valueFrom: self onlyCustomersImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter customerDoesntHaveAnAddressErrorDescription equals: anError messageText. 
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 0.
+		].! !
+
+!methodRemoval: ImportTest #test06ImportCustomerWithNoAddress stamp: 'MFAM 6/29/2023 15:38:01'!
+test06ImportCustomerWithNoAddress
+
+	self should: [ CustomerImporter valueFrom: self onlyCustomersImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter customerDoesntHaveAnAddressErrorDescription equals: anError messageText. 
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 0.
+		].!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 15:38:11'!
+test07LineWithShiftedDataShouldInterruptTheImport
+
+	self should: [ CustomerImporter valueFrom: self shiftedImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter shiftedDataErrorDescription equals: anError messageText. 
+			self assertImportedThisNumberOfCustomers: 2 andAddresses: 1.
+		].! !
+
+!methodRemoval: ImportTest #test07ImportLineWithShiftedData stamp: 'MFAM 6/29/2023 15:38:11'!
+test07ImportLineWithShiftedData
+
+	self should: [ CustomerImporter valueFrom: self shiftedImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter shiftedDataErrorDescription equals: anError messageText. 
+			self assertImportedThisNumberOfCustomers: 2 andAddresses: 1.
+		].!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 15:38:41'!
+test05LineWithWrongLengthShouldInterruptTheImport	
+
+	self should: [ CustomerImporter valueFrom: self wrongLineLengthImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter wrongLineLengthErrorDescription equals: anError messageText. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+		].! !
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 15:38:51'!
+test08LineWithShiftedDataShouldInterruptTheImport
+
+	self should: [ CustomerImporter valueFrom: self shiftedImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter shiftedDataErrorDescription equals: anError messageText. 
+			self assertImportedThisNumberOfCustomers: 2 andAddresses: 1.
+		].! !
+
+!methodRemoval: ImportTest #test07LineWithShiftedDataShouldInterruptTheImport stamp: 'MFAM 6/29/2023 15:38:51'!
+test07LineWithShiftedDataShouldInterruptTheImport
+
+	self should: [ CustomerImporter valueFrom: self shiftedImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter shiftedDataErrorDescription equals: anError messageText. 
+			self assertImportedThisNumberOfCustomers: 2 andAddresses: 1.
+		].!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 15:38:56'!
+test07CustomerWithNoAddressShouldInterruptTheImport
+
+	self should: [ CustomerImporter valueFrom: self onlyCustomersImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter customerDoesntHaveAnAddressErrorDescription equals: anError messageText. 
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 0.
+		].! !
+
+!methodRemoval: ImportTest #test06CustomerWithNoAddressShouldInterruptTheImport stamp: 'MFAM 6/29/2023 15:38:57'!
+test06CustomerWithNoAddressShouldInterruptTheImport
+
+	self should: [ CustomerImporter valueFrom: self onlyCustomersImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter customerDoesntHaveAnAddressErrorDescription equals: anError messageText. 
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 0.
+		].!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 15:39:12'!
+test06DataThatDoesNotBeginWithACustomerShouldInterruptTheImport
+
+	self should: [ CustomerImporter valueFrom: self beginsWithAnAddressImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter doesntBeginWithCustomerErrorDescription equals: anError messageText. 
+			self assertImportedThisNumberOfCustomers: 0 andAddresses: 0.
+		].! !
+
+!methodRemoval: ImportTest #test05DataThatDoesNotBeginWithACustomerShouldInterruptTheImport stamp: 'MFAM 6/29/2023 15:39:13'!
+test05DataThatDoesNotBeginWithACustomerShouldInterruptTheImport
+
+	self should: [ CustomerImporter valueFrom: self beginsWithAnAddressImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter doesntBeginWithCustomerErrorDescription equals: anError messageText. 
+			self assertImportedThisNumberOfCustomers: 0 andAddresses: 0.
+		].!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 15:39:26'!
+test04LineWithMissingCellsShouldInterruptTheImport	
+
+	self should: [ CustomerImporter valueFrom: self wrongLineLengthImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter wrongLineLengthErrorDescription equals: anError messageText. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+		].! !
+
+!methodRemoval: ImportTest #test04LineWithWrongLengthShouldInterruptTheImport stamp: 'MFAM 6/29/2023 15:39:26'!
+test04LineWithWrongLengthShouldInterruptTheImport	
+
+	self should: [ CustomerImporter valueFrom: self wrongLineLengthImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter wrongLineLengthErrorDescription equals: anError messageText. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+		].!
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 15:39:48'!
+missingCellsImportData
+
+	^ ReadStream on:
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez,,1	',
+		'A,Alem,1122,CABA,1001,CABA	'.! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'MFAM 6/29/2023 15:39:48' prior: 50627252!
+test05LineWithWrongLengthShouldInterruptTheImport	
+
+	self should: [ CustomerImporter valueFrom: self missingCellsImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter wrongLineLengthErrorDescription equals: anError messageText. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+		].! !
+!ImportTest methodsFor: 'as yet unclassified' stamp: 'MFAM 6/29/2023 15:39:48' prior: 50627360!
+test04LineWithMissingCellsShouldInterruptTheImport	
+
+	self should: [ CustomerImporter valueFrom: self missingCellsImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter wrongLineLengthErrorDescription equals: anError messageText. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+		].! !
+
+!methodRemoval: ImportTest #wrongLineLengthImportData stamp: 'MFAM 6/29/2023 15:39:48'!
+wrongLineLengthImportData
+
+	^ ReadStream on:
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez,,1	',
+		'A,Alem,1122,CABA,1001,CABA	'.!
+
+!testRun: #ImportTest #test04LineWithMissingCellsShouldInterruptTheImport stamp: 'MFAM 6/29/2023 15:40:01'!
+PASSED!
+
+!testRun: #ImportTest #test01CorrectFormatDataShouldBeImported stamp: 'MFAM 6/29/2023 15:40:04'!
+PASSED!
+
+!testRun: #ImportTest #test02NothingShouldBeImportedIfNoDataWasReceived stamp: 'MFAM 6/29/2023 15:40:05'!
+PASSED!
+
+!testRun: #ImportTest #test03LineWithWrongTypeShouldInterruptTheImport stamp: 'MFAM 6/29/2023 15:40:05'!
+PASSED!
+
+!testRun: #ImportTest #test04LineWithMissingCellsShouldInterruptTheImport stamp: 'MFAM 6/29/2023 15:40:06'!
+PASSED!
+
+!testRun: #ImportTest #test05LineWithWrongLengthShouldInterruptTheImport stamp: 'MFAM 6/29/2023 15:40:06'!
+PASSED!
+
+!testRun: #ImportTest #test06DataThatDoesNotBeginWithACustomerShouldInterruptTheImport stamp: 'MFAM 6/29/2023 15:40:07'!
+PASSED!
+
+!testRun: #ImportTest #test07CustomerWithNoAddressShouldInterruptTheImport stamp: 'MFAM 6/29/2023 15:40:07'!
+PASSED!
+
+!testRun: #ImportTest #test08LineWithShiftedDataShouldInterruptTheImport stamp: 'MFAM 6/29/2023 15:40:08'!
+PASSED!
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 15:40:21' prior: 50627401!
+test05LineWithWrongLengthShouldInterruptTheImport	
+
+	self should: [ CustomerImporter valueFrom: self wrongLengthImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter wrongLineLengthErrorDescription equals: anError messageText. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+		].! !
+!ImportTest methodsFor: 'tests' stamp: 'MFAM 6/29/2023 15:40:25' prior: 50627474!
+test05LineWithWrongLengthShouldInterruptTheImport	
+
+	self should: [ CustomerImporter valueFrom: self wrongLineLengthImportData into: session ]
+		raise: Error - MessageNotUnderstood 
+		withExceptionDo:  [ :anError |
+			self assert: CustomerImporter wrongLineLengthErrorDescription equals: anError messageText. 
+			self assertPepeSanchezWasImportedCorrecty.
+			self assertImportedThisNumberOfCustomers: 1 andAddresses: 2.
+		].! !
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 15:40:35'!
+wrongLineLengthImportData
+
+	^ ReadStream on:
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez,,1	',
+		'A,Alem,1122,CABA,1001,CABA	'.! !
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 15:41:15' prior: 50627506!
+wrongLineLengthImportData
+
+	^ ReadStream on:
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez,C,23-25666777-9,9-12-18	',
+		'A,Alem,1122,CABA,1001,CABA	'.! !
+
+!testRun: #ImportTest #test01CorrectFormatDataShouldBeImported stamp: 'MFAM 6/29/2023 15:41:30'!
+PASSED!
+
+!testRun: #ImportTest #test02NothingShouldBeImportedIfNoDataWasReceived stamp: 'MFAM 6/29/2023 15:41:31'!
+PASSED!
+
+!testRun: #ImportTest #test03LineWithWrongTypeShouldInterruptTheImport stamp: 'MFAM 6/29/2023 15:41:31'!
+PASSED!
+
+!testRun: #ImportTest #test04LineWithMissingCellsShouldInterruptTheImport stamp: 'MFAM 6/29/2023 15:41:32'!
+PASSED!
+
+!testRun: #ImportTest #test05LineWithWrongLengthShouldInterruptTheImport stamp: 'MFAM 6/29/2023 15:41:33'!
+PASSED!
+
+!testRun: #ImportTest #test06DataThatDoesNotBeginWithACustomerShouldInterruptTheImport stamp: 'MFAM 6/29/2023 15:41:33'!
+PASSED!
+
+!testRun: #ImportTest #test07CustomerWithNoAddressShouldInterruptTheImport stamp: 'MFAM 6/29/2023 15:41:33'!
+PASSED!
+
+!testRun: #ImportTest #test08LineWithShiftedDataShouldInterruptTheImport stamp: 'MFAM 6/29/2023 15:41:34'!
+PASSED!
+!ImportTest methodsFor: 'test data' stamp: 'MFAM 6/29/2023 15:42:14' prior: 50627513!
+wrongLineLengthImportData
+
+	^ ReadStream on:
+		(self pepeSanchezImportData), 
+		'C,Juan,Perez,C,23-25666777-9,9-12-18,	',
+		'A,Alem,1122'.! !
+
+!testRun: #ImportTest #test01CorrectFormatDataShouldBeImported stamp: 'MFAM 6/29/2023 15:42:22'!
+PASSED!
+
+!testRun: #ImportTest #test02NothingShouldBeImportedIfNoDataWasReceived stamp: 'MFAM 6/29/2023 15:42:23'!
+PASSED!
+
+!testRun: #ImportTest #test03LineWithWrongTypeShouldInterruptTheImport stamp: 'MFAM 6/29/2023 15:42:23'!
+PASSED!
+
+!testRun: #ImportTest #test04LineWithMissingCellsShouldInterruptTheImport stamp: 'MFAM 6/29/2023 15:42:24'!
+PASSED!
+
+!testRun: #ImportTest #test05LineWithWrongLengthShouldInterruptTheImport stamp: 'MFAM 6/29/2023 15:42:25'!
+PASSED!
+
+!testRun: #ImportTest #test06DataThatDoesNotBeginWithACustomerShouldInterruptTheImport stamp: 'MFAM 6/29/2023 15:42:25'!
+PASSED!
+
+!testRun: #ImportTest #test07CustomerWithNoAddressShouldInterruptTheImport stamp: 'MFAM 6/29/2023 15:42:25'!
+PASSED!
+
+!testRun: #ImportTest #test08LineWithShiftedDataShouldInterruptTheImport stamp: 'MFAM 6/29/2023 15:42:26'!
+PASSED!
